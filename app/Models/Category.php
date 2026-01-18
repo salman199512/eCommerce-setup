@@ -15,6 +15,10 @@ class Category extends Model
 
     public $fillable = [
         'title',
+        'slug',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
         'status',
         'uuid',
     ];
@@ -26,6 +30,10 @@ class Category extends Model
      */
     protected $casts = [
         'title' => 'string',
+        'slug' => 'string',
+        'meta_title' => 'string',
+        'meta_description' => 'string',
+        'meta_keywords' => 'string',
         'status' => 'boolean',
         'uuid' => 'string',
     ];

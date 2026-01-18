@@ -16,6 +16,10 @@ class SubCategory extends Model
     public $fillable = [
         'category_id',
         'title',
+        'slug',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
         'status',
         'uuid',
     ];
@@ -28,6 +32,10 @@ class SubCategory extends Model
     protected $casts = [
         'category_id' => 'integer',
         'title' => 'string',
+        'slug' => 'string',
+        'meta_title' => 'string',
+        'meta_description' => 'string',
+        'meta_keywords' => 'string',
         'status' => 'boolean',
         'uuid' => 'string',
     ];

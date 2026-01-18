@@ -39,7 +39,7 @@ class BrandController extends AppBaseController
 
     public function store(CreateBrandRequest $request)
     {
-        $input = $request->except(['_token', 'brand_icon']);
+        $input = BrandRepository::requestHandler($request);
 
         $brand = $this->brandRepository->create($input);
 
@@ -74,7 +74,7 @@ class BrandController extends AppBaseController
 
     public function update(Brand $brand, UpdateBrandRequest $request)
     {
-        $input = $request->except(['_token', 'brand_icon']);
+        $input = BrandRepository::requestHandler($request);
 
         $brand = $this->brandRepository->update($input, $brand->id);
 

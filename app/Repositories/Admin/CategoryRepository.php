@@ -31,7 +31,11 @@ class CategoryRepository extends BaseRepository
     public static function requestHandler(Request $request) {
         return [
             'title' => $request->title,
-            'status' => $request->has('status') ? 1 : 0,
+            'slug' => $request->slug ?? \Illuminate\Support\Str::slug($request->title),
+            'meta_title' => $request->meta_title ?? $request->title,
+            'meta_description' => $request->meta_description,
+            'meta_keywords' => $request->meta_keywords,
+            'status' => 1,
         ];
     }
 }

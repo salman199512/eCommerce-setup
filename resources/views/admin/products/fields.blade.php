@@ -36,7 +36,27 @@
 <!-- Title Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('title', 'Title:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) !!}
+    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title', 'id' => 'master_title']) !!}
+</div>
+
+{!! Form::hidden('slug', null, ['id' => 'master_slug']) !!}
+
+<!-- Meta Title Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('meta_title', 'Meta Title:') !!}
+    {!! Form::text('meta_title', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Title', 'id' => 'master_meta_title']) !!}
+</div>
+
+<!-- Meta Keywords Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('meta_keywords', 'Meta Keywords:') !!}
+    {!! Form::textarea('meta_keywords', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Keywords', 'rows' => 2]) !!}
+</div>
+
+<!-- Meta Description Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('meta_description', 'Meta Description:') !!}
+    {!! Form::textarea('meta_description', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Description', 'rows' => 2]) !!}
 </div>
 
 <!-- Category Field -->
@@ -216,6 +236,17 @@
         uploadMultipleImageByDropzone('product_images_dropzone');
         $('.select2').select2();
         $(document).ready(function() {
+            // Auto generate slug and meta title
+            $('#master_title').on('input', function() {
+                let title = $(this).val();
+                let slug = title.toLowerCase()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/[\s_-]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                $('#master_slug').val(slug);
+                $('#master_meta_title').val(title);
+            });
+
             // CKEditor
 
              // Initialize Multiple Image Dropzone

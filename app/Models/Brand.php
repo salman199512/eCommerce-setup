@@ -20,12 +20,20 @@ class Brand extends Model implements HasMedia
 
     public $fillable = [
         'name',
+        'slug',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
         'status',
         'uuid',
     ];
 
     protected $casts = [
         'name' => 'string',
+        'slug' => 'string',
+        'meta_title' => 'string',
+        'meta_description' => 'string',
+        'meta_keywords' => 'string',
         'status' => 'boolean',
         'uuid' => 'string',
     ];

@@ -169,9 +169,13 @@ class ProductRepository extends BaseRepository
             'sub_category_id' => $request->sub_category_id,
             'brand_id' => $request->brand_id,
             'title' => $request->title,
+            'slug' => $request->slug ?? \Illuminate\Support\Str::slug($request->title),
+            'meta_title' => $request->meta_title ?? $request->title,
+            'meta_description' => $request->meta_description,
+            'meta_keywords' => $request->meta_keywords,
             'description' => $request->description,
             'returned_days' => $request->returned_days,
-            'status' => $request->has('status') ? 1 : 0,
+            'status' => 1,
             'attributes' => $request->attribute_selection ?? [], // structured as [group_id => [attr_id, attr_id]]
             'variants' => [], // Will be parsed below
         ];

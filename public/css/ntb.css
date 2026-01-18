@@ -1,0 +1,769 @@
+/*
+=====================================================
+    HELPERS                                 BELOW
+=====================================================
+ */
+.p-0{
+    padding: 0 !important;
+}
+.p-2{
+    padding: 2px !important;
+}
+.p-5{
+    padding: 5px !important;
+}
+.m-0{
+    margin: 0 !important;
+}
+.p-t-15{
+    padding-top: 15px !important;
+}
+.fa-chain:before,.fa-link:before {
+    content: "\f0c1"
+}
+.fa-handshake-o:before {
+    content: "\f2b5";
+}
+
+/*
+Admin LTE-3 css
+ */
+ul.nav-treeview {
+    background-color: currentColor !important;
+}
+.breadcrumb-item {
+    font-weight: 600;
+}
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0 !important;
+}
+input[type="file" i] {
+    padding: 3px !important;
+}
+.alert-quick-add {
+    color: #000;
+    background: #d3ffdd;
+    border-color: #d1f9d6;
+}
+.alert-quick-add a{
+    text-decoration: unset;
+}
+.main-sidebar a .logo-mini {
+    display: none;
+}
+@media (min-width: 768px) {
+    .sidebar-mini.sidebar-collapse .main-sidebar a > .logo-mini {
+        display: block;
+    }
+}
+.modal-backdrop{
+    width: 100%!important;
+    height: 100%!important;
+}
+a.rspSuccessBtns{
+    text-decoration: none;
+}
+
+
+.user-panel img {
+    height: 2.1rem;
+    width: 2.1rem;
+}
+
+
+/*
+=====================================================
+    IMAGE PREVIEWER                         BELOW
+=====================================================
+ */
+div.sImageContainer{
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    position: relative; /* If you want text inside of it */
+}
+div.sImagePlaceholderDiv{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 1px dashed;
+    cursor: pointer;
+    background-color: #dedede;
+}
+div.sImagePlaceholderText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    /*padding: 39px;*/
+}
+.sImageOuterContainer{
+    max-width: 250px;
+    margin: auto;
+    min-height: 29vh;
+    display: flex;
+    align-items: center;
+}
+div.sImagePreview{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+div.sImagePreview img.sImagePreviewImg{
+    max-height: 100%;
+    max-width: 100%;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+div.sImagePreview div.sImage_Overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: #ff2323;
+}
+div.sImagePreview:hover div.sImage_Overlay{
+    opacity: 0.5;
+}
+div.sImagePreview div.sImage_Overlay a.icon{
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+div.sImagePreview div.sImage_Overlay a.icon i.fa-trash{
+    color: #eee;
+}
+
+.mayContainError label.error{
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+    font-weight: normal;
+    color: #f44336;
+}
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+.sVidUploadInfo{
+    padding-left: 15px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/*******************************************************
+DROPZONE CSS
+********************************************************/
+div.dz-sImageOuterContainer{
+    max-width: 250px;
+    margin: auto;
+    min-height: 29vh;
+    display: flex;
+    align-items: center;
+}
+
+div.dz-sImageContainer{
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    position: relative; /* If you want text inside of it */
+}
+
+div.single-image-upload {
+    cursor: pointer !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 1px dashed;
+    background-color: #fff;
+}
+
+div.avatar-upload div.dz-message{
+    display: none;
+}
+div.dz-sImagePlaceholderText{
+    padding: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    cursor: pointer !important;
+    width:100%;
+}
+
+.avatar-upload.dropzone{
+    padding: 0 !important;
+    min-height: 230px !important;
+    width:230px !important;
+    border:none;
+}
+
+/* Image Previewer */
+
+div.dz-sImagePreview{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+div.dz-sImagePreview img.dz-sImagePreviewImg{
+    max-height: 100%;
+    max-width: 100%;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+}
+div.dz-sImagePreview div.dz_sImage_Overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: #ff2323;
+}
+div.dz-sImagePreview:hover div.dz_sImage_Overlay{
+    opacity: 0.5;
+}
+div.dz-sImagePreview div.dz_sImage_Overlay a.icon{
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+div.dz-sImagePreview div.dz_sImage_Overlay a.icon i.fa-trash{
+    color: #eee;
+}
+
+.avatar-upload.dropzone .dz-preview.dz-image-preview {
+    background: transparent !important;
+    width: 100%;
+}
+
+.avatar-upload.dropzone .dz-preview {
+    margin: 0 !important;
+}
+
+.avatar-upload.dropzone .dz-preview .dz-image {
+    border-radius: 0px !important;
+    min-height: 230px !important;
+    min-width: 230px !important;
+    height: 0 !important;
+    width: 100%;
+}
+
+.avatar-upload.dropzone .dz-preview .dz-image img {
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.avatar-upload.dropzone .dz-filename, .avatar-upload.dropzone .dz-size {
+    display:none;
+}
+
+.avatar-upload.dropzone .dz-preview .dz-progress {
+    /*left: 25% !important;*/
+    /*width: 200px;*/
+}
+
+.avatar-upload.dropzone a.dz-remove{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    font-size: 50px;
+    transform: translate(-50%,-50%);
+}
+
+.avatar-upload.dropzone a.dz-remove i {
+    cursor: pointer;
+    color: white !important;
+}
+
+.avatar-upload div.preview-container:hover a.dz-remove{
+    opacity: 0.5;
+}
+.avatar-upload.dropzone a.dz-remove{
+    opacity: 0;
+}
+
+div.preview-container:hover div.dz-sImagePreview{
+    display: block;
+}
+
+div.imageOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    transition: .3s ease;
+    background-color: #ff2323;
+    display: none;
+    cursor: pointer;
+}
+
+div.preview-container:hover div.imageOverlay{
+    display: block;
+}
+
+div.dz-sImagePreview div.dz_sImage_Overlay a.icon i{
+    cursor: pointer !important;
+}
+
+.avatar-upload.dropzone div.preview-container .dz-preview {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    margin: auto !important;
+}
+
+/*
+===================================================
+DROPZONE MULTIPLE IMAGES
+===================================================
+ */
+.dz-mImage-upload {
+    position: relative;
+}
+.multipleImage {
+    cursor: pointer !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #dedede;
+    border: 1px dashed;
+}
+.dz-mImagesPlaceholderText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+.upload-images-title {
+    font-weight: 700;
+}
+.dz-mImagesContainer{
+    margin-bottom: 16px;
+    min-height: 200px;
+}
+.dz-mImagesContainer .dropzone{
+    background: transparent;
+    border: none !important;
+}
+.dz-mImageThumbnail{
+    max-width: 250px;
+    /*margin: 0 auto;*/
+}
+.dz-mImageThumbnail img{
+    width: 100% !important;
+    height: 250px;
+    object-fit: contain;
+}
+.dz-mImagesContainer .dropzone .dz-preview{
+    text-align:center;
+}
+.dz-mImagesContainer .dropzone .dz-preview.dz-image-preview{
+    background: #dedede !important;
+}
+.dz-mImagesContainer .dz-preview .makePrimary{
+    font-size: 14px;
+}
+.dz-mImagesContainer .dz-preview .dz-remove {
+    margin-top: 0.5rem !important;
+    display: inherit !important;
+}
+.dz-mImagesContainer .dz-preview .dz-image{
+    border-radius: 0 !important;
+}
+.dz-mImagesContainer .dz-preview .dz-image img{
+    width: 100%;
+    height:100%;
+    object-fit: contain;
+}
+
+/*
+=======================================================
+FILE ATTACHMENT DROPZONE CSS
+=======================================================
+ */
+
+.dz-file-attachment{
+    padding: 0.375rem 1.75rem;
+    min-height: 30px;
+    /*max-height:100px;*/
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.dz-file-attachment .dz-message{
+    margin: 0;
+    display: none;
+}
+
+.dz-file-attachment div.dz-fileAttachmentPlaceHolder{
+    cursor: pointer;
+}
+
+.dz-file-attachment .preview-container .dz-image{
+    position: relative;
+}
+
+.dz-file-attachment .preview-container .dz-image div{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 35px;
+    color: gray;
+}
+#comment-quick-add.dropzone{
+    border:0;
+    background: transparent;
+}
+#comment-quick-add .dz-message{
+    display:none;
+}
+
+.dz-file-attachment .preview-container{
+    visibility: hidden;
+}
+
+.dz-file-attachment .preview-container #previews.collection{
+    margin: 0;
+    box-shadow: none;
+}
+
+.dz-file-attachment .preview-container #previews .file-preview{
+    border: solid 1px lightgray;
+    border-radius: 5px;
+}
+
+.dz-file-attachment .preview-container #previews.collection .actions a{
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1;
+}
+.dz-file-attachment .preview-container #previews.collection .actions a i{
+    font-size: 1em;
+    line-height: 1.6;
+}
+.dz-file-attachment .preview-container #previews.collection .dz-error-message{
+    font-size: 0.8em;
+    margin-top: -12px;
+    color: #F44336;
+}
+
+.dz-file-attachment .progress{
+    background: transparent;
+}
+.dz-file-attachment .progress .determinate {
+    background: #e2e1e1;
+    transition: width .3s linear;
+    border-radius: 8px;
+    height: 10px;
+}
+.dz-file-attachment .dz-remove{
+    display:none;
+}
+
+/*
+=====================================================
+    PRODUCTS IMAGES CAROUSEL - TEMPLATE     BELOW
+=====================================================
+ */
+/* equal card height */
+.row-equal > div[class*='col-'] {
+    display: flex;
+    flex: 1 0 auto;
+}
+.row-equal .card {
+    width: 100%;
+}
+/* ensure equal card height inside carousel */
+.carousel-inner>.row-equal.active,
+.carousel-inner>.row-equal.next,
+.carousel-inner>.row-equal.prev {
+    display: flex;
+}
+/* prevent flicker during transition */
+.carousel-inner>.row-equal.active.left,
+.carousel-inner>.row-equal.active.right {
+    opacity: 0.5;
+    display: flex;
+}
+/* control image height */
+.card-img-top-250 {
+    max-height: 250px;
+    overflow:hidden;
+}
+
+
+/*
+=====================================================
+    PRODUCTS IMAGES CAROUSEL - NTB          BELOW
+=====================================================
+ */
+.mImagesContainer{
+    background: #dedede;
+    border: 1px dashed;
+    margin-bottom: 16px;
+    min-height: 200px;
+}
+div.mImagesPlaceholderDiv{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+div.mImagesPlaceholderText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    /*padding: 39px;*/
+}
+.img-fluid{
+    width: 100%;
+}
+
+
+/*
+=====================================================
+    HEADER SIDEBAR TOGGLE ICON FIX          BELOW
+=====================================================
+ */
+.main-header .sidebar-toggle {
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    /* font-family: fontAwesome; */
+    font-family: "Font Awesome\ 5 Free"; /* cjr */
+}
+.main-header .sidebar-toggle:before {
+    content: "\f0c9";
+    font-weight: 900; /* cjr */
+}
+
+
+/**
+    Force underline
+ */
+.underline{
+    text-decoration: underline;
+}
+.pointer{
+    cursor: pointer;
+}
+
+.custom-control-label{
+    font-weight: unset !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__clear{
+    margin-top: -2px;
+}
+
+
+.form-separator-left{
+    border-left: 1px solid #e2e2e2;
+}
+@media (max-width: 575px) {
+    .form-separator-left{
+        border-left: none;
+        padding: 0;
+    }
+}
+
+.progress-description{
+    padding-bottom: .25rem;
+}
+.info-box .info-box-content{
+    line-height: 1.8;
+}
+
+/*Rotating icons which under the class rotate360*/
+.rotate360 .fa:hover, .rotate360 .fas:hover, .rotate360 .fa-duotone:hover {
+    transform: rotate(360deg);
+}
+.rotate360 .fa, .rotate360 .fas, .rotate360 .fa-duotone {
+    transition: transform 0.5s ease 0s;
+}
+
+/*Rotating icons which are under the datatable actions and are individual*/
+.datatables_action a .fa:hover, .datatables_action a .fas:hover, .datatables_action a .fa-duotone:hover {
+    transform: rotate(360deg);
+}
+.datatables_action a .fa, .datatables_action a .fas, .datatables_action a .fa-duotone {
+    transition: transform 0.5s ease 0s;
+}
+
+table.dataTable thead, table.dataTable thead > a{
+    color: #fff !important;
+}
+
+
+.nav-sidebar>.nav-item>.nav-link{
+    color: #fff;
+}
+
+.image-info{
+    position: absolute;
+    bottom: 0;
+    color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    display: none;
+    background-image: linear-gradient(0deg,#000,transparent);
+    border-radius: 5px;
+}
+.custom-control-label:hover .image-info{
+    display: block;
+}
+
+.daterangepicker {
+    z-index: 99999;
+}
+.switch.btn{
+    min-width: 4.7rem;
+}
+
+@media (min-width: 992px) {
+    .sidebar-mini.sidebar-collapse .user-role{
+        display: none;
+    }
+}
+.sidebar-collapse.sidebar-mini .main-sidebar.sidebar-focused:not(.hide-nav-header-on-hover) .user-role,
+.sidebar-collapse.sidebar-mini .main-sidebar:hover:not(.hide-nav-header-on-hover) .user-role,
+.sidebar-collapse.sidebar-mini-md .main-sidebar.sidebar-focused:not(.hide-nav-header-on-hover) .user-role,
+.sidebar-collapse.sidebar-mini-md .main-sidebar:hover:not(.hide-nav-header-on-hover) .user-role,
+.sidebar-collapse.sidebar-mini-xs .main-sidebar.sidebar-focused:not(.hide-nav-header-on-hover) .user-role,
+.sidebar-collapse.sidebar-mini-xs .main-sidebar:hover:not(.hide-nav-header-on-hover) .user-role{
+    display: inline-block;
+}
+
+.dropzone .dz-preview .dz-progress .dz-upload, .dz-file-attachment .progress .determinate{
+    background: #174060;
+}
+.dropzone .dz-preview .dz-progress{
+    border-radius: 7px;
+}
+
+.sidebar_light_bg{
+    background-color: #fff6de
+}
+
+input[type=submit], button[type=submit]{
+    font-weight: 700;
+}
+.card-head-row .float-right .datatables_action .action-button .fas {
+    color: white;
+}
+
+.card-head-row .float-right .datatables_action .action-button {
+    padding: 10%;
+    margin-left: 100%;
+}
+
+.dropleft .dropdown-menu {
+    padding: 0;
+    z-index: 1040;
+    top: 47px !important;
+    left: 28px!important;
+}
+
+table.dataTable thead  {
+    background-color: #4e5454 !important;
+}
+table.dataTable thead, table.dataTable thead > a{
+    color: #fff !important;
+}
+
+.dropzone{
+    min-height: inherit;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+h4.brand-text {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+[class*=accent-] a.btn-primary {
+    color: #ffffff;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #e09b3b;
+    border-color: #dd9025;
+    color: #ffffff;
+    margin-top: 0.31rem;
+    padding: 0 10px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected], .select2-container--default .select2-results__option--highlighted[aria-selected]:hover {
+    background-color: #de942e;
+    color: #ffffff;
+}
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #e09b3b;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #e09b3b;
+    border-color: #e09b3b;
+    box-shadow: none;
+    color: #ffffff;
+}

@@ -19,6 +19,7 @@ class Product extends Model implements HasMedia
     public $fillable = [
         'category_id',
         'sub_category_id',
+        'brand_id',
         'title',
         'description',
         'returned_days',
@@ -29,6 +30,7 @@ class Product extends Model implements HasMedia
     protected $casts = [
         'category_id' => 'integer',
         'sub_category_id' => 'integer',
+        'brand_id' => 'integer',
         'title' => 'string',
         'description' => 'string',
         'returned_days' => 'integer',
@@ -39,6 +41,7 @@ class Product extends Model implements HasMedia
     public static $rules = [
         'category_id' => 'required|exists:categories,id',
         'sub_category_id' => 'nullable|exists:sub_categories,id',
+        'brand_id' => 'nullable|exists:brands,id',
         'title' => 'required|string|max:255',
         'status' => 'boolean',
         'variants' => 'nullable', // Ensure at least one variant is generated
@@ -65,6 +68,11 @@ class Product extends Model implements HasMedia
     public function subCategory()
     {
         return $this->belongsTo(SubCategory::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     public function variants()

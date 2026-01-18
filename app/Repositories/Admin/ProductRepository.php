@@ -18,6 +18,7 @@ class ProductRepository extends BaseRepository
         'status',
         'category_id',
         'sub_category_id',
+        'brand_id',
     ];
 
     public function getFieldsSearchable(): array
@@ -166,6 +167,7 @@ class ProductRepository extends BaseRepository
         $data = [
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
+            'brand_id' => $request->brand_id,
             'title' => $request->title,
             'description' => $request->description,
             'returned_days' => $request->returned_days,

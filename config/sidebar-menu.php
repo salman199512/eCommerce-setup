@@ -36,6 +36,35 @@ return [
                 'route' => 'admin.sub-categories.index',
                 'children' => [],
             ],
+
+            [
+                'name' => 'Attribute Groups',
+                'icon' => '',
+                'isHeader' => false,
+                'route' => 'admin.attribute-groups.index',
+                'children' => [],
+            ],
+            [
+                'name' => 'Attributes',
+                'icon' => '',
+                'isHeader' => false,
+                'route' => 'admin.attributes.index',
+                'children' => [],
+            ],
+            [
+                'name' => 'Brands',
+                'icon' => '',
+                'isHeader' => false,
+                'route' => 'admin.brands.index',
+                'children' => [],
+            ],
+            [
+                'name' => 'Products',
+                'icon' => '',
+                'isHeader' => false,
+                'route' => 'admin.products.index',
+                'children' => [],
+            ],
             [
                 'name' => 'CMS Pages',
                 'icon' => '',

@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\UpdateProductRequest;
 use App\Models\Action;
 use App\Models\Attribute;
 use App\Models\AttributeGroup;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
@@ -36,10 +37,11 @@ class ProductController extends AppBaseController
     public function create()
     {
         $categories = Category::where('status', 1)->pluck('title', 'id');
+        $brands = Brand::where('status', 1)->pluck('name', 'id');
         $subCategories = SubCategory::where('status', 1)->pluck('title', 'id');
         $attributeGroups = AttributeGroup::where('status', 1)->pluck('title', 'id');
 
-        return view('admin.products.create', compact('categories', 'subCategories', 'attributeGroups'));
+        return view('admin.products.create', compact('categories', 'subCategories', 'attributeGroups', 'brands'));
     }
 
     public function store(CreateProductRequest $request)
@@ -61,6 +63,7 @@ class ProductController extends AppBaseController
     public function edit(Product $product)
     {
         $categories = Category::where('status', 1)->pluck('title', 'id');
+        $brands = Brand::where('status', 1)->pluck('name', 'id');
         $subCategories = SubCategory::where('status', 1)->pluck('title', 'id');
         $attributeGroups = AttributeGroup::where('status', 1)->pluck('title', 'id');
         $mediaUrls = [];
@@ -91,7 +94,7 @@ class ProductController extends AppBaseController
 
         $product->load(['variants.attributes', 'attributes']);
 
-        return view('admin.products.edit', compact('product', 'mediaUrls','categories', 'subCategories', 'attributeGroups'));
+        return view('admin.products.edit', compact('product', 'mediaUrls','categories', 'subCategories', 'attributeGroups', 'brands'));
     }
 
     public function update(Product $product, UpdateProductRequest $request)

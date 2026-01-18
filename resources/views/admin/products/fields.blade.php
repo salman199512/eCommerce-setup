@@ -45,6 +45,12 @@
     {!! Form::select('category_id', $categories, null, ['class' => 'form-control select2', 'placeholder' => 'Select Category']) !!}
 </div>
 
+<!-- Brand Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('brand_id', 'Brand:') !!}
+    {!! Form::select('brand_id', $brands, null, ['class' => 'form-control select2', 'placeholder' => 'Select Brand']) !!}
+</div>
+
 <!-- Sub Category Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('sub_category_id', 'Sub Category:') !!}

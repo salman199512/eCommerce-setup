@@ -34,6 +34,8 @@ Route::group(['prefix' => 'admin',
     Route::resource('products', App\Http\Controllers\Admin\ProductController::class, ["as" => 'admin']);
     Route::get('products-status-change/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'statusChange'])->name('admin.products.status-change');
     Route::get('get-attributes', [\App\Http\Controllers\Admin\ProductController::class, 'getAttributes'])->name('admin.products.get-attributes');
+    Route::resource('brands', App\Http\Controllers\Admin\BrandController::class, ["as" => 'admin']);
+    Route::get('brands-status-change/{brand}', [\App\Http\Controllers\Admin\BrandController::class, 'statusChange'])->name('admin.brands.status-change');
 
 
     Route::group(['prefix' => 'users', 'as' => 'admin.users.'], function () {

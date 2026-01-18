@@ -27,6 +27,13 @@ Route::group(['prefix' => 'admin',
     Route::get('categories-status-change/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'statusChange'])->name('admin.categories.status-change');
     Route::resource('sub-categories', App\Http\Controllers\Admin\SubCategoryController::class, ["as" => 'admin']);
     Route::get('sub-categories-status-change/{subCategory}', [\App\Http\Controllers\Admin\SubCategoryController::class, 'statusChange'])->name('admin.sub-categories.status-change');
+    Route::resource('attribute-groups', App\Http\Controllers\Admin\AttributeGroupController::class, ["as" => 'admin']);
+    Route::get('attribute-groups-status-change/{attributeGroup}', [\App\Http\Controllers\Admin\AttributeGroupController::class, 'statusChange'])->name('admin.attribute-groups.status-change');
+    Route::resource('attributes', App\Http\Controllers\Admin\AttributeController::class, ["as" => 'admin']);
+    Route::get('attributes-status-change/{attribute}', [\App\Http\Controllers\Admin\AttributeController::class, 'statusChange'])->name('admin.attributes.status-change');
+    Route::resource('products', App\Http\Controllers\Admin\ProductController::class, ["as" => 'admin']);
+    Route::get('products-status-change/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'statusChange'])->name('admin.products.status-change');
+    Route::get('get-attributes', [\App\Http\Controllers\Admin\ProductController::class, 'getAttributes'])->name('admin.products.get-attributes');
 
 
     Route::group(['prefix' => 'users', 'as' => 'admin.users.'], function () {

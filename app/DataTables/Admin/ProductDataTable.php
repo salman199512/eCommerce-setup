@@ -14,6 +14,10 @@ class ProductDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
+            ->editColumn('image', function (Product $model) {
+                $imageUrl = $model->avatar_url;
+                return '<img src="'.$imageUrl.'" class="img-thumbnail" width="50">';
+            })
             ->editColumn('status', function (Product $model) {
                  if ($model->status == '1') {
                     $status = 'checked';
@@ -38,7 +42,7 @@ class ProductDataTable extends DataTable
                 return GeneralHelperFunctions::prepareHtmlDate($model->created_at);
             })
             ->addColumn('action', 'admin.products.datatables_actions')
-            ->rawColumns(['status', 'action', 'created_at']);
+            ->rawColumns(['image', 'status', 'action', 'created_at']);
     }
 
     public function query(Product $model)
@@ -64,6 +68,7 @@ class ProductDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'image' => ['searchable' => false, 'orderable' => false],
             'title',
             'category_id' => ['title' => 'Category'],
             'sub_category_id' => ['title' => 'Sub Category'],

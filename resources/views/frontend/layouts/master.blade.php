@@ -1,73 +1,48 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     @include('frontend.layouts.head')
 </head>
-<body>
-
-
-<div class="main_page">
-    <!-- Header Section Start -->
+<body class="bg-gray-50 font-sans text-gray-900 antialiased">
+    
     @include('frontend.layouts.header')
-    <!-- Posts Filter Bar End -->
 
-    @yield('content')
+    <main class="min-h-screen">
+        @yield('content')
+    </main>
 
-    <!-- Footer Section Start -->
     @include('frontend.layouts.footer')
-    <!-- Footer Section End -->
-</div>
-<!-- Wrapper End -->
 
-<!-- Sticky Social Start -->
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <script>
+        // Toastr Options
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+        }
 
-<!-- Sticky Social End -->
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
 
-<!-- Back To Top Button Start -->
+        @if(Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @endif
 
-<!-- Back To Top Button End -->
-<script type="text/javascript" src="{{ asset('web/js/jquery-2.1.4.js')}}"></script>
-<!-- Bootstrap JS -->
-<script type="text/javascript" src="{{ asset('web/js/bootstrap.min.js')}}"></script>
+        @if(Session::has('info'))
+            toastr.info("{{ Session::get('info') }}");
+        @endif
 
-<!-- Vendor js _________ -->
-<!-- Google map js -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRvBPo3-t31YFk588DpMYS6EqKf-oGBSI"></script> <!-- Gmap Helper -->
-<script src="{{ asset('web/js/gmap.js')}}"></script>
-<!-- owl.carousel -->
-<script type="text/javascript" src="{{ asset('web/js/owl.carousel.min.js')}}"></script>
-<!-- ui js -->
-<script type="text/javascript" src="{{ asset('web/js/jquery-ui.min.js')}}"></script>
-<!-- Responsive menu-->
-<script type="text/javascript" src="{{ asset('web/js/menuzord.js')}}"></script>
-<!-- revolution -->
-<script src="{{ asset('web/vendor/revolution/jquery.themepunch.tools.min.js')}}"></script>
-<script src="{{ asset('web/vendor/revolution/jquery.themepunch.revolution.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/vendor/revolution/revolution.extension.slideanims.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/vendor/revolution/revolution.extension.layeranimation.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/vendor/revolution/revolution.extension.navigation.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/vendor/revolution/revolution.extension.kenburn.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/vendor/revolution/revolution.extension.actions.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/vendor/revolution/revolution.extension.parallax.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/vendor/revolution/revolution.extension.migration.min.js')}}"></script>
+        @if(Session::has('warning'))
+            toastr.warning("{{ Session::get('warning') }}");
+        @endif
+    </script>
 
-<!-- landguage switcher js -->
-<script type="text/javascript" src="{{ asset('web/js/jquery.polyglot.language.switcher.js')}}"></script>
-<!-- Fancybox js -->
-<script type="text/javascript" src="{{ asset('web/js/jquery.fancybox.pack.js')}}"></script>
-<!-- js count to -->
-<script type="text/javascript" src="{{ asset('web/js/jquery.appear.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/js/jquery.countTo.js')}}"></script>
-<!-- WOW js -->
-<script type="text/javascript" src="{{ asset('web/js/wow.min.js')}}"></script>
-
-<script type="text/javascript" src="{{ asset('web/js/SmoothScroll.js')}}"></script>
-
-<script src="{{ asset('web/js/bootstrap-select.min.js')}}"></script>
-<script src="{{ asset('web/js/jquery.mixitup.min.js')}}"></script>
-<!-- Theme js -->
-<script type="text/javascript" src="{{ asset('web/js/theme.js')}}"></script>
-<script type="text/javascript" src="{{ asset('web/js/google-map.js')}}"></script>
-
+    @stack('scripts')
 </body>
 </html>

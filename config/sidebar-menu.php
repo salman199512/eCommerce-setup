@@ -92,11 +92,41 @@ return [
 
 
     [
-        'name'      => 'Others',
-        'icon'      => '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list side-menu__icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>',
+        'name'      => 'Homepage',
+        'icon'      => '<i class="bx bx-layout side-menu__icon"></i>',
         'isHeader'  => false,
         'route'     => '#',
         'children'  => [
+            [
+                'name'      => 'Sliders',
+                'icon'      => '',
+                'isHeader'  => false,
+                'route'     => 'admin.sliders.index',
+                'children'  => [],
+            ],
+            [
+                'name'      => 'Banners',
+                'icon'      => '',
+                'isHeader'  => false,
+                'route'     => 'admin.banners.index',
+                'children'  => [],
+            ],
+        ],
+    ],
+
+    [
+        'name'      => 'Others',
+        'icon'      => '<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list side-menu__icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>',
+        'isHeader'  => false,
+        'route'     => '#',
+        'children'  => [
+            [
+                'name'      => 'Orders',
+                'icon'      => '',
+                'isHeader'  => false,
+                'route'     => 'admin.orders.index',
+                'children'  => [],
+            ],
             [
                 'name'      => 'Inquiries',
                 'icon'      => '',

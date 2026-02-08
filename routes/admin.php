@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['prefix' => 'admin',
-    'middleware' => ['auth',],], function () {
+    'middleware' => ['auth', 'role:Super Admin'],], function () {
     Route::get('dashboard', [\App\Http\Controllers\Admin\UserController::class, 'dashboard'])->name('dashboard');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class, ["as" => 'admin']);
     Route::resource('inquiries', App\Http\Controllers\Admin\InquiryController::class, ["as" => 'admin']);
@@ -35,6 +35,10 @@ Route::group(['prefix' => 'admin',
     Route::get('products-status-change/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'statusChange'])->name('admin.products.status-change');
     Route::get('get-attributes', [\App\Http\Controllers\Admin\ProductController::class, 'getAttributes'])->name('admin.products.get-attributes');
     Route::resource('brands', App\Http\Controllers\Admin\BrandController::class, ["as" => 'admin']);
+    Route::resource('sliders', App\Http\Controllers\Admin\SliderController::class, ["as" => 'admin']);
+    Route::get('sliders-status-change/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'statusChange'])->name('admin.sliders.status-change');
+    Route::resource('banners', App\Http\Controllers\Admin\BannerController::class, ["as" => 'admin']);
+    Route::get('banners-status-change/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'statusChange'])->name('admin.banners.status-change');
     Route::get('brands-status-change/{brand}', [\App\Http\Controllers\Admin\BrandController::class, 'statusChange'])->name('admin.brands.status-change');
 
 
@@ -68,4 +72,10 @@ Route::group(['prefix' => 'admin',
 
     Route::get('setting', [\App\Http\Controllers\Admin\SettingController::class, 'create'])->name('admin.setting.create');
     Route::post('setting-save', [\App\Http\Controllers\Admin\SettingController::class, 'store'])->name('admin.setting.store');
+
+
+
+    Route::resource('orders', App\Http\Controllers\Admin\OrderController::class, ["as" => 'admin'])->only(['index', 'show', 'destroy', 'update']);
+    Route::post('orders/{id}/status', [\App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
+
     });

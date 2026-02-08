@@ -63,10 +63,10 @@ class ProductRepository extends BaseRepository
                     // Attach Attributes to Variant
                     if (isset($variantData['attributes']) && is_array($variantData['attributes'])) {
                         foreach ($variantData['attributes'] as $attr) {
-                             ProductVariantAttribute::create([
+                            ProductVariantAttribute::create([
                                 'product_variant_id' => $variant->id,
                                 'attribute_group_id' => $attr['group_id'],
-                                'attribute_id' => $attr['attribute_id'],
+                                'attribute_id' => $attr['id'],
                             ]);
                         }
                     }

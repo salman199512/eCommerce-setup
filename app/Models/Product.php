@@ -10,6 +10,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\File;
 
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\MyClasses\GeneralHelperFunctions;
+
 class Product extends Model implements HasMedia
 {
     use HasFactory, SoftDeletes, InteractsWithMedia;
@@ -28,6 +31,11 @@ class Product extends Model implements HasMedia
         'description',
         'returned_days',
         'status',
+        'is_featured',
+        'is_best_seller',
+        'is_new_arrival',
+        'deal_start_date',
+        'deal_end_date',
         'uuid',
     ];
 
@@ -43,6 +51,11 @@ class Product extends Model implements HasMedia
         'description' => 'string',
         'returned_days' => 'integer',
         'status' => 'boolean',
+        'is_featured' => 'boolean',
+        'is_best_seller' => 'boolean',
+        'is_new_arrival' => 'boolean',
+        'deal_start_date' => 'datetime',
+        'deal_end_date' => 'datetime',
         'uuid' => 'string',
     ];
 
@@ -93,6 +106,12 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Attribute::class, 'product_attributes');
     }
 
+    public function getAvatarUrlAttribute()
+    {
+        $urls = GeneralHelperFunctions::getSingleMediaUrls($this, 'products', 'product_images');
+        return $urls['NoC'] ?? '';
+    }
+
     public function registerMediaCollections(): void
     {
         $this
@@ -101,5 +120,26 @@ class Product extends Model implements HasMedia
                 return in_array($file->mimeType, ['image/gif', 'image/png', 'image/jpeg', 'image/webp']);
             })
             ->withResponsiveImages();
+    }
+
+    /**
+     * Register Media Conversions.
+     * @param Media|null $media
+     */
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb_100x100')
+            ->width(100)
+            ->height(100)
+            ->nonQueued()
+            ->keepOriginalImageFormat()
+            ->performOnCollections('product_images');
+
+        $this->addMediaConversion('thumb_250x250')
+            ->width(250)
+            ->height(250)
+            ->nonQueued()
+            ->keepOriginalImageFormat()
+            ->performOnCollections('product_images');
     }
 }

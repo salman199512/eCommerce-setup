@@ -28,9 +28,6 @@ class PaymentController extends Controller
 
     public function placeOrder(Request $request)
     {
-        // Simple manual order placement, or redirect to Razorpay
-        // This method can handle initial validation and then create Razorpay order
-
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -39,28 +36,39 @@ class PaymentController extends Controller
             'address' => 'required',
             'city' => 'required',
             'zip_code' => 'required',
+            'payment_method' => 'required|in:cod,online'
         ]);
 
-        // Integrate with Razorpay
-        // Create an Order on Razorpay
-        $api = new Api(config('services.razorpay.key'), config('services.razorpay.secret'));
-
         $cart = Session::get('cart');
+        if (!$cart || count($cart) == 0) {
+            return response()->json(['error' => 'Your cart is empty'], 400);
+        }
+
+        if ($request->payment_method === 'cod') {
+            $order = $this->storeOrder($request->all(), 'cod', 'pending');
+            return response()->json([
+                'success' => true,
+                'redirect' => route('home'),
+                'message' => 'Order placed successfully with Cash on Delivery!'
+            ]);
+        }
+
+        // Online Payment - Create Razorpay Order
+        $api = new Api(config('services.razorpay.key'), config('services.razorpay.secret'));
         $total = 0;
         foreach ($cart as $item) $total += $item['price'] * $item['quantity'];
 
         $orderData = [
             'receipt'         => 'rcptid_'.rand(1000, 9999),
-            'amount'          => $total * 100, // Amount in paise
+            'amount'          => round($total * 100), // Amount in paise
             'currency'        => 'INR',
-            'payment_capture' => 1 // Auto capture
+            'payment_capture' => 1
         ];
 
         try {
             $razorpayOrder = $api->order->create($orderData);
-
-            // Return JSON for frontend JS to launch Razorpay
             return response()->json([
+                'payment_method' => 'online',
                 'order_id' => $razorpayOrder['id'],
                 'amount' => $orderData['amount'],
                 'key' => config('services.razorpay.key'),
@@ -70,100 +78,34 @@ class PaymentController extends Controller
                     'contact' => $request->phone
                 ]
             ]);
-
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
-    // Create Razorpay Order (Alternative or duplicate if needed by JS directly)
-    // The placeOrder above handles this logic for now.
 
     public function verifyPayment(Request $request)
     {
-        $success = true;
-        $error = "Payment Failed";
-
-        if (empty($request->razorpay_payment_id) === false)
-        {
-            $api = new Api(config('services.razorpay.key'), config('services.razorpay.secret'));
-
-            try
-            {
-                $attributes = array(
-                    'razorpay_order_id' => $request->razorpay_order_id,
-                    'razorpay_payment_id' => $request->razorpay_payment_id,
-                    'razorpay_signature' => $request->razorpay_signature
-                );
-
-                $api->utility->verifyPaymentSignature($attributes);
-            }
-            catch(\Exception $e)
-            {
-                $success = false;
-                $error = 'Razorpay Error : ' . $e->getMessage();
-            }
-        }
-
-        if ($success === true)
-        {
-            // Payment Successful - Create Order in DB
-            $this->storeOrder($request->all()); // Pass customer data
-
-            return redirect()->route('home')->with('success', 'Payment Successful! Your order has been placed.');
-        }
-        else
-        {
-            return redirect()->route('checkout')->with('error', $error);
-        }
-    }
-
-    public function createRazorpayOrder(Request $request)
-    {
-        // Add Validation
-         $request->validate([
-            'first_name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'address' => 'required',
-        ]);
-
         $api = new Api(config('services.razorpay.key'), config('services.razorpay.secret'));
 
-        $cart = Session::get('cart');
-        if(!$cart) return response()->json(['error' => 'Cart is empty'], 400);
-
-        $total = 0;
-        foreach ($cart as $item) $total += $item['price'] * $item['quantity'];
-
-        $orderData = [
-            'receipt'         => 'rcptid_'.rand(1000, 9999),
-            'amount'          => $total * 100, // Amount in paise
-            'currency'        => 'INR',
-            'payment_capture' => 1 // Auto capture
-        ];
-
         try {
-            $razorpayOrder = $api->order->create($orderData);
+            $attributes = array(
+                'razorpay_order_id' => $request->razorpay_order_id,
+                'razorpay_payment_id' => $request->razorpay_payment_id,
+                'razorpay_signature' => $request->razorpay_signature
+            );
 
-            return response()->json([
-                'id' => $razorpayOrder['id'], // Correct key
-                'order_id' => $razorpayOrder['id'], // Redundant but safe
-                'amount' => $orderData['amount'],
-                'key' => config('services.razorpay.key'),
-                'customer_details' => [
-                    'name' => $request->first_name . ' ' . $request->last_name,
-                    'email' => $request->email,
-                    'contact' => $request->phone
-                ]
-            ]);
+            $api->utility->verifyPaymentSignature($attributes);
+            
+            // Payment Successful - Create Order in DB
+            $this->storeOrder($request->all(), 'online', 'paid', $request->razorpay_payment_id);
 
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return redirect()->route('home')->with('success', 'Payment Successful! Your order has been placed.');
+        } catch(\Exception $e) {
+            return redirect()->route('checkout')->with('error', 'Razorpay Error: ' . $e->getMessage());
         }
     }
 
-    private function storeOrder($data)
+    private function storeOrder($data, $method, $status, $transactionId = null)
     {
         $cart = Session::get('cart');
         $total = 0;
@@ -174,20 +116,18 @@ class PaymentController extends Controller
             'order_number' => 'ORD-' . strtoupper(uniqid()),
             'subtotal' => $total,
             'total_amount' => $total,
-            'payment_status' => 'paid',
-            'payment_method' => 'razorpay',
-            'transaction_id' => $data['razorpay_payment_id'],
+            'payment_status' => $status,
+            'payment_method' => $method,
+            'transaction_id' => $transactionId,
             'status' => 'pending',
-
-            // Customer Info from verify request
-            'first_name' => $data['first_name'] ?? 'Guest',
-            'last_name' => $data['last_name'] ?? '',
-            'email' => $data['email'] ?? 'guest@example.com',
-            'phone' => $data['phone'] ?? '',
-            'address' => $data['address'] ?? '',
-            'city' => $data['city'] ?? '',
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'city' => $data['city'],
             'state' => $data['state'] ?? '',
-            'zip_code' => $data['zip_code'] ?? '',
+            'zip_code' => $data['zip_code'],
             'country' => 'India'
         ]);
 
@@ -202,8 +142,8 @@ class PaymentController extends Controller
             ]);
         }
 
-        // Clear cart
         Session::forget('cart');
+        return $order;
     }
 
     public function order_track() {

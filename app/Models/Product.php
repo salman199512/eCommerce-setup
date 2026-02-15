@@ -114,6 +114,11 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Attribute::class, 'product_attributes');
     }
 
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
     public function getAvatarUrlAttribute()
     {
         $urls = GeneralHelperFunctions::getSingleMediaUrls($this, 'products', 'product_images');

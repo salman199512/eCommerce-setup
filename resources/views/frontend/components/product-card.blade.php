@@ -1,9 +1,9 @@
 <div class="group relative product-card h-full flex flex-col bg-white">
     <!-- Image Wrapper -->
-    <div class="relative overflow-hidden aspect-[3/4] bg-gray-50 rounded-2xl">
+    <div class="relative overflow-hidden bg-gray-50 rounded-2xl" style="aspect-ratio: 3/4;">
         @php
             if($product) {
-                $imageUrl = $product->avatar_url;
+                $imageUrl = $product->avatar_url ?: 'https://via.placeholder.com/800x1067?text=No+Image';
                 $secondImage = $product->media->count() > 1 ? $product->media[1]->getUrl() : $imageUrl;
                 $title = $product->title;
                 $category = $product->category->title ?? 'Exclusive';
@@ -41,16 +41,18 @@
 
         <!-- Float Actions -->
         <div class="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-            <button class="w-10 h-10 bg-white text-black hover:bg-black hover:text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+            <button onclick="addToWishlist({{ $product->id ?? 0 }})" class="w-10 h-10 bg-white text-black hover:bg-red-600 hover:text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 wishlist-btn-{{ $product->id ?? 0 }}">
                 <i class="far fa-heart text-sm"></i>
             </button>
             <a href="{{ $url }}" 
                class="w-10 h-10 bg-white text-black hover:bg-black hover:text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                 <i class="far fa-eye text-sm"></i>
             </a>
-            <button class="w-10 h-10 bg-black text-white hover:bg-red-600 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+            @if($product && $product->variants->isNotEmpty())
+            <button onclick="addToCart({{ $product->variants->first()->id }}, 1)" class="w-10 h-10 bg-black text-white hover:bg-red-600 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110">
                 <i class="fas fa-shopping-bag text-sm"></i>
             </button>
+            @endif
         </div>
     </div>
 
@@ -65,11 +67,13 @@
             <div class="flex items-center gap-2">
                 @if($product && $product->variants->isNotEmpty())
                     @php
-                        $minPrice = $product->variants->min('final_price') ?: $product->variants->min('price');
-                        $originalPrice = $product->variants->max('price');
+                        // Point 10: Show first attribute combination price
+                        $firstVariant = $product->variants->first();
+                        $displayPrice = $firstVariant->final_price ?? $firstVariant->price;
+                        $originalPrice = $firstVariant->price;
                     @endphp
-                    <span class="text-black font-bold text-base tracking-tight">${{ number_format($minPrice, 2) }}</span>
-                    @if($originalPrice > $minPrice)
+                    <span class="text-black font-bold text-base tracking-tight">${{ number_format($displayPrice, 2) }}</span>
+                    @if($originalPrice > $displayPrice)
                         <span class="text-gray-300 text-xs line-through font-medium">${{ number_format($originalPrice, 2) }}</span>
                     @endif
                 @elseif(!$product)

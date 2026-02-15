@@ -1,70 +1,50 @@
-<nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
-    <div class="flex justify-between flex-1 sm:hidden">
+@if ($paginator->hasPages())
+    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-center gap-2">
+        {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
-                {!! __('pagination.previous') !!}
+            <span class="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-50 text-gray-200 cursor-not-allowed border border-gray-100 transition duration-300">
+                <i class="fa fa-chevron-left text-[10px]"></i>
             </span>
         @else
-            <a href="{{ $paginator->previousPageUrl() }}" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                {!! __('pagination.previous') !!}
+            <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white text-gray-400 border border-gray-100 hover:border-black hover:text-black transition duration-300 shadow-sm hover:shadow-xl hover:shadow-black/5">
+                <i class="fa fa-chevron-left text-[10px]"></i>
             </a>
         @endif
 
-        @if ($paginator->hasMorePages())
-            <a href="{{ $paginator->nextPageUrl() }}" class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                {!! __('pagination.next') !!}
-            </a>
-        @else
-            <span class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
-                {!! __('pagination.next') !!}
-            </span>
-        @endif
-    </div>
-
-    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-        <div>
-            <ul class="pagination">
-                {{-- Previous Page Link --}}
-                @if ($paginator->onFirstPage())
-                    <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link"><i class="fas fa-chevron-left"></i></span>
-                    </li>
-                @else
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev"><i class="fas fa-chevron-left"></i></a>
-                    </li>
+        {{-- Pagination Elements --}}
+        <div class="flex items-center gap-2 mx-4">
+            @foreach ($elements as $element)
+                {{-- "Three Dots" Separator --}}
+                @if (is_string($element))
+                    <span class="w-12 h-12 flex items-center justify-center text-gray-400 font-black text-[10px] tracking-widest">{{ $element }}</span>
                 @endif
 
-                {{-- Pagination Elements --}}
-                @foreach ($elements as $element)
-                    {{-- "Three Dots" Separator --}}
-                    @if (is_string($element))
-                        <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
-                    @endif
-
-                    {{-- Array Of Links --}}
-                    @if (is_array($element))
-                        @foreach ($element as $page => $url)
-                            @if ($page == $paginator->currentPage())
-                                <li class="page-item active" aria-current="page"><span class="page-link">{{ $page }}</span></li>
-                            @else
-                                <li class="page-item"><a class="page-link" href="{{ $url }}">{{ $page }}</a></li>
-                            @endif
-                        @endforeach
-                    @endif
-                @endforeach
-
-                {{-- Next Page Link --}}
-                @if ($paginator->hasMorePages())
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next"><i class="fas fa-chevron-right"></i></a>
-                    </li>
-                @else
-                    <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link"><i class="fas fa-chevron-right"></i></span>
-                    </li>
+                {{-- Array Of Links --}}
+                @if (is_array($element))
+                    @foreach ($element as $page => $url)
+                        @if ($page == $paginator->currentPage())
+                            <span class="w-12 h-12 flex items-center justify-center rounded-xl bg-black text-white text-[10px] font-black uppercase tracking-widest shadow-xl shadow-black/20 z-10">
+                                {{ $page }}
+                            </span>
+                        @else
+                            <a href="{{ $url }}" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white text-gray-400 border border-gray-100 hover:border-black hover:text-black text-[10px] font-black uppercase tracking-widest transition duration-300 shadow-sm hover:shadow-xl hover:shadow-black/5">
+                                {{ $page }}
+                            </a>
+                        @endif
+                    @endforeach
                 @endif
-            </ul>
+            @endforeach
         </div>
-    </div>
-</nav>
+
+        {{-- Next Page Link --}}
+        @if ($paginator->hasMorePages())
+            <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="w-12 h-12 flex items-center justify-center rounded-xl bg-white text-gray-400 border border-gray-100 hover:border-black hover:text-black transition duration-300 shadow-sm hover:shadow-xl hover:shadow-black/5">
+                <i class="fa fa-chevron-right text-[10px]"></i>
+            </a>
+        @else
+            <span class="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-50 text-gray-200 cursor-not-allowed border border-gray-100 transition duration-300">
+                <i class="fa fa-chevron-right text-[10px]"></i>
+            </span>
+        @endif
+    </nav>
+@endif

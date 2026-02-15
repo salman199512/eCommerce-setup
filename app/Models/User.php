@@ -226,4 +226,14 @@ class User extends Authenticatable implements HasMedia
             ->performOnCollections('avatar');
     }
 
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

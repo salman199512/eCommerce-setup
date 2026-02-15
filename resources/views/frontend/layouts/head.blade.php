@@ -17,7 +17,7 @@
 
 <!-- Swiper.js CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- AOS (Animate on Scroll) -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -29,7 +29,7 @@
         --text-gray: #666666;
         --meta-gray: #999999;
         --bg-light: #F9FAFB;
-        
+
         /* Font Sizes */
         --text-xs: 0.75rem;     /* 12px */
         --text-sm: 0.875rem;    /* 14px */
@@ -39,8 +39,8 @@
         --text-2xl: 1.5rem;     /* 24px */
     }
 
-    body, h1, h2, h3, h4, h5, h6, span, a, p, input, select, button, textarea { 
-        font-family: 'Poppins', sans-serif !important; 
+    body, h1, h2, h3, h4, h5, h6, span, a, p, input, select, button, textarea {
+        font-family: 'Poppins', sans-serif !important;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -51,8 +51,8 @@
         line-height: 1.6;
         font-size: var(--text-base);
     }
-    
-    h1, h2, h3, h4, h5, h6 { 
+
+    h1, h2, h3, h4, h5, h6 {
         color: var(--primary-black);
         font-weight: 700;
         line-height: 1.2;

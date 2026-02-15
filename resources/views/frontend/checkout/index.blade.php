@@ -7,7 +7,7 @@
     <!-- Header -->
     <div class="bg-gray-100 py-10 mb-12">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-serif font-bold mb-2">Checkout</h1>
+            <h1 class="text-4xl font-bold mb-2">Checkout</h1>
             <p class="text-gray-500 text-sm uppercase tracking-widest">Complete your order</p>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <div class="flex flex-col lg:flex-row gap-16">
             <!-- Billing Details -->
             <div class="w-full lg:w-2/3">
-                <h2 class="text-2xl font-serif font-bold mb-10 border-b pb-4">Billing Details</h2>
+                <h2 class="text-2xl font-bold mb-10 border-b pb-4">Billing Details</h2>
                 
                 <form id="checkout-form" class="space-y-8">
                     @csrf
@@ -68,7 +68,7 @@
             @php $total = 0; @endphp
             <div class="w-full lg:w-1/3">
                 <div class="bg-gray-50 p-8 border border-gray-100">
-                    <h3 class="font-serif font-bold text-xl mb-6 border-b pb-4">Order Summary</h3>
+                    <h3 class="font-bold text-xl mb-6 border-b pb-4">Order Summary</h3>
                     
                     <div class="space-y-4 mb-8">
                         @foreach($cart as $item)

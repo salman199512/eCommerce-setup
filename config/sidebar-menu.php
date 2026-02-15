@@ -111,6 +111,13 @@ return [
                 'route'     => 'admin.banners.index',
                 'children'  => [],
             ],
+            [
+                'name'      => 'Testimonials',
+                'icon'      => '',
+                'isHeader'  => false,
+                'route'     => 'admin.testimonials.index',
+                'children'  => [],
+            ],
         ],
     ],
 

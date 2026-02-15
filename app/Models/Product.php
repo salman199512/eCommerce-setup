@@ -35,7 +35,8 @@ class Product extends Model implements HasMedia
         'is_best_seller',
         'is_new_arrival',
         'deal_start_date',
-        'deal_end_date',
+        'logistics_care',
+        'is_tax_included',
         'uuid',
     ];
 
@@ -56,6 +57,8 @@ class Product extends Model implements HasMedia
         'is_new_arrival' => 'boolean',
         'deal_start_date' => 'datetime',
         'deal_end_date' => 'datetime',
+        'logistics_care' => 'string',
+        'is_tax_included' => 'boolean',
         'uuid' => 'string',
     ];
 
@@ -79,6 +82,11 @@ class Product extends Model implements HasMedia
         static::creating(function ($model) {
             $model->uuid = Str::uuid()->toString();
         });
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
     }
 
     public function category()

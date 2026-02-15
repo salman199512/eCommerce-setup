@@ -50,8 +50,9 @@ class FrontendController extends Controller
         $categories = Category::where('status', 1)->take(6)->get();
         $sliders = \App\Models\Slider::where('status', 1)->orderBy('sort_order')->get();
         $banners = \App\Models\Banner::where('status', 1)->orderBy('sort_order')->get();
+        $testimonials = \App\Models\Testimonial::where('status', 1)->latest()->get();
 
-        return view('frontend.home.index', compact('featuredProducts', 'newArrivals', 'bestSellers', 'dealProducts', 'categories', 'sliders', 'banners'));
+        return view('frontend.home.index', compact('featuredProducts', 'newArrivals', 'bestSellers', 'dealProducts', 'categories', 'sliders', 'banners', 'testimonials'));
     }
 
     /**

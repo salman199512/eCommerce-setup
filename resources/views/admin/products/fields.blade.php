@@ -91,6 +91,22 @@
     'editorFieldName' => 'description',
     'editorFieldLabelName' => 'Description ',
 ])
+
+@include('admin.layouts.editor',
+[
+    'editorId' => 'logistics_care',
+    'editorFieldName' => 'logistics_care',
+    'editorFieldLabelName' => 'Logistics & Care ',
+])
+
+<!-- Is Tax Included Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('is_tax_included', 'Is Tax Included:') !!}
+    <div class="form-check">
+        {!! Form::hidden('is_tax_included', 0) !!}
+        {!! Form::checkbox('is_tax_included', 1, null, ['class' => 'form-check-input', 'data-bootstrap-switch']) !!}
+    </div>
+</div>
 <!-- Attribute Groups Selection -->
 <div class="form-group col-sm-12">
     <label>Attribute Groups</label>

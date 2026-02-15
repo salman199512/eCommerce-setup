@@ -9,10 +9,11 @@
     <!-- Breadcrumb/Header -->
     <div class="bg-gray-100 py-12">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-serif font-bold mb-4">Contact Us</h1>
-            <div class="flex justify-center items-center space-x-2 text-sm text-gray-500 uppercase tracking-widest">
+            <span class="text-red-600 text-xs font-bold uppercase tracking-cinematic mb-4 block">Connect</span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-8 tracking-tighter uppercase">Contact Us</h1>
+            <div class="flex justify-center items-center gap-3 text-xs font-bold uppercase tracking-premium text-gray-400">
                 <a href="{{ route('home') }}" class="hover:text-black transition">Home</a>
-                <i class="fa fa-angle-right text-xs"></i>
+                <span class="opacity-30">/</span>
                 <span class="text-black font-bold">Contact Us</span>
             </div>
         </div>
@@ -23,15 +24,16 @@
             <!-- Contact Info -->
             <div class="space-y-10">
                 <div>
-                    <h2 class="text-3xl font-serif font-bold mb-6">Get in Touch</h2>
-                    <p class="text-gray-600 leading-relaxed mb-8">
+                    <span class="text-red-600 text-xs font-bold uppercase tracking-cinematic mb-4 block">Inquiries</span>
+                    <h2 class="text-4xl font-bold mb-6 tracking-tighter uppercase">Get in Touch</h2>
+                    <p class="text-gray-500 font-medium leading-relaxed mb-8">
                         We'd love to hear from you. Whether you have a question about our collections, shipping, or anything else, our team is ready to answer all your questions.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <div>
-                        <h4 class="font-bold uppercase tracking-widest text-sm mb-4 border-b-2 border-red-600 inline-block">Location</h4>
+                        <h4 class="font-bold uppercase tracking-premium text-xs mb-4 border-b-2 border-red-600 inline-block">Location</h4>
                         <p class="text-gray-600 text-sm">
                             123 Fashion Street,<br>
                             Design District,<br>
@@ -59,14 +61,14 @@
             </div>
 
             <!-- Contact Form -->
-            <div class="bg-gray-50 p-8 md:p-12">
-                <h3 class="text-2xl font-serif font-bold mb-8">Send a Message</h3>
+            <div class="bg-black text-white p-10 md:p-16 rounded-[3rem] shadow-2xl">
+                <h3 class="text-3xl font-bold mb-10 tracking-tighter uppercase">Send a Message</h3>
                 
                 <form action="{{ route('save-inquiry') }}" method="POST" id="contact-form" class="space-y-6">
                     @csrf
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Name</label>
+                            <label class="block text-xs font-bold uppercase tracking-premium text-gray-400 mb-2">Name</label>
                             <input type="text" name="name" required class="w-full border-b-2 border-gray-200 bg-transparent py-3 focus:outline-none focus:border-black transition duration-300">
                         </div>
                         <div>
@@ -87,13 +89,13 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Message</label>
-                        <textarea name="message" rows="5" required class="w-full border-b-2 border-gray-200 bg-transparent py-3 focus:outline-none focus:border-black transition duration-300 resize-none"></textarea>
+                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-500 mb-2">Message</label>
+                        <textarea name="message" rows="5" required class="w-full border-b-2 border-gray-800 bg-transparent py-4 focus:outline-none focus:border-red-600 transition duration-500 resize-none text-white font-medium"></textarea>
                     </div>
 
                     <div class="pt-4">
-                        <button type="submit" class="w-full bg-black text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-red-600 transition duration-300 flex items-center justify-center gap-3">
-                            Send Message <i class="fa fa-paper-plane text-xs"></i>
+                        <button type="submit" class="w-full bg-white text-black px-8 py-4 font-bold uppercase tracking-premium hover:bg-red-600 hover:text-white transition duration-500 flex items-center justify-center gap-3 rounded-full">
+                            Send Message <i class="fa fa-paper-plane text-[10px]"></i>
                         </button>
                     </div>
                 </form>

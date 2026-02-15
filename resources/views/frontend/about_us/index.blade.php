@@ -12,8 +12,8 @@
              class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-center">
             <div class="max-w-3xl px-4">
-                <h1 class="text-white text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight">Our Story</h1>
-                <p class="text-gray-200 text-lg md:text-xl font-light leading-relaxed uppercase tracking-widest">
+                <h1 class="text-white text-5xl md:text-7xl font-bold mb-6 tracking-tighter uppercase">Our Story</h1>
+                <p class="text-gray-200 text-sm md:text-base font-bold leading-relaxed uppercase tracking-cinematic opacity-80">
                     Crafting Elegance Since 2010
                 </p>
             </div>
@@ -24,8 +24,8 @@
     <div class="container mx-auto px-4 py-20">
         <div class="flex flex-col md:flex-row items-center gap-16">
             <div class="w-full md:w-1/2">
-                <h2 class="text-4xl font-serif font-bold mb-8 leading-tight">We Believe in Timeless Style & Exceptional Quality</h2>
-                <div class="space-y-6 text-gray-600 leading-relaxed">
+                <h2 class="text-4xl font-bold mb-8 leading-tight tracking-tighter uppercase">Timeless Style &<br>Exceptional Quality</h2>
+                <div class="space-y-6 text-gray-500 leading-relaxed font-medium">
                     <p>
                         Established in the heart of the fashion district, our brand was born from a passion for minimalist design and high-quality craftsmanship. We believe that fashion should be more than just trends; it should be an expression of individuality and lasting elegance.
                     </p>
@@ -45,8 +45,9 @@
     <div class="bg-gray-50 py-20">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h3 class="text-3xl font-serif font-bold mb-4">Our Values</h3>
-                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+                <span class="text-red-600 text-xs font-bold uppercase tracking-cinematic mb-4 block">Foundations</span>
+                <h3 class="text-3xl font-bold mb-4 tracking-tighter uppercase">Our Ethos</h3>
+                <div class="w-12 h-1 bg-red-600 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -54,7 +55,7 @@
                     <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                         <i class="fa fa-leaf text-2xl text-gray-800"></i>
                     </div>
-                    <h4 class="font-bold uppercase tracking-widest text-sm mb-4">Sustainability</h4>
+                    <h4 class="font-bold uppercase tracking-premium text-xs mb-4">Sustainability</h4>
                     <p class="text-gray-500 text-sm leading-relaxed">
                         We are committed to reducing our environmental footprint through ethical sourcing and sustainable materials.
                     </p>
@@ -83,22 +84,22 @@
 
     <!-- Statistics -->
     <div class="container mx-auto px-4 py-20 text-center">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
             <div>
-                <span class="block text-4xl font-serif font-bold mb-2">10+</span>
-                <span class="text-xs uppercase tracking-widest text-gray-400 font-bold">Years of Experience</span>
+                <span class="block text-4xl font-bold mb-3 tracking-tighter">10+</span>
+                <span class="text-[10px] uppercase tracking-premium text-gray-400 font-bold">Years Experience</span>
             </div>
             <div>
-                <span class="block text-4xl font-serif font-bold mb-2">50k+</span>
-                <span class="text-xs uppercase tracking-widest text-gray-400 font-bold">Happy Customers</span>
+                <span class="block text-4xl font-bold mb-3 tracking-tighter">50k+</span>
+                <span class="text-[10px] uppercase tracking-premium text-gray-400 font-bold">Happy Clients</span>
             </div>
             <div>
-                <span class="block text-4xl font-serif font-bold mb-2">100+</span>
-                <span class="text-xs uppercase tracking-widest text-gray-400 font-bold">Premium Retailers</span>
+                <span class="block text-4xl font-bold mb-3 tracking-tighter">100+</span>
+                <span class="text-[10px] uppercase tracking-premium text-gray-400 font-bold">Retail Partners</span>
             </div>
             <div>
-                <span class="block text-4xl font-serif font-bold mb-2">15+</span>
-                <span class="text-xs uppercase tracking-widest text-gray-400 font-bold">Design Awards</span>
+                <span class="block text-4xl font-bold mb-3 tracking-tighter">15+</span>
+                <span class="text-[10px] uppercase tracking-premium text-gray-400 font-bold">Global Awards</span>
             </div>
         </div>
     </div>

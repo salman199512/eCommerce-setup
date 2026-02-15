@@ -43,7 +43,7 @@
         <div class="w-full md:w-3/4" x-data="{ activeTab: 'dashboard' }">
             <!-- Dashboard Tab -->
             <div x-show="activeTab === 'dashboard'" class="bg-white shadow-sm border border-gray-200 rounded-lg p-8">
-                <h2 class="text-2xl font-serif font-bold mb-6">Overview</h2>
+                <h2 class="text-2xl font-bold mb-6">Overview</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="bg-gray-50 p-6 rounded border border-gray-100 text-center">
                         <h4 class="text-gray-500 uppercase text-xs tracking-widest mb-2">Total Orders</h4>
@@ -62,7 +62,7 @@
 
             <!-- Orders Tab -->
             <div x-show="activeTab === 'orders'" class="bg-white shadow-sm border border-gray-200 rounded-lg p-8" style="display: none;">
-                <h2 class="text-2xl font-serif font-bold mb-6">My Orders</h2>
+                <h2 class="text-2xl font-bold mb-6">My Orders</h2>
                 @if($orders->count() > 0)
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -105,7 +105,7 @@
 
             <!-- Profile Tab -->
             <div x-show="activeTab === 'profile'" class="bg-white shadow-sm border border-gray-200 rounded-lg p-8" style="display: none;">
-                <h2 class="text-2xl font-serif font-bold mb-6">Account Details</h2>
+                <h2 class="text-2xl font-bold mb-6">Account Details</h2>
                 <form action="{{ route('account.update') }}" method="POST">
                     @csrf
                     @method('PUT')

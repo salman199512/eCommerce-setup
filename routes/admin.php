@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin',
     Route::resource('banners', App\Http\Controllers\Admin\BannerController::class, ["as" => 'admin']);
     Route::get('banners-status-change/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'statusChange'])->name('admin.banners.status-change');
     Route::get('brands-status-change/{brand}', [\App\Http\Controllers\Admin\BrandController::class, 'statusChange'])->name('admin.brands.status-change');
+    Route::resource('testimonials', App\Http\Controllers\Admin\TestimonialController::class, ["as" => 'admin']);
+    Route::get('testimonials-status-change/{testimonial}', [\App\Http\Controllers\Admin\TestimonialController::class, 'statusChange'])->name('admin.testimonials.status-change');
 
 
     Route::group(['prefix' => 'users', 'as' => 'admin.users.'], function () {

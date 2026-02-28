@@ -38,4 +38,14 @@ class CategoryRepository extends BaseRepository
             'status' => 1,
         ];
     }
+
+    /**
+     * @param Category $category
+     * @param Request $request
+     * @return bool|\Spatie\MediaLibrary\MediaCollections\Models\Media
+     */
+    public function updateOrCreate_image(Category $category, Request $request) {
+        $defaultMedia = 'https://ui-avatars.com/api/?' . http_build_query(['name' => $category->title, 'size' => '500']);
+        return \App\MyClasses\GeneralHelperFunctions::updateOrCreate_singleMedia_viaDropZone($category, $request->input('avatar'),  $defaultMedia);
+    }
 }

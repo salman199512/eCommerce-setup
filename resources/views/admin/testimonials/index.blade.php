@@ -1,22 +1,32 @@
 @extends('admin.layouts.master')
-@section('title', 'Testimonials')
+
+@section('title')
+    Testimonials - {{ config('app.name') }}
+@endsection
+
+@section('page_headers')
+    <h4>Testimonials</h4>
+@endsection
+
+@section('breadcrumbs')
+    <li class="breadcrumb-item active">Testimonials</li>
+@endsection
+
+@section('page_buttons')
+    <a class="btn btn-primary my_btn" href="{{ route('admin.testimonials.create') }}">Add Testimonial</a>
+@endsection
 
 @section('content')
-<div class="content">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card card-primary card-outline">
-                <div class="card-header">
-                    <h5 class="m-0 float-left">Testimonials</h5>
-                    <a class="btn btn-primary float-right" href="{{ route('admin.testimonials.create') }}">
-                        <i class="fa-duotone fa-plus"></i> Add New
-                    </a>
-                </div>
-                <div class="card-body">
-                    @include('admin.testimonials.table')
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        @include('flash::message')
+                        @include('admin.testimonials.table')
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

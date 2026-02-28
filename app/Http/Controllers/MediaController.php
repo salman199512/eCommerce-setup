@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Rashifal;
 use App\Models\Setting;
@@ -115,6 +116,9 @@ class MediaController extends Controller
         }
         if($model === 'brands'){
             return (new Brand());
+        }
+        if($model === 'category'){
+            return (new Category());
         }
 
         return (new User());

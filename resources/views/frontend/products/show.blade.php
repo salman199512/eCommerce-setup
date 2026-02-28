@@ -189,77 +189,135 @@
         </div>
     </div>
 
-    <!-- Tabs Area -->
-    <div class="mt-32 border-t border-gray-100 pt-24" id="details-tabs" x-data="{ activeTab: 'description' }">
-        <div class="flex flex-wrap justify-center gap-8 md:gap-16 mb-16 px-4">
-            <button @click="activeTab = 'description'"
-                    :class="activeTab === 'description' ? 'text-black border-black' : 'text-gray-300 border-transparent hover:text-gray-500'"
-                    class="text-[11px] font-bold uppercase tracking-cinematic pb-6 border-b-2 transition-all">
-                Product Analysis
-            </button>
-            <button @click="activeTab = 'shipping'"
-                    :class="activeTab === 'shipping' ? 'text-black border-black' : 'text-gray-300 border-transparent hover:text-gray-500'"
-                    class="text-[11px] font-bold uppercase tracking-cinematic pb-6 border-b-2 transition-all">
-                Logistics & Care
-            </button>
-            <button @click="activeTab = 'reviews'"
-                    :class="activeTab === 'reviews' ? 'text-black border-black' : 'text-gray-300 border-transparent hover:text-gray-500'"
-                    class="text-[11px] font-bold uppercase tracking-cinematic pb-6 border-b-2 transition-all">
-                Client Reviews (4)
-            </button>
-        </div>
 
-        <div class="max-w-4xl mx-auto px-4">
-            <!-- Description -->
-            <div x-show="activeTab === 'description'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" class="prose max-w-none">
-                <div class="text-gray-600 leading-relaxed text-sm font-medium text-left space-y-4">
-                    {!! $product->description !!}
+    <!-- Accordion: Description / Logistics & Care / Reviews -->
+    <div class="mt-24 border-t border-gray-100" x-data="{ open: 'description' }">
+
+        <!-- Description (open by default) -->
+        <div class="border-b border-gray-100">
+            <button @click="open = open === 'description' ? null : 'description'"
+                    class="w-full flex items-center justify-between py-8 px-2 group">
+                <div class="text-left">
+                    <span class="text-red-600 text-[10px] font-black uppercase tracking-[0.25em] block mb-1">The Details</span>
+                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-black group-hover:text-red-600 transition-colors">Product Description</h3>
+                </div>
+                <div class="ml-6 shrink-0 w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:border-black"
+                     :class="open === 'description' ? 'bg-black border-black rotate-180' : ''">
+                    <i class="fas fa-chevron-down text-xs transition-all duration-500"
+                       :class="open === 'description' ? 'text-white' : 'text-gray-400'"></i>
+                </div>
+            </button>
+            <div x-show="open === 'description'"
+                 x-transition:enter="transition ease-out duration-400"
+                 x-transition:enter-start="opacity-0 -translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="px-2 pb-10">
+                <div class="max-w-4xl">
+                    <div class="text-gray-600 leading-relaxed text-sm font-medium text-left space-y-4 prose max-w-none">
+                        {!! $product->description !!}
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Shipping -->
-            <div x-show="activeTab === 'shipping'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" class="text-left" style="display: none;">
+        <!-- Logistics & Care (collapsed by default) -->
+        <div class="border-b border-gray-100">
+            <button @click="open = open === 'logistics' ? null : 'logistics'"
+                    class="w-full flex items-center justify-between py-8 px-2 group">
+                <div class="text-left">
+                    <span class="text-red-600 text-[10px] font-black uppercase tracking-[0.25em] block mb-1">Delivery & Care</span>
+                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-black group-hover:text-red-600 transition-colors">Logistics & Care</h3>
+                </div>
+                <div class="ml-6 shrink-0 w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:border-black"
+                     :class="open === 'logistics' ? 'bg-black border-black rotate-180' : ''">
+                    <i class="fas fa-chevron-down text-xs transition-all duration-500"
+                       :class="open === 'logistics' ? 'text-white' : 'text-gray-400'"></i>
+                </div>
+            </button>
+            <div x-show="open === 'logistics'"
+                 x-transition:enter="transition ease-out duration-400"
+                 x-transition:enter-start="opacity-0 -translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="px-2 pb-10" style="display:none;">
                 @if($product->logistics_care)
-                    <div class="prose max-w-none text-gray-600 leading-relaxed text-sm font-medium">
+                    <div class="prose max-w-none text-gray-600 leading-relaxed text-sm font-medium max-w-4xl">
                         {!! $product->logistics_care !!}
                     </div>
                 @else
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-gray-500 text-center">
-                        <div>
-                            <i class="fas fa-truck text-2xl mb-4 text-black"></i>
-                            <h5 class="text-[11px] font-bold uppercase tracking-premium text-black mb-3">Fast Transit</h5>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-500">
+                        <div class="text-center p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                            <div class="w-14 h-14 bg-black rounded-2xl flex items-center justify-center mx-auto mb-5">
+                                <i class="fas fa-truck text-white text-xl"></i>
+                            </div>
+                            <h5 class="text-[11px] font-black uppercase tracking-widest text-black mb-3">Fast Transit</h5>
                             <p class="text-[12px] leading-relaxed">Standard delivery within 3-5 business days across global hubs.</p>
                         </div>
-                        <div>
-                            <i class="fas fa-box text-2xl mb-4 text-black"></i>
-                            <h5 class="text-[11px] font-bold uppercase tracking-premium text-black mb-3">Premium Wrapping</h5>
+                        <div class="text-center p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                            <div class="w-14 h-14 bg-black rounded-2xl flex items-center justify-center mx-auto mb-5">
+                                <i class="fas fa-box text-white text-xl"></i>
+                            </div>
+                            <h5 class="text-[11px] font-black uppercase tracking-widest text-black mb-3">Premium Wrapping</h5>
                             <p class="text-[12px] leading-relaxed">Every item arrives in our signature minimalist archive box.</p>
                         </div>
-                        <div>
-                            <i class="fas fa-undo text-2xl mb-4 text-black"></i>
-                            <h5 class="text-[11px] font-bold uppercase tracking-premium text-black mb-3">Easy Returns</h5>
+                        <div class="text-center p-8 bg-gray-50 rounded-3xl border border-gray-100">
+                            <div class="w-14 h-14 bg-black rounded-2xl flex items-center justify-center mx-auto mb-5">
+                                <i class="fas fa-undo text-white text-xl"></i>
+                            </div>
+                            <h5 class="text-[11px] font-black uppercase tracking-widest text-black mb-3">Easy Returns</h5>
                             <p class="text-[12px] leading-relaxed">Complimentary returns within 14 days for all unworn pieces.</p>
                         </div>
                     </div>
                 @endif
             </div>
+        </div>
 
-            <!-- Reviews -->
-            <div x-show="activeTab === 'reviews'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" class="text-center" style="display: none;">
-                <div class="bg-gray-50 p-12 rounded-sm border border-gray-100">
-                    <p class="text-xs font-bold uppercase tracking-premium text-gray-400 mb-6">Experience has no substitute</p>
-                    <h4 class="text-2xl font-bold text-black mb-8 uppercase tracking-tighter">Verified Satisfaction</h4>
-                    <button class="bg-black text-white px-8 py-3 text-[10px] font-bold uppercase tracking-premium hover:bg-red-600 transition-colors">Write a Review</button>
+        <!-- Reviews (collapsed by default) -->
+        <div class="border-b border-gray-100">
+            <button @click="open = open === 'reviews' ? null : 'reviews'"
+                    class="w-full flex items-center justify-between py-8 px-2 group">
+                <div class="text-left">
+                    <span class="text-red-600 text-[10px] font-black uppercase tracking-[0.25em] block mb-1">Client Voices</span>
+                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-black group-hover:text-red-600 transition-colors">Reviews</h3>
+                </div>
+                <div class="ml-6 shrink-0 w-10 h-10 rounded-full border-2 border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:border-black"
+                     :class="open === 'reviews' ? 'bg-black border-black rotate-180' : ''">
+                    <i class="fas fa-chevron-down text-xs transition-all duration-500"
+                       :class="open === 'reviews' ? 'text-white' : 'text-gray-400'"></i>
+                </div>
+            </button>
+            <div x-show="open === 'reviews'"
+                 x-transition:enter="transition ease-out duration-400"
+                 x-transition:enter-start="opacity-0 -translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="px-2 pb-10" style="display:none;">
+                <div class="bg-gray-50 p-14 rounded-3xl border border-gray-100 text-center max-w-2xl mx-auto">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl shadow-black/5">
+                        <i class="fas fa-star text-2xl text-gray-200"></i>
+                    </div>
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">Experience has no substitute</p>
+                    <h4 class="text-xl font-black text-black mb-8 uppercase tracking-tighter">Be the first to review</h4>
+                    <button class="bg-black text-white px-10 py-4 text-[10px] font-black uppercase tracking-widest hover:bg-red-600 transition-all duration-500 rounded-2xl shadow-xl shadow-black/10">
+                        Write a Review
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Related Products -->
-    <div class="mt-48 pt-24 border-t border-gray-100">
+    <!-- You May Also Like -->
+    <div class="mt-24 pt-24 border-t border-gray-100">
         <div class="flex flex-col items-center mb-16 text-center">
-            <span class="text-red-600 text-xs font-bold uppercase tracking-cinematic mb-4 block">Archive Selection</span>
-            <h2 class="text-3xl md:text-5xl font-bold leading-tight text-black uppercase tracking-tighter">You May Also Like</h2>
+            <span class="text-red-600 text-xs font-black uppercase tracking-[0.3em] mb-4 block">Archive Selection</span>
+            <h2 class="text-3xl md:text-5xl font-black leading-tight text-black uppercase tracking-tighter">You May Also Like</h2>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             @if(isset($relatedProducts) && $relatedProducts->isNotEmpty())
@@ -267,7 +325,6 @@
                     @include('frontend.components.product-card', ['product' => $related])
                 @endforeach
             @else
-                {{-- Fallback to some random products if related list is empty for demo --}}
                 @php $fallbackProducts = \App\Models\Product::where('id', '!=', $product->id)->active()->take(4)->get(); @endphp
                 @foreach($fallbackProducts as $related)
                     @include('frontend.components.product-card', ['product' => $related])

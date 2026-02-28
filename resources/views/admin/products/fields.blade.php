@@ -152,86 +152,38 @@
     ])
 </div>
 
-<div class="col-lg-12">
-    <ul class="imgUl">
-
+<div class="col-lg-12 mt-4">
+    <div class="row">
         @if(isset($mediaUrls) && !empty($mediaUrls))
             @foreach($mediaUrls as $row)
-                @if($row['ext'] == 'jpg'
-        || $row['ext'] == 'png'
-        || $row['ext'] == 'jpg'
-        || $row['ext'] == 'gif'
-        || $row['ext'] == 'bmp'
-        || $row['ext'] == 'jpeg'
-        )
-                    <li>
-                        <i class="fa fa-trash deleteImgs remove_image"
-                           data-uuid="{{ $row['uuid'] }}"></i>
-                        <a target="_blank" href="{{ $row['url'] }}">
-
-                            <img class="imageAtt" src="{{ $row['url'] }}">
+                <div class="col-sm-3 mb-3 text-center position-relative image-container-item" id="media-item-{{ $row['uuid'] }}">
+                    <div class="border rounded p-2 h-100 shadow-sm d-flex flex-column align-items-center justify-content-center bg-light position-relative">
+                        
+                        <!-- Delete Icon -->
+                        <a href="javascript:void(0)" class="btn btn-danger btn-sm p-1 position-absolute top-0 end-0 m-2 rounded-circle shadow-sm deleteImgs remove_image_btn" data-uuid="{{ $row['uuid'] }}" title="Delete Image" style="z-index: 10; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
                         </a>
-                    </li>
-                @elseif($row['ext'] == 'pdf')
-                    <li>
-                        <i class="fa fa-trash deleteImgs remove_image"
-                           data-uuid="{{ $row['uuid'] }}"></i>
-                        <a target="_blank" href="{{ $row['url'] }}">
 
-                            <img class="imageAtt" src="{{ asset('PDF_file_icon.svg_new.png') }}">
+                        <a target="_blank" href="{{ $row['url'] }}" class="d-block w-100" style="height: 150px; overflow: hidden;">
+                            @if(in_array(strtolower($row['ext']), ['jpg', 'png', 'jpeg', 'gif', 'bmp', 'webp']))
+                                <img src="{{ $row['url'] }}" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 100%;" alt="Product Image">
+                            @elseif($row['ext'] == 'pdf')
+                                <img src="{{ asset('PDF_file_icon.svg_new.png') }}" class="img-fluid" style="max-height: 100px; margin-top: 25px;">
+                            @elseif($row['ext'] == 'doc' || $row['ext'] == 'docx')
+                                <img src="{{ asset('Microsoft_Office_Word_(2019–present).svg_new.png') }}" class="img-fluid" style="max-height: 100px; margin-top: 25px;">
+                            @elseif($row['ext'] == 'xls' || $row['ext'] == 'xlsx')
+                                <img src="{{ asset('Microsoft_Office_Excel_(2019–present).svg_new.png') }}" class="img-fluid" style="max-height: 100px; margin-top: 25px;">
+                            @elseif($row['ext'] == 'csv')
+                                <img src="{{ asset('csv-icon-1791x2048-ot22nr8i_new.png') }}" class="img-fluid" style="max-height: 100px; margin-top: 25px;">
+                            @else
+                                <img src="{{ asset('file_new.png') }}" class="img-fluid" style="max-height: 100px; margin-top: 25px;">
+                            @endif
                         </a>
-                    </li>
-
-                @elseif($row['ext'] == 'doc')
-
-                    <li>
-                        <i class="fa fa-trash deleteImgs remove_image"
-                           data-uuid="{{ $row['uuid'] }}"></i>
-                        <a target="_blank" href="{{ $row['url'] }}">
-
-                            <img class="imageAtt"
-                                 src="{{ asset('Microsoft_Office_Word_(2019–present).svg_new.png') }}">
-                        </a>
-                    </li>
-
-                @elseif($row['ext'] == 'xls')
-                    <li>
-                        <i class="fa fa-trash deleteImgs remove_image"
-                           data-uuid="{{ $row['uuid'] }}"></i>
-                        <a target="_blank" href="{{ $row['url'] }}">
-
-                            <img class="imageAtt"
-                                 src="{{ asset('Microsoft_Office_Excel_(2019–present).svg_new.png') }}">
-                        </a>
-                    </li>
-
-                @elseif($row['ext'] == 'csv')
-                    <li>
-                        <i class="fa fa-trash deleteImgs remove_image"
-                           data-uuid="{{ $row['uuid'] }}"></i>
-                        <a target="_blank" href="{{ $row['url'] }}">
-
-                            <img class="imageAtt"
-                                 src="{{ asset('csv-icon-1791x2048-ot22nr8i_new.png') }}">
-                        </a>
-                    </li>
-
-                @else
-                    <li>
-                        <i class="fa fa-trash deleteImgs remove_image"
-                           data-uuid="{{ $row['uuid'] }}"></i>
-                        <a target="_blank" href="{{ $row['url'] }}">
-
-                            <img class="imageAtt" src="{{ asset('file_new.png') }}">
-                        </a>
-                    </li>
-
-                @endif
-
+                    </div>
+                </div>
             @endforeach
         @endif
-
-    </ul>
+    </div>
 </div>
 <!-- Hidden input to store variants data on submit -->
 <input type="hidden" name="variants_data" id="variants_data_input">
@@ -243,7 +195,12 @@
     <a href="{{ route('admin.products.index') }}" class="btn  btn-outline-danger"><i class="fa-duotone fa-arrow-left-to-line"></i> Back</a>
 </div>
 
+@push('stackedCss')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.5/sweetalert2.min.css" />
+@endpush
+
 @push('stackedScripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.5/sweetalert2.min.js"></script>
     @include('admin.layouts.scripts.regAnotherScript')
     @include('admin.layouts.scripts.swalAjax')
 
@@ -482,6 +439,61 @@
             if(preExistingVariants.length > 0) {
                 renderExistingVariants(preExistingVariants);
             }
+            $(document).on('click', '.remove_image_btn', function(e) {
+                e.preventDefault();
+                let uuid = $(this).data('uuid');
+                let element = $('#media-item-' + uuid);
+
+                console.log("Delete clicked for uuid:", uuid); // Debugging
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You will not be able to recover this image!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log("Confirmed delete for uuid:", uuid); // Debugging
+                        $.ajax({
+                            url: "{{ route('file.remove') }}",
+                            type: 'POST',
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                mediaUuid: uuid
+                            },
+                            success: function(response) {
+                                console.log("AJAX Success:", response); // Debugging
+                                if (response.status) {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Image has been deleted.',
+                                        'success'
+                                    );
+                                    element.remove();
+                                } else {
+                                    Swal.fire(
+                                        'Failed!',
+                                        'Failed to delete image.',
+                                        'error'
+                                    );
+                                }
+                            },
+                            error: function(xhr) {
+                                console.error("AJAX Error:", xhr); // Debugging
+                                Swal.fire(
+                                    'Error!',
+                                    'Something went wrong.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            });
+
         });
     </script>
 @endpush

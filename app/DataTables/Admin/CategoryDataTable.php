@@ -21,6 +21,10 @@ class CategoryDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
+            ->editColumn('image', function (Category $category){
+                $url = !empty($category->imageUrl['100']) ? $category->imageUrl['100'] : route('images_default',['resolution' => '100x100']);
+                return '<img src="'.$url.'" width="50" height="50" style="object-fit:cover; border-radius:5px;" />';
+            })
             ->editColumn('status', function (Category $category){
                 $checked = $category->status ? 'checked' : '';
                 return '<div class="form-check form-switch">
@@ -47,7 +51,7 @@ class CategoryDataTable extends DataTable
                 return GeneralHelperFunctions::prepareHtmlDate($category->created_at);
             })
             ->addColumn('action', 'admin.categories.datatables_actions')
-            ->rawColumns(['status', 'action', 'created_at']);
+            ->rawColumns(['image', 'status', 'action', 'created_at']);
     }
 
     /**
@@ -89,6 +93,7 @@ class CategoryDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'image' => ['title' => 'Image', 'orderable' => false, 'searchable' => false],
             'title',
             'status',
             'created_at' => ['title' => 'Added on'],

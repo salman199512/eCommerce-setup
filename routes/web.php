@@ -49,9 +49,10 @@ require __DIR__.'/admin.php';
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/my-account', [\App\Http\Controllers\MyAccountController::class, 'index'])->name('my-account');
-    Route::put('/my-account/profile', [\App\Http\Controllers\MyAccountController::class, 'updateProfile'])->name('account.update');
+    Route::get('/my-account/profile', [\App\Http\Controllers\MyAccountController::class, 'profile'])->name('my-account.profile');
+    Route::put('/my-account/update', [\App\Http\Controllers\MyAccountController::class, 'updateProfile'])->name('my-account.update');
     
-    // Wishlist Routes (Points 7, 9)
+    // Wishlist Routes
     Route::get('/wishlist', [\App\Http\Controllers\WishlistController::class, 'viewWishlist'])->name('wishlist');
     Route::post('/wishlist/add', [\App\Http\Controllers\WishlistController::class, 'addToWishlist'])->name('wishlist.add');
     Route::post('/wishlist/remove', [\App\Http\Controllers\WishlistController::class, 'remove'])->name('wishlist.remove');

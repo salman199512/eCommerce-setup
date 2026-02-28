@@ -142,7 +142,7 @@
                 <div class="swiper-slide text-center group">
                     <a href="{{ route('products', ['category' => $category->slug]) }}" class="block">
                         <div class="w-32 h-32 md:w-44 md:h-44 mx-auto rounded-full overflow-hidden border-4 border-gray-50 group-hover:border-black transition-all duration-500 relative mb-6">
-                            <img src="{{ $category->image_url ?? 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=400&q=80' }}"
+                            <img src="{{ $category->imageUrl['250'] ?? 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=400&q=80' }}"
                                  class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                         </div>

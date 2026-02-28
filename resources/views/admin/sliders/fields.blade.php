@@ -43,7 +43,7 @@
     {!! Form::label('image', 'Slider Image:') !!}
     <div class="input-group">
         <div class="custom-file">
-            {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'image', 'accept' => 'image/*']) !!}
+            {!! Form::file('image', ['class' => 'form-control', 'id' => 'image', 'accept' => 'image/*']) !!}
         </div>
     </div>
     @if(isset($slider) && $slider->hasMedia('slider_images'))

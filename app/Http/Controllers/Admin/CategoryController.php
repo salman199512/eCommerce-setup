@@ -53,7 +53,9 @@ class CategoryController extends AppBaseController
     {
         $input = CategoryRepository::requestHandler($request);
 
-        $this->categoryRepository->create($input);
+        $category = $this->categoryRepository->create($input);
+
+        $this->categoryRepository->updateOrCreate_image($category, $request);
 
         session()->flash('alert-type', 'success');
         session()->flash('message', 'Category saved successfully.');
@@ -80,6 +82,7 @@ class CategoryController extends AppBaseController
      */
     public function edit(Category $category)
     {
+
         return view('admin.categories.edit')->with('category', $category);
     }
 
@@ -95,7 +98,9 @@ class CategoryController extends AppBaseController
     {
         $input = CategoryRepository::requestHandler($request);
 
-        $this->categoryRepository->update($input, $category->id);
+        $category = $this->categoryRepository->update($input, $category->id);
+
+        $this->categoryRepository->updateOrCreate_image($category, $request);
 
         session()->flash('alert-type', 'success');
         session()->flash('message', 'Category updated successfully.');

@@ -45,9 +45,9 @@ class FrontendController extends Controller
                                ->with(['media', 'category', 'variants'])
                                ->take(4)
                                ->get();
-        
+
         // Fetch dynamic content
-        $categories = Category::where('status', 1)->take(6)->get();
+        $categories = Category::where('status', 1)->take(10)->get();
         $sliders = \App\Models\Slider::where('status', 1)->orderBy('sort_order')->get();
         $banners = \App\Models\Banner::where('status', 1)->orderBy('sort_order')->get();
         $testimonials = \App\Models\Testimonial::where('status', 1)->latest()->get();
@@ -105,7 +105,7 @@ class FrontendController extends Controller
         if ($request->has('min_price') || $request->has('max_price')) {
             $minPrice = $request->get('min_price', 0);
             $maxPrice = $request->get('max_price', 999999);
-            
+
             $query->whereHas('variants', function($q) use ($minPrice, $maxPrice) {
                 $q->whereBetween('final_price', [$minPrice, $maxPrice]);
             });
@@ -162,7 +162,7 @@ class FrontendController extends Controller
     public function searchSuggestions(Request $request)
     {
         $search = $request->get('q');
-        
+
         if (empty($search)) {
             return response()->json([]);
         }

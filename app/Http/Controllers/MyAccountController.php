@@ -21,6 +21,12 @@ class MyAccountController extends Controller
         return view('frontend.account.index', compact('user', 'orders'));
     }
 
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('frontend.account.profile', compact('user'));
+    }
+
     public function updateProfile(Request $request)
     {
         $user = Auth::user();

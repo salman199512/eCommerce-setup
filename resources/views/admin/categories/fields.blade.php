@@ -1,28 +1,44 @@
-<!-- Title Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('title', 'Title:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title', 'id' => 'master_title']) !!}
-</div>
-
-{!! Form::hidden('slug', null, ['id' => 'master_slug']) !!}
-
-<!-- Meta Title Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('meta_title', 'Meta Title:') !!}
-    {!! Form::text('meta_title', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Title', 'id' => 'master_meta_title']) !!}
-</div>
-
-<!-- Meta Keywords Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('meta_keywords', 'Meta Keywords:') !!}
-    {!! Form::textarea('meta_keywords', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Keywords', 'rows' => 2]) !!}
-</div>
-
 <!-- Meta Description Field -->
-<div class="form-group col-sm-12">
-    {!! Form::label('meta_description', 'Meta Description:') !!}
-    {!! Form::textarea('meta_description', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Description', 'rows' => 3]) !!}
+<div class="col-sm-9">
+    <div class="row">
+        <!-- Title Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('title', 'Title:') !!}
+            {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title', 'id' => 'master_title']) !!}
+        </div>
+
+        {!! Form::hidden('slug', null, ['id' => 'master_slug']) !!}
+
+        <!-- Meta Title Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('meta_title', 'Meta Title:') !!}
+            {!! Form::text('meta_title', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Title', 'id' => 'master_meta_title']) !!}
+        </div>
+
+        <!-- Meta Keywords Field -->
+        <div class="form-group col-sm-6">
+            {!! Form::label('meta_keywords', 'Meta Keywords:') !!}
+            {!! Form::textarea('meta_keywords', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Keywords', 'rows' => 2]) !!}
+        </div>
+
+        <!-- Meta Description Field -->
+        <div class="form-group col-sm-12">
+            {!! Form::label('meta_description', 'Meta Description:') !!}
+            {!! Form::textarea('meta_description', null, ['class' => 'form-control', 'placeholder' => 'Enter Meta Description', 'rows' => 3]) !!}
+        </div>
+    </div>
 </div>
+
+@php $hasImage = !empty($category) ? $category->hasMedia('avatar') : false @endphp
+@include('admin.layouts.scripts.dzSingleImageField', [
+    'record' => isset($category) ? $category : '',
+    'hasMedia' => $hasImage,
+    'previewUrl' => $hasImage ? $category->imageUrl['250'] : route('images_default',['resolution' => '250x250']),
+    'mediaUuid' => $hasImage ? $category->getFirstMedia('avatar')->uuid ?? '' : '',
+    'fieldName' => 'avatar',
+    'elementId' => 'user_avatar',
+    'placeHolderText' => "Drop/Select Category Image<br/>(Max: 1 MB)"
+])
 
 
 <!-- Submit Field -->
@@ -36,6 +52,9 @@
     @include('admin.layouts.scripts.swalAjax')
 
     <script>
+        Dropzone.autoDiscover = false;
+        uploadImageByDropzone('#user_avatar');
+
         $('#master_title').on('input', function() {
             let title = $(this).val();
             let slug = title.toLowerCase()

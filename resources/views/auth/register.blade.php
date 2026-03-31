@@ -3,72 +3,67 @@
 @section('meta_title', 'Register')
 
 @section('content')
-<div class="flex h-screen overflow-hidden">
-    <!-- Left Side: Image -->
-    <div class="hidden md:block w-1/2 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1543076447-215ad9ba6923?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-        <div class="h-full w-full bg-black bg-opacity-40 flex items-center justify-center">
-            <div class="text-white text-center px-12">
-                <h2 class="text-5xl font-serif font-bold mb-4">Join Us</h2>
-                <p class="text-xl font-light">Create an account to unlock exclusive benefits and early access.</p>
+
+<div class="fm-auth-wrapper">
+    <div class="fm-auth-card">
+        <!-- Image Side -->
+        <div class="auth-image-side">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80" alt="Fresh Produce">
+            <div class="auth-overlay">
+                <h2 style="font-size:2.5rem;font-weight:900;margin-bottom:12px;line-height:1;">Join Us</h2>
+                <p style="font-size:0.9rem;opacity:0.9;font-weight:600;">Create an account to join the FreshMart community and enjoy local organic produce.</p>
             </div>
         </div>
-    </div>
 
-    <!-- Right Side: Form -->
-    <div class="w-full md:w-1/2 flex items-center justify-center bg-white p-8 md:p-16">
-        <div class="w-full max-w-md">
-            <div class="text-center mb-10">
-                <h1 class="text-3xl font-serif font-bold mb-2">Create Account</h1>
-                <p class="text-gray-500">Already a member? <a href="{{ route('login') }}" class="text-red-600 hover:underline">Sign in</a></p>
+        <!-- Form Side -->
+        <div class="auth-form-side">
+            <div style="margin-bottom:40px;">
+                <h1 style="font-size:2.2rem;font-weight:900;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:8px;">Create Account</h1>
+                <p style="font-size:0.85rem;color:var(--gray-500);font-weight:700;">
+                    Already a member? <a href="{{ route('login') }}" style="color:var(--green-primary);">Sign in</a>
+                </p>
             </div>
 
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" class="fm-auth-form">
                 @csrf
-
-                <!-- Name -->
-                <div class="mb-6">
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                    <input id="name" class="block w-full border-gray-300 rounded-none border-b-2 p-3 focus:border-black focus:ring-0 focus:outline-none transition duration-300" type="text" name="name" value="{{ old('name') }}" required autofocus />
+                
+                <div class="fm-group">
+                    <label class="fm-label">Full Name</label>
+                    <input type="text" name="name" class="fm-input" placeholder="Your Name" value="{{ old('name') }}" required autofocus autocomplete="name">
                     @error('name')
-                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                        <span style="color:var(--red-primary);font-size:0.75rem;font-weight:700;margin-top:4px;display:block;">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <!-- Email Address -->
-                <div class="mb-6">
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                    <input id="email" class="block w-full border-gray-300 rounded-none border-b-2 p-3 focus:border-black focus:ring-0 focus:outline-none transition duration-300" type="email" name="email" value="{{ old('email') }}" required />
+                <div class="fm-group">
+                    <label class="fm-label">Email Address</label>
+                    <input type="email" name="email" class="fm-input" placeholder="yourname@gmail.com" value="{{ old('email') }}" required autocomplete="email">
                     @error('email')
-                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                        <span style="color:var(--red-primary);font-size:0.75rem;font-weight:700;margin-top:4px;display:block;">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <!-- Password -->
-                <div class="mb-6">
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                    <input id="password" class="block w-full border-gray-300 rounded-none border-b-2 p-3 focus:border-black focus:ring-0 focus:outline-none transition duration-300" type="password" name="password" required autocomplete="new-password" />
+                <div class="fm-group">
+                    <label class="fm-label">Password</label>
+                    <input type="password" name="password" class="fm-input" placeholder="••••••••" required autocomplete="new-password">
                     @error('password')
-                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
+                        <span style="color:var(--red-primary);font-size:0.75rem;font-weight:700;margin-top:4px;display:block;">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <!-- Confirm Password -->
-                <div class="mb-6">
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
-                    <input id="password_confirmation" class="block w-full border-gray-300 rounded-none border-b-2 p-3 focus:border-black focus:ring-0 focus:outline-none transition duration-300" type="password" name="password_confirmation" required />
-                    @error('password_confirmation')
-                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                    @enderror
+                <div class="fm-group">
+                    <label class="fm-label">Confirm Password</label>
+                    <input type="password" name="password_confirmation" class="fm-input" placeholder="••••••••" required autocomplete="new-password">
                 </div>
 
-                <div class="mt-8">
-                    <button type="submit" class="w-full bg-black text-white font-bold py-4 uppercase tracking-widest hover:bg-red-600 transition duration-300">
-                        Register
-                    </button>
-                    <p class="text-xs text-center text-gray-400 mt-4">By creating an account, you agree to our <a href="#" class="underline">Terms of Service</a> and <a href="#" class="underline">Privacy Policy</a>.</p>
-                </div>
+                <button type="submit" class="fm-btn-vibrant">Register</button>
+
+                <p style="text-align:center;font-size:0.75rem;color:var(--gray-500);margin-top:24px;font-weight:600;">
+                    By creating an account, you agree to our <a href="#" style="color:var(--text-main);">Terms of Service</a> and <a href="#" style="color:var(--text-main);">Privacy Policy</a>.
+                </p>
             </form>
         </div>
     </div>
 </div>
+
 @endsection

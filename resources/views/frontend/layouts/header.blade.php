@@ -1,429 +1,413 @@
+{{-- ══════════════════════════════════════════════
+     FreshMart Premium Header — Multi-Color UI
+══════════════════════════════════════════════ --}}
 
-<!-- Top Bar -->
-<div class="bg-black text-white text-[10px] py-2 border-b border-gray-800">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-        <div class="flex space-x-6 text-gray-400">
-            <span class="hover:text-white cursor-pointer transition flex items-center gap-2"><i class="fa fa-phone text-[8px]"></i> +1 123 456 7890</span>
-            <span class="hover:text-white cursor-pointer transition flex items-center gap-2"><i class="fa fa-envelope text-[8px]"></i> support@fashion.com</span>
-        </div>
-        <div class="hidden md:flex space-x-4">
-             <div class="relative group cursor-pointer">
-                <span class="hover:text-white flex items-center gap-1">English <i class="fa fa-angle-down text-[8px]"></i></span>
-                <div class="absolute right-0 mt-2 w-32 bg-white text-black shadow-2xl hidden group-hover:block z-[100] rounded overflow-hidden border border-gray-100 animate-fadeInScale">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-50 text-[10px] font-bold uppercase transition">English</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-50 text-[10px] font-bold uppercase transition">French</a>
-                </div>
+<!-- ── Top Announcement Bar ── -->
+<div class="topbar">
+    <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+            <div class="topbar-marquee">
+                <span class="topbar-item"><i class="fas fa-truck-fast"></i> Free delivery on orders over $49</span>
+                <span class="topbar-item" style="opacity:.4;">|</span>
+                <span class="topbar-item"><i class="fas fa-leaf"></i> 100% Organic &amp; Fresh</span>
+                <span class="topbar-item" style="opacity:.4;">|</span>
+                <span class="topbar-item"><i class="fas fa-rotate-left"></i> 7-Day Easy Returns</span>
             </div>
-             <div class="relative group cursor-pointer">
-                <span class="hover:text-white flex items-center gap-1">USD <i class="fa fa-angle-down text-[8px]"></i></span>
-                <div class="absolute right-0 mt-2 w-32 bg-white text-black shadow-2xl hidden group-hover:block z-[100] rounded overflow-hidden border border-gray-100 animate-fadeInScale">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-50 text-[10px] font-bold uppercase transition">USD</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-50 text-[10px] font-bold uppercase transition">EUR</a>
-                </div>
+            <div class="topbar-links">
+                <a href="{{ route('my-account') }}"><i class="far fa-user" style="margin-right:4px;"></i>Account</a>
+                <a href="{{ route('my-orders') }}"><i class="fas fa-box" style="margin-right:4px;"></i>Track Order</a>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Main Header -->
-<header class="bg-white sticky top-0 z-50 border-b border-gray-100 shadow-sm" id="main-header">
-    <div class="container mx-auto px-4 py-3 md:py-4">
-        <div class="flex items-center justify-between gap-4">
+<!-- ── Main Site Header ── -->
+<header class="site-header" id="site-header">
+    <div class="container">
+        <div class="header-inner">
 
-            <!-- Logo (Left) -->
-            <div class="flex items-center shrink-0">
-                <a href="{{ route('home') }}" class="group flex items-center">
-                    <div class="relative">
-                        <span class="text-2xl md:text-3xl font-black tracking-tighter text-black uppercase">
-                            Fashion<span class="text-red-600">.</span>
-                        </span>
-                        <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-full"></div>
+            <!-- Logo -->
+            <a href="{{ route('home') }}" class="site-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div>
+                    <div class="logo-text-top">Fresh<span>Mart</span></div>
+                    <div class="logo-text-bottom">Organic &amp; Fresh</div>
+                </div>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="header-search">
+                <form action="{{ route('products') }}" method="GET" class="search-form-wrap" autocomplete="off">
+                    <div class="header-search-inner">
+                        @php $cats = $sharedCategories ?? collect(); @endphp
+                        <select class="search-category-select" name="category" style="min-width:110px;">
+                            <option value="">All Categories</option>
+                            @foreach($cats as $cat)
+                            <option value="{{ $cat->slug }}" {{ request('category') == $cat->slug ? 'selected' : '' }}>
+                                {{ $cat->title }}
+                            </option>
+                            @endforeach
+                        </select>
+                        <input type="text" name="search" id="global-search-input" class="search-input"
+                               placeholder="Search fresh groceries, brands, products…"
+                               value="{{ request('search') }}">
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i>
+                            <span style="display:none;" class="d-md-inline">Search</span>
+                        </button>
                     </div>
-                </a>
-            </div>
 
-            <!-- Search Bar (Center) -->
-            <div class="hidden lg:flex flex-1 max-w-xl mx-8 relative">
-                <form action="{{ route('products') }}" method="GET" class="w-full relative group search-form">
-                    <input type="text" name="search" id="global-search-input" placeholder="Search for premium apparel..."
-                           autocomplete="off"
-                           class="w-full bg-gray-50 border border-gray-100 py-3 px-6 pr-12 focus:bg-white focus:ring-4 focus:ring-black/5 focus:border-black transition-all rounded-full text-xs font-medium placeholder-gray-400 outline-none">
-                    <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors">
-                        <i class="fa fa-search text-sm"></i>
-                    </button>
-
-                    <!-- Search Suggestions Container -->
-                    <div id="search-suggestions" class="absolute top-[calc(100%+10px)] left-0 w-full bg-white shadow-2xl rounded-2xl border border-gray-100 hidden z-[60] overflow-hidden animate-fadeInUpSmall pb-2">
-                        <div class="p-4 border-b border-gray-50 flex justify-between items-center bg-gray-50/50">
-                            <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">Quick Results</span>
-                            <span class="text-[9px] text-gray-300">Press Esc to close</span>
-                        </div>
-                        <div id="suggestion-results" class="max-h-[400px] overflow-y-auto custom-scrollbar">
-                            <!-- Results inject here -->
-                        </div>
+                    <!-- Search Suggestions Dropdown -->
+                    <div id="search-suggestions" class="search-dropdown" style="display:none;">
+                        <div class="search-dropdown-header">Quick Results</div>
+                        <div id="suggestion-results"></div>
                     </div>
                 </form>
             </div>
 
-            <!-- Icons & Actions (Right) -->
-            <div class="flex items-center space-x-6 md:space-x-8 text-black">
-                <!-- Mobile Search Trigger -->
-                <button class="lg:hidden hover:text-red-600 transition-colors">
-                    <i class="fa fa-search text-lg"></i>
-                </button>
-
-                <div class="relative group">
-                    <a href="{{ route('my-account') }}" class="group relative hover:text-red-600 transition-colors flex flex-col items-center">
-                        <i class="far fa-user text-xl"></i>
-                        <span class="text-[8px] uppercase font-bold tracking-premium mt-1.5 hidden md:block group-hover:opacity-100 opacity-60">Identity</span>
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <!-- Account -->
+                <div style="position:relative;">
+                    <a href="{{ route('my-account') }}" class="header-action-btn">
+                        <i class="far fa-user"></i>
+                        <span class="label">Account</span>
                     </a>
                     @auth
-                    <!-- Invisible bridge to keep dropdown open -->
-                    <div class="absolute right-0 top-full h-2 w-48 hidden group-hover:block z-40"></div>
-                    <div class="absolute right-0 top-full mt-2 w-48 bg-white shadow-2xl border border-gray-100 hidden group-hover:block z-50 rounded-xl overflow-hidden animate-fadeInScale">
-                        <div class="p-4 bg-gray-50 border-b">
-                            <p class="text-[10px] font-black uppercase text-gray-400 mb-1">Welcome back</p>
-                            <p class="text-xs font-bold truncate">{{ auth()->user()->name }}</p>
+                    <div class="cart-dropdown" style="min-width:220px;left:auto;right:0;">
+                        <div class="cart-dropdown-head" style="background:var(--grad-hero);color:white;border-radius:var(--radius-xl) var(--radius-xl) 0 0;">
+                            <div>
+                                <div style="font-size:.68rem;opacity:.7;font-weight:600;">Welcome back</div>
+                                <div style="font-weight:800;font-size:.85rem;">{{ auth()->user()->name }}</div>
+                            </div>
+                            <i class="fas fa-user-circle" style="font-size:1.6rem;opacity:.5;"></i>
                         </div>
-                        <a href="{{ route('my-account') }}" class="block px-4 py-3 text-xs font-bold text-gray-700 hover:bg-gray-50 transition border-b">Dashboard</a>
-                        <a href="{{ route('my-orders') }}" class="block px-4 py-3 text-xs font-bold text-gray-700 hover:bg-gray-50 transition border-b">My Orders</a>
-                        <a href="{{ route('wishlist') }}" class="block px-4 py-3 text-xs font-bold text-gray-700 hover:bg-gray-50 transition border-b">Wishlist</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="w-full text-left px-4 py-3 text-xs font-bold text-red-600 hover:bg-red-50 transition">Sign Out</button>
-                        </form>
+                        <div style="padding:8px 0;">
+                            <a href="{{ route('my-account') }}" class="account-nav-link"><i class="fas fa-gauge"></i> Dashboard</a>
+                            <a href="{{ route('my-orders') }}" class="account-nav-link"><i class="fas fa-box"></i> My Orders</a>
+                            <a href="{{ route('wishlist') }}" class="account-nav-link"><i class="fas fa-heart"></i> Wishlist</a>
+                            <a href="{{ route('my-account.profile') }}" class="account-nav-link"><i class="fas fa-gear"></i> Profile Settings</a>
+                        </div>
+                        <div style="padding:12px 20px;border-top:1px solid var(--gray-100);">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-sm" style="width:100%;background:var(--red-soft);color:var(--red-primary);border:none;">
+                                    <i class="fas fa-right-from-bracket"></i> Sign Out
+                                </button>
+                            </form>
+                        </div>
                     </div>
                     @endauth
                 </div>
 
-                <a href="{{ route('wishlist') }}" class="group relative hover:text-red-600 transition-colors flex flex-col items-center">
-                    <i class="far fa-heart text-xl"></i>
+                <!-- Wishlist -->
+                <a href="{{ route('wishlist') }}" class="header-action-btn" style="position:relative;">
+                    <i class="far fa-heart"></i>
+                    <span class="label">Wishlist</span>
                     @auth
-                        <span class="absolute -top-1 -right-2 bg-red-600 text-white rounded-full text-[8px] w-3.5 h-3.5 flex items-center justify-center font-bold">
-                            {{ auth()->user()->wishlists()->count() }}
-                        </span>
+                    <span class="cart-badge" style="background:var(--red-primary);">{{ auth()->user()->wishlists()->count() }}</span>
                     @else
-                        <span class="absolute -top-1 -right-2 bg-red-600 text-white rounded-full text-[8px] w-3.5 h-3.5 flex items-center justify-center font-bold">0</span>
+                    <span class="cart-badge" style="background:var(--red-primary);">0</span>
                     @endauth
-                    <span class="text-[8px] uppercase font-bold tracking-premium mt-1.5 hidden md:block group-hover:opacity-100 opacity-60">Favorites</span>
                 </a>
 
-                <div class="relative group py-2"> <!-- Added padding for bridge -->
-                    <a href="{{ route('cart') }}" class="relative hover:text-red-600 transition-colors flex flex-col items-center">
-                        <i class="fas fa-shopping-bag text-xl"></i>
+                <!-- Cart -->
+                <div class="cart-dropdown-wrap">
+                    <a href="{{ route('cart') }}" class="header-action-btn" style="position:relative;background:var(--green-soft);color:var(--green-primary);border-radius:var(--radius-md);">
                         @php $cart = session('cart', []); $totalQty = array_sum(array_column($cart, 'quantity')); @endphp
-                        <span class="absolute -top-1 -right-2 bg-black text-white rounded-full text-[8px] w-3.5 h-3.5 flex items-center justify-center font-bold cart-count-global">{{ $totalQty }}</span>
-                        <span class="text-[8px] uppercase font-bold tracking-premium mt-1.5 hidden md:block group-hover:opacity-100 opacity-60">Bag</span>
+                        <i class="fas fa-cart-shopping"></i>
+                        <span class="label" style="color:var(--green-primary);">Cart</span>
+                        <span class="cart-badge cart-count-global">{{ $totalQty }}</span>
                     </a>
 
                     <!-- Mini Cart Dropdown -->
-                    <div class="absolute right-0 top-[100%] w-80 bg-white shadow-2xl border border-gray-100 hidden group-hover:block z-50 p-6 rounded-2xl text-left text-gray-800 animate-fadeInScale mt-4 dropdown-bridge">
-                        <div class="flex items-center justify-between mb-6 border-b pb-4">
-                            <h4 class="text-xs font-black uppercase tracking-widest">Shopping Bag</h4>
-                            <span class="text-[10px] font-bold text-gray-400"><span class="cart-items-count">{{ count($cart) }}</span> Items</span>
+                    <div class="cart-dropdown">
+                        <div class="cart-dropdown-head">
+                            <span class="cart-dropdown-title">Shopping Cart</span>
+                            <span class="cart-dropdown-count"><span class="cart-items-count">{{ count($cart) }}</span> items</span>
                         </div>
 
-                        @php $cart = session('cart', []); $total = 0; @endphp
-                        @if(count($cart) > 0)
-                            <div class="max-h-80 overflow-y-auto mb-6 space-y-5 pr-2 custom-scrollbar">
-                                @foreach($cart as $id => $details)
-                                    @php $total += $details['price'] * $details['quantity']; @endphp
-                                    <div class="flex items-center gap-4 group/item">
-                                        <div class="w-16 h-20 bg-gray-50 rounded-xl overflow-hidden flex-shrink-0 relative">
-                                            <img src="{{ $details['image'] }}" class="w-full h-full object-cover group-hover/item:scale-110 transition duration-700">
-                                            <div class="absolute inset-0 bg-black/5 opacity-0 group-hover/item:opacity-100 transition"></div>
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <h4 class="text-xs font-bold truncate text-gray-900 group-hover:text-red-600 transition">{{ $details['name'] }}</h4>
-                                            <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">{{ $details['quantity'] }} × ${{ number_format($details['price'], 2) }}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="bg-gray-50 rounded-xl p-4 mb-6">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Subtotal</span>
-                                    <span class="text-lg font-black tracking-tighter">${{ number_format($total, 2) }}</span>
+                        @php $cartFull = session('cart', []); $cartTotal = 0; @endphp
+                        @if(count($cartFull) > 0)
+                        <div class="cart-dropdown-body scrollbar-hide">
+                            @foreach($cartFull as $id => $details)
+                            @php $cartTotal += $details['price'] * $details['quantity']; @endphp
+                            <div class="cart-item-row">
+                                <img src="{{ $details['image'] }}" alt="{{ $details['name'] }}" class="cart-item-img">
+                                <div style="flex:1;min-width:0;">
+                                    <div class="cart-item-name">{{ Str::limit($details['name'], 30) }}</div>
+                                    <div class="cart-item-meta">{{ $details['quantity'] }} × ${{ number_format($details['price'], 2) }}</div>
                                 </div>
                             </div>
-                            <div class="space-y-3">
-                                <a href="{{ route('checkout') }}" class="block w-full bg-black text-white text-center py-4 text-[10px] font-black uppercase tracking-widest hover:bg-red-600 transition duration-300 rounded-xl">Secure Checkout</a>
-                                <a href="{{ route('cart') }}" class="block w-full border border-gray-100 text-gray-400 text-center py-3 text-[9px] font-black uppercase tracking-widest hover:border-black hover:text-black transition duration-300 rounded-xl">View Bag</a>
+                            @endforeach
+                        </div>
+                        <div class="cart-dropdown-footer">
+                            <div class="cart-subtotal-row">
+                                <span class="cart-subtotal-label">Subtotal</span>
+                                <span class="cart-subtotal-amount">${{ number_format($cartTotal, 2) }}</span>
                             </div>
-                        @else
-                            <div class="py-12 text-center">
-                                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-shopping-bag text-xl text-gray-200"></i>
-                                </div>
-                                <p class="text-[10px] text-gray-400 uppercase tracking-widest leading-relaxed">Your bag is currently<br>empty</p>
-                                <a href="{{ route('products') }}" class="inline-block mt-6 text-[10px] font-black uppercase tracking-widest text-red-600 hover:text-black transition group">
-                                    Explore Shop <i class="fa fa-arrow-right ml-1 transition group-hover:translate-x-1"></i>
+                            <div class="cart-actions">
+                                <a href="{{ route('checkout') }}" class="btn btn-primary btn-block">
+                                    <i class="fas fa-lock"></i> Secure Checkout
+                                </a>
+                                <a href="{{ route('cart') }}" class="btn btn-secondary btn-block btn-sm">
+                                    View Cart
                                 </a>
                             </div>
+                        </div>
+                        @else
+                        <div style="padding:40px 20px;text-align:center;color:var(--gray-400);">
+                            <i class="fas fa-cart-shopping" style="font-size:2.5rem;margin-bottom:12px;display:block;opacity:.2;"></i>
+                            <p style="font-size:.78rem;font-weight:700;margin-bottom:16px;">Your cart is empty</p>
+                            <a href="{{ route('products') }}" class="btn btn-primary btn-sm">Shop Now</a>
+                        </div>
                         @endif
                     </div>
                 </div>
 
-                <!-- Mobile Menu Toggle -->
-                <button class="md:hidden hover:text-red-600 transition-colors p-2" id="mobile-menu-btn">
-                    <i class="fa fa-bars-staggered text-xl"></i>
+                <!-- Mobile Menu -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </div>
+</header>
 
-    <!-- Navigation Bar -->
-    <div class="hidden md:block border-t border-gray-50">
-        <div class="container mx-auto px-4">
-            <nav class="flex justify-center">
-                <ul class="flex space-x-12 font-bold text-xs uppercase tracking-premium text-black">
-                    <li class="relative group">
-                        <a href="{{ route('home') }}" class="block py-5 hover:text-red-600 transition-colors">Home</a>
-                        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                    </li>
+<!-- ── Navigation Bar ── -->
+<nav class="site-nav" id="site-nav">
+    <div class="container">
+        <div class="nav-inner">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+                        <i class="fas fa-house" style="font-size:.7rem;"></i> Home
+                    </a>
+                </li>
 
-                    <!-- Full Width Mega Menu: Categories -->
-                    @php $cats = $sharedCategories ?? collect(); @endphp
-                    <li class="group"> <!-- Removed relative to allow full width -->
-                        <a href="{{ route('products') }}" class="block py-5 hover:text-red-600 transition-colors flex items-center gap-1">
-                            Categories <i class="fa fa-angle-down text-[8px] transition-transform duration-300 group-hover:rotate-180"></i>
-                        </a>
-                        <div class="container absolute left-0 right-0 mx-auto px-4"> <!-- Absolute positioning relative to header -->
-                            <div class="absolute left-0 top-full w-full bg-white shadow-2xl hidden group-hover:block transition-all duration-300 z-40 border-t border-gray-100 animate-fadeInUpSmall rounded-b-3xl overflow-hidden dropdown-bridge">
-                                <div class="grid grid-cols-12 max-w-7xl mx-auto">
-                                    <div class="col-span-9 p-12">
-                                        <div class="grid grid-cols-4 gap-12">
-                                            @foreach($cats->take(4) as $cat)
-                                            <div>
-                                                <h4 class="font-black text-[11px] text-black mb-6 tracking-widest uppercase border-b border-gray-100 pb-3 flex items-center justify-between">
-                                                    <a href="{{ route('products', ['category' => $cat->slug]) }}" class="hover:text-red-600 transition">{{ $cat->title }}</a>
-                                                    <i class="fa fa-arrow-right text-[8px] opacity-0 group-hover:opacity-100 transition"></i>
-                                                </h4>
-                                                <ul class="space-y-4 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                                                    @foreach($cat->subCategories as $sub)
-                                                        <li>
-                                                            <a href="{{ route('products', ['category' => $cat->slug, 'sub_category' => $sub->slug]) }}"
-                                                               class="hover:text-black transition-all hover:translate-x-2 inline-block flex items-center gap-2 group/sub">
-                                                                <span class="w-1 h-1 bg-red-600 rounded-full opacity-0 group-hover/sub:opacity-100 transition"></span>
-                                                                {{ $sub->title }}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                            @endforeach
-                                        </div>
+                <!-- Categories Mega -->
+                <li class="nav-item">
+                    <a href="{{ route('products') }}" class="nav-link {{ request()->routeIs('products') ? 'active' : '' }}">
+                        <i class="fas fa-th-large" style="font-size:.7rem;"></i>
+                        Categories <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="mega-menu" style="width:700px;">
+                        <div style="display:grid;grid-template-columns:1fr 220px;">
+                            <div class="mega-menu-inner" style="grid-template-columns:repeat(3,1fr);">
+                                @foreach($cats->take(3) as $cat)
+                                <div>
+                                    <div class="mega-col-title">{{ $cat->title }}</div>
+                                    <div class="mega-col-links">
+                                        @foreach($cat->subCategories->take(6) as $sub)
+                                        <a href="{{ route('products', ['category' => $cat->slug, 'sub_category' => $sub->slug]) }}">
+                                            <i class="fas fa-circle" style="font-size:.25rem;color:var(--green-primary);"></i>
+                                            {{ $sub->title }}
+                                        </a>
+                                        @endforeach
+                                        <a href="{{ route('products', ['category' => $cat->slug]) }}" style="color:var(--green-primary);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;">
+                                            View All →
+                                        </a>
                                     </div>
-                                    <div class="col-span-3 bg-gray-50 p-10 relative overflow-hidden group/promo border-l border-gray-100">
-                                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                                             class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover/promo:scale-110 transition duration-1000">
-                                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                                        <div class="relative h-full flex flex-col justify-end text-white">
-                                            <span class="text-[9px] font-black uppercase tracking-widest bg-red-600 w-fit px-3 py-1.5 mb-4 rounded-sm">Special Edition</span>
-                                            <h3 class="text-3xl font-black leading-tight tracking-tighter mb-2 italic">Modern<br>Elegance</h3>
-                                            <p class="text-[10px] text-gray-300 font-bold uppercase tracking-widest mb-6">Exclusively curated fashion</p>
-                                            <a href="{{ route('products') }}" class="text-[10px] font-black uppercase tracking-widest w-fit group/btn flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full hover:bg-red-600 hover:text-white transition duration-300">
-                                                Explore <i class="fa fa-arrow-right text-[8px]"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            <div class="mega-promo">
+                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Fresh Produce">
+                                <div class="mega-promo-content">
+                                    <span class="mega-promo-tag">🌱 Organic</span>
+                                    <div style="font-size:1.3rem;font-weight:900;color:white;line-height:1.2;margin-bottom:6px;">Farm Fresh<br>Delivered</div>
+                                    <a href="{{ route('products') }}" class="btn btn-white btn-sm" style="margin-top:12px;">Shop Now</a>
                                 </div>
                             </div>
                         </div>
-                    </li>
-
-                    <li class="relative group">
-                        <a href="{{ route('products') }}" class="block py-5 hover:text-red-600 transition-colors">Collections</a>
-                        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                    </li>
-                    <li class="relative group">
-                        <a href="{{ route('about-us') }}" class="block py-5 hover:text-red-600 transition-colors">House</a>
-                        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                    </li>
-                    <li class="relative group">
-                        <a href="{{ route('contact-us') }}" class="block py-5 hover:text-red-600 transition-colors">Support</a>
-                        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</header>
-
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="hidden fixed inset-0 z-[60]">
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm shadow-inner" id="close-mobile-menu-overlay"></div>
-    <div class="absolute left-0 top-0 w-4/5 max-w-sm h-full bg-white shadow-2xl overflow-y-auto transform transition-all duration-300">
-        <div class="p-6 flex justify-between items-center border-b">
-             <span class="font-black text-2xl tracking-tighter uppercase">FASHION<span class="text-red-600">.</span></span>
-             <button id="close-mobile-menu" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:text-black transition"><i class="fa fa-times"></i></button>
-        </div>
-
-        <div class="p-6">
-            <form action="{{ route('products') }}" method="GET" class="relative mb-8">
-                <input type="text" name="search" placeholder="Search..." class="w-full bg-gray-50 border-none py-4 px-5 rounded-2xl focus:ring-2 focus:ring-black/5 text-sm font-bold placeholder-gray-300">
-                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-black transition"><i class="fa fa-search"></i></button>
-            </form>
-
-            <nav class="space-y-2">
-                <a href="{{ route('home') }}" class="block py-4 px-4 font-black uppercase text-[11px] tracking-widest border-b border-gray-50 hover:text-red-600 transition">Home</a>
-
-                <div x-data="{ open: false }">
-                    <button @click="open = !open" class="w-full flex justify-between items-center py-4 px-4 font-black uppercase text-[11px] tracking-widest border-b border-gray-50 hover:text-red-600 transition">
-                        Categories <i class="fa fa-angle-down transition-transform" :class="{'rotate-180': open}"></i>
-                    </button>
-                    <div x-show="open" x-transition class="pl-4 bg-gray-50 rounded-2xl mt-2 overflow-hidden">
-                         @foreach($cats as $cat)
-                         <div x-data="{ subOpen: false }" class="border-b border-white last:border-0">
-                             <button @click="subOpen = !subOpen" class="w-full flex justify-between items-center py-4 px-4 text-[10px] font-black uppercase text-gray-500 hover:text-red-600 transition">
-                                {{ $cat->title }} <i class="fa fa-plus text-[8px] transition-all" :class="{'rotate-45 text-red-600': subOpen}"></i>
-                             </button>
-                             <div x-show="subOpen" x-transition class="pl-6 pb-4 space-y-3">
-                                  @foreach($cat->subCategories as $sub)
-                                    <a href="{{ route('products', ['category' => $cat->slug, 'sub_category' => $sub->slug]) }}" class="block text-[10px] font-bold text-gray-400 hover:text-black transition tracking-wide italic">{{ $sub->title }}</a>
-                                  @endforeach
-                             </div>
-                         </div>
-                         @endforeach
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('products') }}" class="nav-link">
+                        <i class="fas fa-fire" style="font-size:.7rem;color:var(--orange-primary);"></i> Deals
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('products') }}" class="nav-link">
+                        <i class="fas fa-star" style="font-size:.7rem;color:var(--yellow-primary);"></i> Best Sellers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('products') }}" class="nav-link">
+                        <i class="fas fa-leaf" style="font-size:.7rem;color:var(--teal-primary);"></i> Organic
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('about-us') }}" class="nav-link {{ request()->routeIs('about-us') ? 'active' : '' }}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('contact-us') }}" class="nav-link {{ request()->routeIs('contact-us') ? 'active' : '' }}">Contact</a>
+                </li>
+            </ul>
+
+            <!-- Delivery Info -->
+            <div class="nav-delivery" style="flex-shrink:0;">
+                <i class="fas fa-location-dot"></i>
+                <div class="nav-delivery-text">
+                    <span class="label">Deliver to</span>
+                    <span class="value">Your Location</span>
                 </div>
-
-                <a href="{{ route('products') }}" class="block py-4 px-4 font-black uppercase text-[11px] tracking-widest border-b border-gray-50 hover:text-red-600 transition">Collections</a>
-                <a href="{{ route('about-us') }}" class="block py-4 px-4 font-black uppercase text-[11px] tracking-widest border-b border-gray-50 hover:text-red-600 transition">Our Story</a>
-                <a href="{{ route('contact-us') }}" class="block py-4 px-4 font-black uppercase text-[11px] tracking-widest border-b border-gray-50 hover:text-red-600 transition">Contact</a>
-            </nav>
-
-            <div class="mt-12 pt-8 border-t border-gray-50 space-y-4">
-                <a href="{{ route('login') }}" class="flex items-center gap-4 py-3 px-4 rounded-xl bg-gray-50 text-gray-700 hover:bg-black hover:text-white transition duration-300">
-                    <i class="far fa-user text-lg"></i> <span class="text-[10px] font-black uppercase tracking-widest">Account Login</span>
-                </a>
             </div>
         </div>
+    </div>
+</nav>
+
+<!-- ── Mobile Drawer ── -->
+<div class="mobile-drawer-overlay" id="mobile-overlay"></div>
+<div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-head">
+        <div class="site-logo" style="gap:8px;">
+            <div class="logo-icon" style="width:32px;height:32px;font-size:.9rem;"><i class="fas fa-seedling"></i></div>
+            <div class="logo-text-top" style="font-size:1.1rem;">Fresh<span>Mart</span></div>
+        </div>
+        <button class="mobile-close-btn" id="mobile-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Mobile Search -->
+    <div style="padding:16px;border-bottom:1px solid var(--border-light);">
+        <form action="{{ route('products') }}" method="GET">
+            <div style="position:relative;">
+                <input type="text" name="search" class="fm-input" placeholder="Search products…" style="padding-right:44px;">
+                <button type="submit" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--green-primary);font-size:1rem;">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav style="padding:8px 0;">
+        <a href="{{ route('home') }}" class="mobile-nav-link">
+            <span>Home</span><i class="fas fa-chevron-right" style="font-size:.65rem;"></i>
+        </a>
+
+        <!-- Categories Accordion -->
+        <div id="mobile-cats-toggle" class="mobile-nav-link" style="cursor:pointer;">
+            <span>Categories</span>
+            <i class="fas fa-chevron-down" style="font-size:.65rem;transition:transform .3s;" id="cats-chevron"></i>
+        </div>
+        <div class="mobile-submenu" id="mobile-cats-submenu">
+            @foreach($cats as $cat)
+            <a href="{{ route('products', ['category' => $cat->slug]) }}">{{ $cat->title }}</a>
+            @foreach($cat->subCategories as $sub)
+            <a href="{{ route('products', ['category' => $cat->slug, 'sub_category' => $sub->slug]) }}" style="padding-left:50px;font-size:.72rem;color:var(--gray-400);">↳ {{ $sub->title }}</a>
+            @endforeach
+            @endforeach
+        </div>
+
+        <a href="{{ route('products') }}" class="mobile-nav-link"><span>Deals</span><i class="fas fa-chevron-right" style="font-size:.65rem;"></i></a>
+        <a href="{{ route('products') }}" class="mobile-nav-link"><span>Best Sellers</span><i class="fas fa-chevron-right" style="font-size:.65rem;"></i></a>
+        <a href="{{ route('about-us') }}" class="mobile-nav-link"><span>About Us</span><i class="fas fa-chevron-right" style="font-size:.65rem;"></i></a>
+        <a href="{{ route('contact-us') }}" class="mobile-nav-link"><span>Contact</span><i class="fas fa-chevron-right" style="font-size:.65rem;"></i></a>
+    </nav>
+
+    <!-- Mobile User Actions -->
+    <div style="padding:20px;border-top:1px solid var(--border-light);margin-top:auto;display:flex;flex-direction:column;gap:10px;">
+        <a href="{{ route('my-account') }}" class="btn btn-primary"><i class="far fa-user"></i> My Account</a>
+        <a href="{{ route('wishlist') }}" class="btn btn-secondary"><i class="far fa-heart"></i> Wishlist</a>
+        <a href="{{ route('cart') }}" class="btn btn-dark"><i class="fas fa-cart-shopping"></i> Cart ({{ $totalQty }})</a>
     </div>
 </div>
 
 <style>
-    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #f8f9fa; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #e9ecef; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #dee2e6; }
+/* Mobile drawer bridge */
+.mobile-drawer-overlay.open { display: block; }
+.mobile-drawer.open { transform: translateX(0); }
 
-    .search-suggestion-item:hover .suggestion-img { transform: scale(1.1); }
-
-    @keyframes fadeInUpSmall {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fadeInUpSmall { animation: fadeInUpSmall 0.3s ease forwards; }
-
-    @keyframes fadeInScale {
-        from { opacity: 0; transform: scale(0.95) translateY(10px); }
-        to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .animate-fadeInScale { animation: fadeInScale 0.2s ease-out forwards; }
-
-    .dropdown-bridge::before {
-        content: "";
-        position: absolute;
-        top: -20px;
-        left: 0;
-        right: 0;
-        height: 25px;
-        background: transparent;
-        z-index: -1;
-    }
-
-    /* Premium Input Design */
-    input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea {
-        background-color: #f9fafb !important;
-        border: 1px solid #c1c2c5 !important;
-        padding: 12px 20px !important;
-        border-radius: 12px !important;
-        font-size: 13px !important;
-        font-weight: 500 !important;
-        transition: all 0.3s ease !important;
-        outline: none !important;
-    }
-    input:focus, select:focus, textarea:focus {
-        background-color: #fff !important;
-        border-color: #000 !important;
-        box-shadow: 0 0 0 4px rgba(0,0,0,0.03) !important;
-    }
+/* Scroll active nav highlight */
+.site-header.scrolled {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
 </style>
 
 <script>
-    $(document).ready(function() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const openBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('close-mobile-menu');
-        const closeOverlay = document.getElementById('close-mobile-menu-overlay');
+(function() {
+    const overlay = document.getElementById('mobile-overlay');
+    const drawer  = document.getElementById('mobile-drawer');
+    const openBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('mobile-close-btn');
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('hidden');
-        }
+    function openDrawer() {
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => { overlay.classList.add('open'); drawer.classList.add('open'); }, 10);
+    }
+    function closeDrawer() {
+        overlay.classList.remove('open');
+        drawer.classList.remove('open');
+        setTimeout(() => { overlay.style.display = 'none'; document.body.style.overflow = ''; }, 400);
+    }
 
-        openBtn.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
-        closeOverlay.addEventListener('click', toggleMenu);
+    if (openBtn) openBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', closeDrawer);
 
-        // Search Auto-suggestion Logic
-        let searchTimeout;
-        const $searchInput = $('#global-search-input');
-        const $suggestions = $('#search-suggestions');
-        const $resultsList = $('#suggestion-results');
-
-        $searchInput.on('input', function() {
-            clearTimeout(searchTimeout);
-            const query = $(this).val();
-
-            if (query.length < 2) {
-                $suggestions.addClass('hidden');
-                return;
-            }
-
-            searchTimeout = setTimeout(function() {
-                $.ajax({
-                    url: "{{ route('search.suggestions') }}",
-                    data: { q: query },
-                    success: function(data) {
-                        if (data.length > 0) {
-                            let html = '';
-                            data.forEach(function(item) {
-                                html += `
-                                    <a href="/product/${item.slug}" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition border-b border-gray-50 last:border-0 group search-suggestion-item">
-                                        <div class="w-12 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
-                                            <img src="${item.image || 'https://via.placeholder.com/100x150'}" class="w-full h-full object-cover suggestion-img transition duration-500">
-                                        </div>
-                                        <div class="flex-1 min-w-0">
-                                            <h4 class="text-xs font-bold text-gray-900 group-hover:text-red-600 transition truncate">${item.title}</h4>
-                                            <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest font-black italic">$${parseFloat(item.price || 0).toFixed(2)}</p>
-                                        </div>
-                                        <i class="fa fa-chevron-right text-[8px] text-gray-200 group-hover:text-black transition"></i>
-                                    </a>
-                                `;
-                            });
-                            $resultsList.html(html);
-                            $suggestions.removeClass('hidden');
-                        } else {
-                            $suggestions.addClass('hidden');
-                        }
-                    }
-                });
-            }, 300);
+    // Categories accordion
+    const catsToggle = document.getElementById('mobile-cats-toggle');
+    const catsSubmenu = document.getElementById('mobile-cats-submenu');
+    const catsChevron = document.getElementById('cats-chevron');
+    if (catsToggle) {
+        catsToggle.addEventListener('click', () => {
+            catsSubmenu.classList.toggle('open');
+            catsChevron.style.transform = catsSubmenu.classList.contains('open') ? 'rotate(180deg)' : '';
         });
+    }
 
-        // Close suggestions on click outside
-        $(document).on('click', function(e) {
-            if (!$(e.target).closest('.search-form').length) {
-                $suggestions.addClass('hidden');
-            }
-        });
-
-        // Close on Escape key
-        $(document).on('keydown', function(e) {
-            if (e.key === 'Escape') {
-                $suggestions.addClass('hidden');
-            }
-        });
+    // Sticky header
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
     });
+
+    // Search suggestions
+    let searchTimeout;
+    const $searchInput = $('#global-search-input');
+    const $suggestions = $('#search-suggestions');
+    const $results     = $('#suggestion-results');
+
+    $searchInput.on('input', function() {
+        clearTimeout(searchTimeout);
+        const q = this.value.trim();
+        if (q.length < 2) { $suggestions.hide(); return; }
+
+        searchTimeout = setTimeout(() => {
+            $.ajax({
+                url: "{{ route('search.suggestions') }}",
+                data: { q },
+                success: function(data) {
+                    if (data.length) {
+                        let html = data.map(item => `
+                            <a href="/product/${item.slug}" class="search-item">
+                                <img src="${item.image || 'https://via.placeholder.com/60'}" class="search-item-img" alt="${item.title}">
+                                <div>
+                                    <div class="search-item-name">${item.title}</div>
+                                    <div class="search-item-price">$${parseFloat(item.price||0).toFixed(2)}</div>
+                                </div>
+                                <i class="fas fa-chevron-right" style="font-size:.6rem;color:var(--gray-300);margin-left:auto;"></i>
+                            </a>
+                        `).join('');
+                        $results.html(html);
+                        $suggestions.show();
+                    } else {
+                        $suggestions.hide();
+                    }
+                }
+            });
+        }, 280);
+    });
+
+    $(document).on('click', e => {
+        if (!$(e.target).closest('.search-form-wrap').length) $suggestions.hide();
+    });
+    $(document).on('keydown', e => { if (e.key === 'Escape') $suggestions.hide(); });
+})();
 </script>

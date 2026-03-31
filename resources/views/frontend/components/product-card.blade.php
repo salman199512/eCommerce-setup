@@ -1,87 +1,104 @@
-<div class="group relative product-card h-full flex flex-col bg-white">
-    <!-- Image Wrapper -->
-    <div class="relative overflow-hidden bg-gray-50 rounded-2xl" style="aspect-ratio: 3/4;">
-        @php
-            if($product) {
-                $imageUrl = $product->avatar_url ?: 'https://via.placeholder.com/800x1067?text=No+Image';
-                $secondImage = $product->media->count() > 1 ? $product->media[1]->getUrl() : $imageUrl;
-                $title = $product->title;
-                $category = $product->category->title ?? 'Exclusive';
-                $url = route('products.single', $product->slug);
-                $isNew = $product->is_new_arrival;
-                $hasDiscount = $product->discount > 0 || ($product->variants->count() > 0 && $product->variants->min('discount') > 0);
-            } else {
-                $stIdx = $static_index ?? 1;
-                $imageUrl = "https://images.unsplash.com/photo-".(1500000000000 + ($stIdx * 1234567))."?auto=format&fit=crop&w=800&q=80";
-                $secondImage = "https://images.unsplash.com/photo-".(1500000000000 + ($stIdx * 7654321))."?auto=format&fit=crop&w=800&q=80";
-                $title = "Premium " . ($stIdx % 2 == 0 ? "Winter" : "Summer") . " Piece #".$stIdx;
-                $category = "Archival Collection";
-                $url = "#";
-                $isNew = $stIdx % 3 == 0;
-                $hasDiscount = $stIdx % 5 == 0;
-            }
-        @endphp
-        
-        <a href="{{ $url }}" class="block w-full h-full relative z-10">
-            <img src="{{ $imageUrl }}" alt="{{ $title }}" 
-                 class="object-cover w-full h-full transition-all duration-700 ease-in-out group-hover:opacity-0 group-hover:scale-105">
-            <img src="{{ $secondImage }}" alt="{{ $title }}" 
-                 class="object-cover w-full h-full absolute inset-0 z-0 scale-100 group-hover:scale-105 transition-all duration-700 opacity-0 group-hover:opacity-100 border-none">
+{{-- ══════════════════════════
+     FreshMart Product Card
+══════════════════════════ --}}
+@php
+if ($product) {
+    $imageUrl    = $product->avatar_url ?: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=600&q=80';
+    $secondImage = $product->media->count() > 1 ? $product->media[1]->getUrl() : $imageUrl;
+    $title       = $product->title;
+    $category    = $product->category->title ?? 'Grocery';
+    $url         = route('products.single', $product->slug);
+    $isNew       = $product->is_new_arrival;
+    $hasDiscount = $product->discount > 0 || ($product->variants->count() > 0 && $product->variants->min('discount') > 0);
+} else {
+    $stIdx       = $static_index ?? 1;
+    $foods       = ['Organic Apples','Fresh Milk','Free Range Eggs','Whole Grain Bread','Baby Spinach','Greek Yogurt','Avocados','Cherry Tomatoes','Wild Salmon','Almond Butter'];
+    $imgs        = ['1619566636213-aab0a0ce7b31','1567306226416-28f0efdc88ce','1618512496248-a4a64ce0c8bb','1586201375761-83865001e31c','1574316077139-f0beb48c8fdd','1559181567-c3190b5c7791','1523049673857-eb18f1dea2cc','1592924357228-91a4daadcfea','1535262412227-85541e910204','1508061253366-f7da158b6d46'];
+    $i           = ($stIdx - 1) % count($imgs);
+    $imageUrl    = "https://images.unsplash.com/photo-{$imgs[$i]}?auto=format&fit=crop&w=600&q=80";
+    $secondImage = $imageUrl;
+    $title       = $foods[($stIdx - 1) % count($foods)] . ' — Premium';
+    $category    = ['Fruits','Dairy','Bakery','Produce','Seafood'][($stIdx - 1) % 5];
+    $url         = '#';
+    $isNew       = $stIdx % 3 == 0;
+    $hasDiscount = $stIdx % 4 == 0;
+}
+@endphp
+
+<div class="product-card">
+    <!-- Image Area -->
+    <div class="product-card-img-wrap">
+        <a href="{{ $url }}">
+            <img src="{{ $imageUrl }}" alt="{{ $title }}" class="product-card-img" loading="lazy">
+            <img src="{{ $secondImage }}" alt="{{ $title }}" class="product-card-img-alt" loading="lazy">
         </a>
 
-        <!-- Premium Badges -->
-        <div class="absolute top-4 left-4 z-20 flex flex-col gap-2">
+        <!-- Badges -->
+        <div class="product-card-badges">
             @if($isNew)
-                <span class="bg-black text-white text-[8px] font-bold uppercase px-3 py-1.5 rounded-full tracking-premium shadow-sm">New</span>
+            <span class="badge badge-green">New</span>
             @endif
             @if($hasDiscount)
-                <span class="bg-red-600 text-white text-[8px] font-bold uppercase px-3 py-1.5 rounded-full tracking-premium shadow-sm">Sale</span>
+            <span class="badge badge-orange discount-pct" style="display:none;">-0%</span>
             @endif
         </div>
 
-        <!-- Float Actions -->
-        <div class="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-            <button onclick="addToWishlist({{ $product->id ?? 0 }})" class="w-10 h-10 bg-white text-black hover:bg-red-600 hover:text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 wishlist-btn-{{ $product->id ?? 0 }}">
-                <i class="far fa-heart text-sm"></i>
+        <!-- Hover Actions -->
+        <div class="product-card-actions">
+            <button class="quick-add-btn" onclick="addToCart({{ $product->id ?? 0 }})" title="Add to Cart">
+                <i class="fas fa-cart-plus"></i>
             </button>
-            <a href="{{ $url }}" 
-               class="w-10 h-10 bg-white text-black hover:bg-black hover:text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                <i class="far fa-eye text-sm"></i>
+            <button class="wishlist-btn-card {{ $product && auth()->check() && auth()->user()->wishlists()->where('product_id', $product->id)->exists() ? 'active' : '' }}"
+                    onclick="toggleWishlist({{ $product->id ?? 0 }}, this)" title="Add to Wishlist">
+                <i class="{{ $product && auth()->check() && auth()->user()->wishlists()->where('product_id', $product->id)->exists() ? 'fas' : 'far' }} fa-heart"></i>
+            </button>
+            <a href="{{ $url }}" class="wishlist-btn-card" title="Quick View" style="text-decoration:none;">
+                <i class="fas fa-eye"></i>
             </a>
-            @if($product && $product->variants->isNotEmpty())
-            <button onclick="addToCart({{ $product->variants->first()->id }}, 1)" class="w-10 h-10 bg-black text-white hover:bg-red-600 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110">
-                <i class="fas fa-shopping-bag text-sm"></i>
-            </button>
-            @endif
         </div>
     </div>
 
-    <!-- Details -->
-    <div class="pt-5 pb-3 px-1 flex-1 flex flex-col">
-        <div class="mb-auto">
-            <span class="text-[9px] font-bold text-gray-400 uppercase tracking-premium mb-2 block leading-none">{{ $category }}</span>
-            <h3 class="text-sm font-bold text-black mb-2 group-hover:text-red-600 transition-colors duration-300 line-clamp-1 leading-tight tracking-tight uppercase">
-                <a href="{{ $url }}">{{ $title }}</a>
-            </h3>
-            
-            <div class="flex items-center gap-2">
+    <!-- Card Body -->
+    <div class="product-card-body">
+        <div class="product-card-category">{{ $category }}</div>
+
+        <a href="{{ $url }}" class="product-card-name">{{ $title }}</a>
+
+        <!-- Stars -->
+        <div class="star-rating">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="far fa-star"></i>
+            <span class="count">({{ rand(12, 180) }})</span>
+        </div>
+
+        <div class="product-card-footer">
+            <div class="product-price">
                 @if($product && $product->variants->isNotEmpty())
                     @php
-                        // Point 10: Show first attribute combination price
                         $firstVariant = $product->variants->first();
                         $displayPrice = $firstVariant->final_price ?? $firstVariant->price;
                         $originalPrice = $firstVariant->price;
                     @endphp
-                    <span class="text-black font-bold text-base tracking-tight">${{ number_format($displayPrice, 2) }}</span>
+                    <span class="price-current">${{ number_format($displayPrice, 2) }}</span>
                     @if($originalPrice > $displayPrice)
-                        <span class="text-gray-300 text-xs line-through font-medium">${{ number_format($originalPrice, 2) }}</span>
+                    <span class="price-old">${{ number_format($originalPrice, 2) }}</span>
                     @endif
                 @elseif(!$product)
-                    <span class="text-black font-bold text-base tracking-tight">${{ number_format(rand(100, 500), 2) }}</span>
+                    <span class="price-current">${{ number_format(rand(2, 25) + rand(0,99)/100, 2) }}</span>
                 @else
-                    <span class="text-gray-400 text-[10px] font-bold uppercase tracking-premium">Out of Stock</span>
+                    <span style="font-size:.72rem;font-weight:700;color:var(--gray-400);">Out of Stock</span>
                 @endif
             </div>
+
+            @if($product && $product->variants->isNotEmpty())
+            <button class="card-atc-btn" onclick="addToCart({{ $product->id }})">
+                <i class="fas fa-plus" style="font-size:.7rem;"></i> Add
+            </button>
+            @elseif(!$product)
+            <button class="card-atc-btn">
+                <i class="fas fa-plus" style="font-size:.7rem;"></i> Add
+            </button>
+            @endif
         </div>
     </div>
 </div>

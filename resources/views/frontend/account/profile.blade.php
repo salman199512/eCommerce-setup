@@ -4,72 +4,68 @@
 
 @section('account-content')
 
-<div class="bg-white border border-gray-100 rounded-3xl p-8 md:p-10">
-    <h2 class="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-8 pb-4 border-b border-gray-100">Personal Information</h2>
-    
+<div class="bg-white border-light rounded-xl p-24" style="padding:40px;">
+    <h2 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">Personal Information</h2>
+
     @if(session('success'))
-        <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 px-6 py-4 rounded-2xl mb-8 flex items-center gap-3">
-            <i class="fas fa-check-circle text-xl"></i>
-            <span class="font-black text-sm">{{ session('success') }}</span>
+        <div style="background:var(--green-soft);border:1px solid var(--green-light);color:var(--green-primary);padding:16px 24px;border-radius:var(--radius-2xl);margin-bottom:32px;display:flex;align-items:center;gap:12px;">
+            <i class="fas fa-check-circle" style="font-size:1.25rem;"></i>
+            <span style="font-weight:900;font-size:0.85rem;">{{ session('success') }}</span>
         </div>
     @endif
 
     <form method="POST" action="{{ route('my-account.update') }}">
         @csrf
         @method('PUT')
-        
-        <div class="space-y-8">
-            <!-- Name Field -->
-            <div>
-                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Full Name</label>
-                <input type="text" name="name" value="{{ old('name', Auth::user()->name) }}" required 
-                       class="w-full px-6 py-4 border-2 border-gray-100 rounded-2xl focus:ring-2 focus:ring-black focus:border-transparent transition-all text-sm font-bold">
-                @error('name')
-                    <p class="text-red-600 text-xs font-black mt-2 uppercase tracking-widest">{{ $message }}</p>
-                @enderror
-            </div>
 
-            <!-- Email Field -->
-            <div>
-                <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Email Address</label>
-                <input type="email" name="email" value="{{ old('email', Auth::user()->email) }}" required 
-                       class="w-full px-6 py-4 border-2 border-gray-100 rounded-2xl focus:ring-2 focus:ring-black focus:border-transparent transition-all text-sm font-bold">
-                @error('email')
-                    <p class="text-red-600 text-xs font-black mt-2 uppercase tracking-widest">{{ $message }}</p>
-                @enderror
+        <div class="flex flex-col gap-32">
+            <!-- Name & Email -->
+            <div class="grid-2 gap-32">
+                <div>
+                    <label style="display:block;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:12px;">Full Name</label>
+                    <input type="text" name="name" value="{{ old('name', Auth::user()->name) }}" required class="fm-input" style="font-weight:700;">
+                    @error('name')
+                        <p style="color:var(--red-primary);font-size:0.75rem;font-weight:900;margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label style="display:block;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:12px;">Email Address</label>
+                    <input type="email" name="email" value="{{ old('email', Auth::user()->email) }}" required class="fm-input" style="font-weight:700;">
+                    @error('email')
+                        <p style="color:var(--red-primary);font-size:0.75rem;font-weight:900;margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
 
             <!-- Password Section -->
-            <div class="border-t-2 border-gray-100 pt-8">
-                <h3 class="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-6">Change Password</h3>
-                <p class="text-xs text-gray-500 mb-6 font-medium">Leave blank to keep your current password</p>
-                
-                <div class="space-y-6">
+            <div style="border-top:1px solid var(--gray-100);padding-top:40px;">
+                <h3 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:8px;">Security Settings</h3>
+                <p style="font-size:0.75rem;color:var(--gray-500);margin-bottom:32px;font-weight:600;">Update your password regularly for better security.</p>
+
+                <div class="grid-2 gap-24">
                     <div>
-                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">New Password</label>
-                        <input type="password" name="password" 
-                               class="w-full px-6 py-4 border-2 border-gray-100 rounded-2xl focus:ring-2 focus:ring-black focus:border-transparent transition-all text-sm font-bold">
+                        <label style="display:block;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:12px;">New Password</label>
+                        <input type="password" name="password" class="fm-input" placeholder="••••••••">
                         @error('password')
-                            <p class="text-red-600 text-xs font-black mt-2 uppercase tracking-widest">{{ $message }}</p>
+                            <p style="color:var(--red-primary);font-size:0.75rem;font-weight:900;margin-top:8px;text-transform:uppercase;letter-spacing:0.1em;">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div>
-                        <label class="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Confirm New Password</label>
-                        <input type="password" name="password_confirmation" 
-                               class="w-full px-6 py-4 border-2 border-gray-100 rounded-2xl focus:ring-2 focus:ring-black focus:border-transparent transition-all text-sm font-bold">
+                        <label style="display:block;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:12px;">Confirm New Password</label>
+                        <input type="password" name="password_confirmation" class="fm-input" placeholder="••••••••">
                     </div>
                 </div>
             </div>
 
             <!-- Submit Button -->
-            <div class="flex justify-end pt-6 border-t-2 border-gray-100">
-                <button type="submit" class="px-10 py-4 bg-black text-white rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-red-600 transition-all duration-500 shadow-xl shadow-black/10 hover:shadow-2xl hover:shadow-black/20">
+            <div class="flex justify-end pt-32 border-t border-gray-100" style="padding-top:32px;border-top:1px solid var(--gray-100);">
+                <button type="submit" class="fm-btn-vibrant" style="padding:18px 48px;font-size:0.75rem;">
                     Update Profile
                 </button>
             </div>
         </div>
     </form>
 </div>
-
 @endsection

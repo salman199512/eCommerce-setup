@@ -1,83 +1,200 @@
+{{-- ══════════════════════════════════
+     FreshMart Professional Footer
+══════════════════════════════════ --}}
 
-<footer class="bg-black text-white pt-24 mt-12 relative overflow-hidden">
-    <!-- Subtle Background Element -->
-    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-50"></div>
+<!-- Newsletter Banner -->
+<section style="padding:0 0 64px;">
+    <div class="container">
+        <div class="newsletter-section">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;z-index:1;">
+                <div>
+                    <div class="section-eyebrow newsletter-eyebrow"><i class="fas fa-envelope"></i> Newsletter</div>
+                    <h2 class="newsletter-title">Get Fresh Deals<br>In Your Inbox</h2>
+                    <p class="newsletter-sub">Subscribe and get 10% off your first order. Exclusive deals, recipes, and more.</p>
+                    <div style="display:flex;gap:6px;align-items:center;color:rgba(255,255,255,.6);font-size:.72rem;font-weight:600;">
+                        <i class="fas fa-shield-halved" style="color:var(--yellow-light);"></i>
+                        We never share your email. Unsubscribe anytime.
+                    </div>
+                </div>
+                <div>
+                    <form action="{{ route('save.newsletter') }}" method="POST">
+                        @csrf
+                        <div class="newsletter-form">
+                            <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address…" required>
+                            <button type="submit" class="btn btn-orange btn-lg">
+                                <i class="fas fa-paper-plane"></i> Subscribe
+                            </button>
+                        </div>
+                        <div style="margin-top:10px;color:rgba(255,255,255,.45);font-size:.68rem;">
+                            🎁 Get instant 10% off coupon on subscription
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 pb-20">
+<!-- Main Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-top">
+
             <!-- Brand Column -->
-            <div class="lg:col-span-4">
-                <a href="{{ route('home') }}" class="inline-block mb-8">
-                    <span class="text-3xl font-bold tracking-tighter uppercase">Fashion<span class="text-red-600">.</span></span>
+            <div>
+                <a href="{{ route('home') }}" class="footer-logo site-logo" style="display:inline-flex;margin-bottom:20px;">
+                    <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+                    <div>
+                        <div class="logo-text-top">Fresh<span>Mart</span></div>
+                        <div class="logo-text-bottom" style="color:rgba(255,255,255,.35);">Organic &amp; Fresh</div>
+                    </div>
                 </a>
-                <p class="text-gray-500 text-sm leading-relaxed mb-10 max-w-sm font-medium">
-                    Redefining modern elegance since 2014. We curate the finest collections for those who appreciate the art of style and quality.
-                </p>
-                <div class="flex space-x-5">
-                    <a href="#" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black hover:border-white transition-all duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black hover:border-white transition-all duration-300"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black hover:border-white transition-all duration-300"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black hover:border-white transition-all duration-300"><i class="fab fa-twitter"></i></a>
+                <p class="footer-desc">Your trusted online grocery store delivering fresh, organic, and quality produce right to your doorstep since 2019.</p>
+
+                <!-- App Badges -->
+                <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
+                    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 14px;">
+                        <i class="fab fa-apple" style="font-size:1.3rem;color:rgba(255,255,255,.7);"></i>
+                        <div style="line-height:1.2;">
+                            <div style="font-size:.55rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;">Download on</div>
+                            <div style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,.8);">App Store</div>
+                        </div>
+                    </div>
+                    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 14px;">
+                        <i class="fab fa-google-play" style="font-size:1.1rem;color:rgba(255,255,255,.7);"></i>
+                        <div style="line-height:1.2;">
+                            <div style="font-size:.55rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;">Get it on</div>
+                            <div style="font-size:.78rem;font-weight:700;color:rgba(255,255,255,.8);">Google Play</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="footer-social-btn" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="footer-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="footer-social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
-            <!-- Links Columns -->
-            <div class="lg:col-span-2">
-                <h4 class="text-xs font-bold uppercase tracking-premium text-gray-400 mb-8">Collections</h4>
-                <ul class="space-y-4 text-xs font-bold uppercase tracking-premium text-gray-500">
-                    <li><a href="#" class="hover:text-white transition-colors inline-block">Men's Edit</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors inline-block">Women's Edit</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors inline-block">Accessories</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors inline-block">New Arrivals</a></li>
-                </ul>
+            <!-- Quick Links -->
+            <div>
+                <div class="footer-col-title">Quick Links</div>
+                <div class="footer-links">
+                    <a href="{{ route('home') }}"><i class="fas fa-house" style="width:14px;"></i> Home</a>
+                    <a href="{{ route('products') }}"><i class="fas fa-store" style="width:14px;"></i> Shop Now</a>
+                    <a href="{{ route('about-us') }}"><i class="fas fa-circle-info" style="width:14px;"></i> About Us</a>
+                    <a href="{{ route('contact-us') }}"><i class="fas fa-headset" style="width:14px;"></i> Support</a>
+                    <a href="{{ route('my-orders') }}"><i class="fas fa-box" style="width:14px;"></i> Track Order</a>
+                    <a href="{{ route('wishlist') }}"><i class="fas fa-heart" style="width:14px;"></i> Wishlist</a>
+                </div>
             </div>
 
-            <div class="lg:col-span-2">
-                <h4 class="text-xs font-bold uppercase tracking-premium text-gray-400 mb-8">Company</h4>
-                <ul class="space-y-4 text-xs font-bold uppercase tracking-premium text-gray-500">
-                    <li><a href="{{ route('about-us') }}" class="hover:text-white transition-colors inline-block">The House</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors inline-block">Sustainability</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors inline-block">Privacy</a></li>
-                    <li><a href="{{ route('contact-us') }}" class="hover:text-white transition-colors inline-block">Contact</a></li>
-                </ul>
+            <!-- Categories -->
+            <div>
+                <div class="footer-col-title">Categories</div>
+                <div class="footer-links">
+                    @php $cats = $sharedCategories ?? collect(); @endphp
+                    @foreach($cats->take(7) as $cat)
+                    <a href="{{ route('products', ['category' => $cat->slug]) }}">
+                        <i class="fas fa-angle-right" style="width:14px;font-size:.6rem;color:var(--green-primary);"></i>
+                        {{ $cat->title }}
+                    </a>
+                    @endforeach
+                    @if($cats->count() > 7)
+                    <a href="{{ route('products') }}" style="color:var(--green-primary);font-weight:800;font-size:.72rem;">View All →</a>
+                    @endif
+                </div>
             </div>
 
-            <!-- Contact/Newsletter Column -->
-            <div class="lg:col-span-4">
-                <h4 class="text-xs font-bold uppercase tracking-premium text-gray-400 mb-8">Newsletter</h4>
-                <p class="text-xs text-gray-500 mb-6 font-medium">Subscribe to receive updates, access to exclusive deals, and more.</p>
-                <form action="{{ route('save.newsletter') }}" method="POST" class="relative">
-                    @csrf
-                    <input type="email" name="email" placeholder="Email Address"
-                           class="w-full bg-transparent border-b border-gray-800 py-3 text-sm focus:outline-none focus:border-white transition-colors placeholder:text-gray-700">
-                    <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 text-[10px] font-bold uppercase tracking-premium hover:text-red-600 transition-colors">
-                        Join
-                    </button>
-                </form>
-                <div class="mt-10 flex items-center space-x-6 text-gray-600">
-                    <div class="flex flex-col">
-                        <span class="text-[9px] uppercase tracking-premium font-bold mb-1">Call Us</span>
-                        <span class="text-xs font-bold text-gray-400">+1 800 555 0123</span>
+            <!-- Contact & Info -->
+            <div>
+                <div class="footer-col-title">Contact Us</div>
+                <div style="margin-bottom:24px;">
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-item" style="margin-bottom:0;">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <div class="footer-contact-label">Address</div>
+                            <div class="footer-contact-value">123 Market Street, Fresh District<br>San Francisco, CA 94103</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="text-[9px] uppercase tracking-premium font-bold mb-1">Email Us</span>
-                        <span class="text-xs font-bold text-gray-400">concierge@fashion.com</span>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-item" style="margin-bottom:0;">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <div class="footer-contact-label">Phone</div>
+                            <div class="footer-contact-value">+1 (800) 555-MART</div>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-item" style="margin-bottom:0;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <div class="footer-contact-label">Email</div>
+                            <div class="footer-contact-value">support@freshmart.com</div>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-item" style="margin-bottom:0;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <div class="footer-contact-label">Hours</div>
+                            <div class="footer-contact-value">Mon–Sat: 8am – 9pm<br>Sun: 9am – 7pm</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Badges -->
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.72rem;color:rgba(255,255,255,.5);font-weight:600;">
+                        <i class="fas fa-shield-halved" style="color:#22c55e;"></i> SSL Secure Checkout
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.72rem;color:rgba(255,255,255,.5);font-weight:600;">
+                        <i class="fas fa-rotate-left" style="color:#f59e0b;"></i> 7-Day Money Back Guarantee
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.72rem;color:rgba(255,255,255,.5);font-weight:600;">
+                        <i class="fas fa-truck-fast" style="color:#38bdf8;"></i> Free Delivery Over $49
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Bottom Bar -->
-        <div class="border-t border-gray-900 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-[9px] font-bold uppercase tracking-premium text-gray-600">
-                &copy; {{ date('Y') }} Fashion Global. All rights reserved.
-            </p>
-            <div class="flex items-center space-x-8 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-                <i class="fab fa-cc-visa text-2xl"></i>
-                <i class="fab fa-cc-mastercard text-2xl"></i>
-                <i class="fab fa-cc-amex text-2xl"></i>
-                <i class="fab fa-cc-paypal text-2xl"></i>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; {{ date('Y') }} FreshMart. All rights reserved. Made with <span style="color:#ef4444;">❤</span> for fresh food lovers.</p>
+            <div class="footer-payment">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-cc-apple-pay"></i>
+                <i class="fab fa-google-pay"></i>
+            </div>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
             </div>
         </div>
     </div>
 </footer>
+
+<!-- Scroll to Top -->
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    style="position:fixed;bottom:28px;right:28px;width:46px;height:46px;background:var(--grad-green);color:white;border:none;border-radius:50%;box-shadow:var(--shadow-green);display:none;align-items:center;justify-content:center;font-size:1rem;z-index:9999;cursor:pointer;transition:all .3s;">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+const scrollTopBtn = document.getElementById('scroll-top-btn');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) { scrollTopBtn.style.display = 'flex'; }
+    else { scrollTopBtn.style.display = 'none'; }
+});
+</script>

@@ -5,66 +5,66 @@
 @section('account-content')
 
 <!-- Dashboard Overview -->
-<div class="bg-white border border-gray-100 rounded-3xl p-8 md:p-10 mb-8">
-    <h2 class="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-8 pb-4 border-b border-gray-100">Overview</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100 text-center hover:shadow-xl hover:shadow-black/5 transition-all duration-500">
-            <div class="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-shopping-bag text-white text-2xl"></i>
+<div class="bg-white border-light rounded-xl p-24 mb-32" style="padding:40px;">
+    <h2 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">Overview</h2>
+    <div class="grid-3 gap-24">
+        <div style="background:linear-gradient(135deg, var(--gray-50), white);padding:32px;border-radius:var(--radius-2xl);border:1px solid var(--gray-100);text-align:center;transition:var(--trans-base);" class="fm-card-hover">
+            <div style="width:64px;height:64px;background:var(--green-dark);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-sm);">
+                <i class="fas fa-shopping-basket" style="color:white;font-size:1.5rem;"></i>
             </div>
-            <h4 class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3">Total Orders</h4>
-            <p class="text-5xl font-black text-black tracking-tighter">{{ $orders->count() }}</p>
+            <h4 style="font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:12px;">Total Orders</h4>
+            <p style="font-size:3rem;font-weight:900;color:black;letter-spacing:-0.05em;">{{ $orders->count() }}</p>
         </div>
-        <div class="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-2xl border border-yellow-100 text-center hover:shadow-xl hover:shadow-yellow-500/10 transition-all duration-500">
-            <div class="w-16 h-16 bg-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-clock text-white text-2xl"></i>
+        <div style="background:linear-gradient(135deg, var(--orange-soft), white);padding:32px;border-radius:var(--radius-2xl);border:1px solid var(--orange-light);text-align:center;transition:var(--trans-base);" class="fm-card-hover">
+            <div style="width:64px;height:64px;background:var(--orange-primary);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-sm);">
+                <i class="fas fa-clock" style="color:white;font-size:1.5rem;"></i>
             </div>
-            <h4 class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3">Pending</h4>
-            <p class="text-5xl font-black text-yellow-600 tracking-tighter">{{ $orders->where('status', 'pending')->count() }}</p>
+            <h4 style="font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:12px;">Pending</h4>
+            <p style="font-size:3rem;font-weight:900;color:var(--orange-primary);letter-spacing:-0.05em;">{{ $orders->where('status', 'pending')->count() }}</p>
         </div>
-        <div class="bg-gradient-to-br from-emerald-50 to-white p-8 rounded-2xl border border-emerald-100 text-center hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-500">
-            <div class="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-check-circle text-white text-2xl"></i>
+        <div style="background:linear-gradient(135deg, var(--green-soft), white);padding:32px;border-radius:var(--radius-2xl);border:1px solid var(--green-light);text-align:center;transition:var(--trans-base);" class="fm-card-hover">
+            <div style="width:64px;height:64px;background:var(--green-primary);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-sm);">
+                <i class="fas fa-check-circle" style="color:white;font-size:1.5rem;"></i>
             </div>
-            <h4 class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3">Completed</h4>
-            <p class="text-5xl font-black text-emerald-600 tracking-tighter">{{ $orders->where('status', 'delivered')->count() }}</p>
+            <h4 style="font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:12px;">Completed</h4>
+            <p style="font-size:3rem;font-weight:900;color:var(--green-primary);letter-spacing:-0.05em;">{{ $orders->where('status', 'delivered')->count() }}</p>
         </div>
     </div>
 </div>
 
 <!-- Recent Orders -->
 @if($orders->count() > 0)
-<div class="bg-white border border-gray-100 rounded-3xl p-8 md:p-10">
-    <div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
-        <h2 class="text-[11px] font-black uppercase tracking-widest text-gray-400">Recent Orders</h2>
-        <a href="{{ route('my-orders') }}" class="text-[10px] font-black uppercase tracking-widest text-red-600 hover:text-black transition">View All →</a>
+<div class="bg-white border-light rounded-xl p-24" style="padding:40px;">
+    <div class="flex items-center justify-between mb-32 pb-16 border-b border-gray-50" style="padding-bottom:16px;margin-bottom:32px;">
+        <h2 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);">Recent Orders</h2>
+        <a href="{{ route('my-orders') }}" style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--green-primary);text-decoration:none;transition:var(--trans-base);">View All →</a>
     </div>
-    <div class="space-y-4">
+    <div class="flex flex-col gap-16">
         @foreach($orders->take(5) as $order)
-        <div class="flex items-center justify-between p-6 bg-gray-50/50 rounded-2xl border border-gray-100 hover:shadow-lg hover:shadow-black/5 transition-all duration-500 group">
-            <div class="flex-1">
-                <div class="flex items-center gap-4 mb-3">
-                    <span class="text-sm font-black text-black uppercase tracking-wider">#{{ strtoupper(substr($order->uuid, 0, 8)) }}</span>
+        <div class="bg-gray-50 border-light rounded-xl p-24 flex items-center justify-between transition-all fm-card-hover group" style="padding:24px;">
+            <div style="flex:1;">
+                <div class="flex items-center gap-16 mb-12">
+                    <span style="font-size:0.85rem;font-weight:900;color:black;text-transform:uppercase;letter-spacing:0.05em;">#{{ strtoupper(substr($order->uuid, 0, 8)) }}</span>
                     @php
                         $statusColors = [
-                            'pending' => 'bg-yellow-50 text-yellow-600 border-yellow-100',
-                            'processing' => 'bg-blue-50 text-blue-600 border-blue-100',
-                            'completed' => 'bg-emerald-50 text-emerald-600 border-emerald-100',
-                            'cancelled' => 'bg-red-50 text-red-600 border-red-100',
+                            'pending' => 'background:var(--orange-soft);color:var(--orange-primary);border-color:var(--orange-light)',
+                            'processing' => 'background:var(--purple-soft);color:var(--purple-primary);border-color:var(--purple-soft)',
+                            'delivered' => 'background:var(--green-soft);color:var(--green-primary);border-color:var(--green-light)',
+                            'cancelled' => 'background:var(--red-soft);color:var(--red-primary);border-color:var(--red-soft)',
                         ];
-                        $statusClass = $statusColors[$order->status] ?? 'bg-gray-50 text-gray-600 border-gray-100';
+                        $statusStyle = $statusColors[$order->status] ?? 'background:var(--gray-50);color:var(--gray-600);border-color:var(--gray-100)';
                     @endphp
-                    <span class="px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest border {{ $statusClass }}">
+                    <span class="order-status" style="{{ $statusStyle }};padding:4px 12px;font-size:0.55rem;border:1px solid;">
                         {{ ucfirst($order->status) }}
                     </span>
                 </div>
-                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400">{{ $order->created_at->format('M d, Y') }} • {{ $order->orderItems->count() }} Items</p>
+                <p style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);">{{ $order->created_at->format('M d, Y') }} • {{ $order->orderItems->count() }} Items</p>
             </div>
-            <div class="flex items-center gap-6">
-                <div class="text-right">
-                    <p class="text-2xl font-black text-black tracking-tighter">${{ number_format($order->total_amount, 2) }}</p>
+            <div class="flex items-center gap-24">
+                <div style="text-align:right;">
+                    <p style="font-size:1.5rem;font-weight:900;color:black;letter-spacing:-0.03em;">${{ number_format($order->total_amount, 2) }}</p>
                 </div>
-                <a href="{{ route('my-orders.show', $order->uuid) }}" class="px-6 py-3 bg-black text-white rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-red-600 transition-all duration-500 opacity-0 group-hover:opacity-100">
+                <a href="{{ route('my-orders.show', $order->uuid) }}" class="fm-btn-vibrant" style="padding:10px 20px;font-size:0.6rem;">
                     View
                 </a>
             </div>
@@ -74,20 +74,21 @@
 </div>
 @else
 <!-- Empty State -->
-<div class="bg-white border border-gray-100 rounded-3xl p-16 text-center">
-    <div class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-8">
-        <i class="fas fa-shopping-bag text-4xl text-gray-300"></i>
+<div class="bg-white border-light rounded-xl p-24 text-center" style="padding:80px 40px;">
+    <div style="width:96px;height:96px;background:var(--gray-50);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 32px;">
+        <i class="fas fa-shopping-basket" style="font-size:2.5rem;color:var(--gray-300);"></i>
     </div>
-    <h2 class="text-3xl font-black mb-4 tracking-tight uppercase">No Orders Yet</h2>
-    <p class="text-gray-500 mb-8 text-sm font-medium max-w-md mx-auto">
+    <h2 style="font-size:2rem;font-weight:900;margin-bottom:16px;text-transform:uppercase;letter-spacing:-0.02em;">No Orders Yet</h2>
+    <p style="color:var(--gray-500);margin-bottom:32px;font-size:0.9rem;font-weight:500;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6;">
         You haven't placed any orders yet. Start shopping to see your order history here.
     </p>
-    <a href="{{ route('products') }}" 
-       class="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-red-600 transition-all duration-500 shadow-xl shadow-black/10">
-        <i class="fas fa-arrow-left text-xs"></i>
+    <a href="{{ route('products') }}" class="fm-btn-vibrant" style="display:inline-flex;align-items:center;gap:12px;padding:20px 40px;font-size:0.75rem;">
+        <i class="fas fa-arrow-left" style="font-size:0.7rem;"></i>
         <span>Continue Shopping</span>
     </a>
 </div>
 @endif
 
 @endsection
+
+

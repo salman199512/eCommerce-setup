@@ -21,7 +21,7 @@
                         @csrf
                         <div class="newsletter-form">
                             <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address…" required>
-                            <button type="submit" class="btn btn-orange btn-lg">
+                            <button type="submit" class="btn btn-secondary btn-lg">
                                 <i class="fas fa-paper-plane"></i> Subscribe
                             </button>
                         </div>
@@ -45,7 +45,7 @@
                 <a href="{{ route('home') }}" class="footer-logo site-logo" style="display:inline-flex;margin-bottom:20px;">
                     <div class="logo-icon"><i class="fas fa-seedling"></i></div>
                     <div>
-                        <div class="logo-text-top">Fresh<span>Mart</span></div>
+                        <div class="logo-text-top">Shop<span>Zone</span></div>
                         <div class="logo-text-bottom" style="color:rgba(255,255,255,.35);">Organic &amp; Fresh</div>
                     </div>
                 </a>
@@ -98,12 +98,12 @@
                     @php $cats = $sharedCategories ?? collect(); @endphp
                     @foreach($cats->take(7) as $cat)
                     <a href="{{ route('products', ['category' => $cat->slug]) }}">
-                        <i class="fas fa-angle-right" style="width:14px;font-size:.6rem;color:var(--green-primary);"></i>
+                        <i class="fas fa-angle-right" style="width:14px;font-size:.6rem;color:var(--primary);"></i>
                         {{ $cat->title }}
                     </a>
                     @endforeach
                     @if($cats->count() > 7)
-                    <a href="{{ route('products') }}" style="color:var(--green-primary);font-weight:800;font-size:.72rem;">View All →</a>
+                    <a href="{{ route('products') }}" style="color:var(--primary);font-weight:800;font-size:.72rem;">View All →</a>
                     @endif
                 </div>
             </div>

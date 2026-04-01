@@ -46,15 +46,15 @@
     <div style="background:var(--gray-50);padding:100px 0;">
         <div style="max-width:1400px;margin:0 auto;padding:0 24px;">
             <div style="text-align:center;max-width:700px;margin:0 auto 64px;">
-                <span style="color:var(--green-primary);font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.3em;display:block;margin-bottom:12px;">Foundations</span>
+                <span style="color:var(--primary);font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.3em;display:block;margin-bottom:12px;">Foundations</span>
                 <h3 style="font-size:2.5rem;font-weight:900;margin-bottom:16px;text-transform:uppercase;letter-spacing:-0.02em;">Our Ethos</h3>
-                <div style="width:48px;height:4px;background:var(--green-primary);margin:0 auto;border-radius:var(--radius-full);"></div>
+                <div style="width:48px;height:4px;background:var(--primary);margin:0 auto;border-radius:var(--radius-full);"></div>
             </div>
 
             <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:48px;">
                 <div style="text-align:center;padding:48px;background:white;border-radius:var(--radius-3xl);border:1px solid var(--gray-100);transition:var(--trans-base);box-shadow:var(--shadow-sm);">
                     <div style="width:64px;height:64px;background:var(--gray-50);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
-                        <i class="fa fa-leaf" style="font-size:1.5rem;color:var(--green-primary);"></i>
+                        <i class="fa fa-leaf" style="font-size:1.5rem;color:var(--primary);"></i>
                     </div>
                     <h4 style="font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;">Sustainability</h4>
                     <p style="color:var(--gray-500);font-size:0.9rem;line-height:1.6;font-weight:600;">
@@ -63,7 +63,7 @@
                 </div>
                 <div style="text-align:center;padding:48px;background:white;border-radius:var(--radius-3xl);border:1px solid var(--gray-100);transition:var(--trans-base);box-shadow:var(--shadow-sm);">
                     <div style="width:64px;height:64px;background:var(--gray-50);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
-                        <i class="fa fa-gem" style="font-size:1.5rem;color:var(--green-primary);"></i>
+                        <i class="fa fa-gem" style="font-size:1.5rem;color:var(--primary);"></i>
                     </div>
                     <h4 style="font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;">Quality First</h4>
                     <p style="color:var(--gray-500);font-size:0.9rem;line-height:1.6;font-weight:600;">
@@ -72,7 +72,7 @@
                 </div>
                 <div style="text-align:center;padding:48px;background:white;border-radius:var(--radius-3xl);border:1px solid var(--gray-100);transition:var(--trans-base);box-shadow:var(--shadow-sm);">
                     <div style="width:64px;height:64px;background:var(--gray-50);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin-0 auto 24px;margin-bottom:24px;margin-left:auto;margin-right:auto;">
-                        <i class="fa fa-users" style="font-size:1.5rem;color:var(--green-primary);"></i>
+                        <i class="fa fa-users" style="font-size:1.5rem;color:var(--primary);"></i>
                     </div>
                     <h4 style="font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;">Community</h4>
                     <p style="color:var(--gray-500);font-size:0.9rem;line-height:1.6;font-weight:600;">

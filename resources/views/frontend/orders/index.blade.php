@@ -41,7 +41,7 @@
                             </div>
                             <div>
                                 <p style="font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:8px;">Payment Status</p>
-                                <p style="font-size:0.85rem;font-weight:900;color:{{ $order->payment_status === 'paid' ? 'var(--green-primary)' : 'var(--orange-primary)' }};text-transform:uppercase;">
+                                <p style="font-size:0.85rem;font-weight:900;color:{{ $order->payment_status === 'paid' ? 'var(--primary)' : 'var(--secondary)' }};text-transform:uppercase;">
                                     {{ ucfirst($order->payment_status) }}
                                 </p>
                             </div>

@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f23395d-c310-483e-ae9b-6782098ae5b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/frontend/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/frontend/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/frontend/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/about_us/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/about_us/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/account/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/account/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/account/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/account/layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/account/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/account/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/cart/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/cart/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/checkout/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/checkout/index.blade.php" afterDir="false" />
@@ -18,12 +17,10 @@
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/orders/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/orders/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/orders/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/orders/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/products/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/products/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/products/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/products/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/frontend/wishlist/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/wishlist/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +307,7 @@
       <workItem from="1768716078804" duration="445000" />
       <workItem from="1768739535633" duration="2781000" />
       <workItem from="1770472848813" duration="10903000" />
-      <workItem from="1774878636988" duration="2734000" />
+      <workItem from="1774878636988" duration="6629000" />
     </task>
     <servers />
   </component>

@@ -24,12 +24,12 @@
     <!-- Step Indicator -->
     <div style="display:flex;align-items:center;gap:0;margin-bottom:40px;max-width:480px;">
         <div style="display:flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);">
-            <span style="width:28px;height:28px;background:var(--green-primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;"><i class="fas fa-check" style="font-size:0.6rem;"></i></span>
+            <span style="width:28px;height:28px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;"><i class="fas fa-check" style="font-size:0.6rem;"></i></span>
             Cart
         </div>
-        <div style="flex:1;height:2px;background:var(--green-primary);margin:0 12px;"></div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--green-primary);">
-            <span style="width:28px;height:28px;background:var(--green-primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;">2</span>
+        <div style="flex:1;height:2px;background:var(--primary);margin:0 12px;"></div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);">
+            <span style="width:28px;height:28px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;">2</span>
             Checkout
         </div>
         <div style="flex:1;height:2px;background:var(--gray-200);margin:0 12px;"></div>
@@ -46,7 +46,7 @@
 
             <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-2xl);padding:32px;box-shadow:var(--shadow-sm);margin-bottom:24px;">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">
-                    <div style="width:36px;height:36px;background:var(--green-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--green-primary);font-size:0.9rem;flex-shrink:0;">
+                    <div style="width:36px;height:36px;background:var(--primary-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:0.9rem;flex-shrink:0;">
                         <i class="fas fa-user"></i>
                     </div>
                     <h2 style="font-size:0.9rem;font-weight:900;color:var(--gray-900);text-transform:uppercase;letter-spacing:0.06em;">Billing Details</h2>
@@ -101,7 +101,7 @@
             <!-- Payment Method -->
             <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-2xl);padding:32px;box-shadow:var(--shadow-sm);">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">
-                    <div style="width:36px;height:36px;background:var(--orange-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--orange-primary);font-size:0.9rem;flex-shrink:0;">
+                    <div style="width:36px;height:36px;background:var(--secondary-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--secondary);font-size:0.9rem;flex-shrink:0;">
                         <i class="fas fa-credit-card"></i>
                     </div>
                     <h3 style="font-size:0.9rem;font-weight:900;color:var(--gray-900);text-transform:uppercase;letter-spacing:0.06em;">Payment Method</h3>
@@ -110,36 +110,32 @@
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" x-data="{ method: 'online' }">
 
                     <!-- Online Payment -->
-                    <label style="position:relative;display:flex;align-items:center;gap:16px;padding:20px;border:2px solid;border-radius:var(--radius-xl);cursor:pointer;transition:all .25s;"
-                           :style="method === 'online' ? 'border-color:var(--green-primary);background:var(--green-soft);' : 'border-color:var(--gray-200);background:white;'">
+                    <label class="payment-method-card" :class="{ 'active': method === 'online' }">
                         <input type="radio" name="payment_method" value="online" style="display:none;" x-model="method">
-                        <div style="width:52px;height:52px;border-radius:var(--radius-lg);background:var(--green-primary);display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;box-shadow:var(--shadow-green);flex-shrink:0;">
+                        <div style="width:52px;height:52px;border-radius:var(--radius-lg);background:var(--primary);display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;box-shadow:var(--shadow-green);flex-shrink:0;">
                             <i class="fas fa-credit-card"></i>
                         </div>
                         <div style="flex:1;min-width:0;">
                             <div style="font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-900);">Online Payment</div>
                             <div style="font-size:0.62rem;color:var(--gray-400);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-top:3px;">Cards · UPI · Netbanking</div>
                         </div>
-                        <div style="width:22px;height:22px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;"
-                             :style="method === 'online' ? 'border-color:var(--green-primary);background:var(--green-primary);' : 'border-color:var(--gray-300);'">
-                            <i class="fas fa-check" style="font-size:0.5rem;color:white;" x-show="method === 'online'"></i>
+                        <div class="payment-check">
+                            <i class="fas fa-check"></i>
                         </div>
                     </label>
 
                     <!-- Cash on Delivery -->
-                    <label style="position:relative;display:flex;align-items:center;gap:16px;padding:20px;border:2px solid;border-radius:var(--radius-xl);cursor:pointer;transition:all .25s;"
-                           :style="method === 'cod' ? 'border-color:var(--orange-primary);background:var(--orange-soft);' : 'border-color:var(--gray-200);background:white;'">
+                    <label class="payment-method-card" :class="{ 'active': method === 'cod' }">
                         <input type="radio" name="payment_method" value="cod" style="display:none;" x-model="method">
-                        <div style="width:52px;height:52px;border-radius:var(--radius-lg);background:var(--orange-primary);display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;box-shadow:var(--shadow-orange);flex-shrink:0;">
+                        <div style="width:52px;height:52px;border-radius:var(--radius-lg);background:var(--secondary);display:flex;align-items:center;justify-content:center;color:white;font-size:1.3rem;box-shadow:var(--shadow-orange);flex-shrink:0;">
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
                         <div style="flex:1;min-width:0;">
                             <div style="font-size:0.8rem;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-900);">Cash on Delivery</div>
                             <div style="font-size:0.62rem;color:var(--gray-400);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-top:3px;">Pay when you receive</div>
                         </div>
-                        <div style="width:22px;height:22px;border-radius:50%;border:2px solid;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;"
-                             :style="method === 'cod' ? 'border-color:var(--orange-primary);background:var(--orange-primary);' : 'border-color:var(--gray-300);'">
-                            <i class="fas fa-check" style="font-size:0.5rem;color:white;" x-show="method === 'cod'"></i>
+                        <div class="payment-check">
+                            <i class="fas fa-check"></i>
                         </div>
                     </label>
                 </div>
@@ -151,11 +147,11 @@
         <div style="width:360px;flex-shrink:0;position:sticky;top:100px;">
             <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-2xl);padding:28px;box-shadow:var(--shadow-md);">
                 <div style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.16em;color:var(--gray-400);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--gray-100);">
-                    <i class="fas fa-receipt" style="color:var(--green-primary);margin-right:6px;"></i> Order Summary
+                    <i class="fas fa-receipt" style="color:var(--primary);margin-right:6px;"></i> Order Summary
                 </div>
 
                 <!-- Cart Items -->
-                <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;max-height:260px;overflow-y:auto;">
+                <div class="fm-scrollbar-thin" style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;max-height:260px;overflow-y:auto;padding-right:12px;">
                     @foreach($cart as $item)
                     @php $total += $item['price'] * $item['quantity']; @endphp
                     <div style="display:flex;align-items:center;gap:12px;">
@@ -177,13 +173,13 @@
                         <span>Subtotal</span><span style="color:var(--gray-900);font-weight:700;">${{ number_format($total, 2) }}</span>
                     </div>
                     <div style="display:flex;justify-content:space-between;font-size:0.75rem;font-weight:600;color:var(--gray-500);">
-                        <span>Shipping</span><span style="color:var(--green-primary);font-weight:800;">Free</span>
+                        <span>Shipping</span><span style="color:var(--primary);font-weight:800;">Free</span>
                     </div>
                 </div>
 
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:2px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-bottom:20px;">
                     <span style="font-size:0.82rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-900);">Total</span>
-                    <span style="font-size:1.5rem;font-weight:900;color:var(--green-primary);letter-spacing:-0.03em;">${{ number_format($total, 2) }}</span>
+                    <span style="font-size:1.5rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">${{ number_format($total, 2) }}</span>
                 </div>
 
                 <button id="pay-btn" class="fm-btn-vibrant" style="display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:17px;font-size:0.78rem;margin-bottom:16px;">
@@ -194,7 +190,7 @@
                 <!-- Security Note -->
                 <div style="display:flex;flex-direction:column;gap:7px;padding-top:14px;border-top:1px solid var(--gray-100);">
                     <div style="display:flex;align-items:center;gap:7px;font-size:0.65rem;font-weight:600;color:var(--gray-400);">
-                        <i class="fas fa-lock" style="color:var(--green-primary);"></i> SSL Encrypted &amp; Secure
+                        <i class="fas fa-lock" style="color:var(--primary);"></i> SSL Encrypted &amp; Secure
                     </div>
                     <div style="display:flex;align-items:center;gap:7px;font-size:0.65rem;font-weight:600;color:var(--gray-400);">
                         <i class="fas fa-shield-halved" style="color:var(--teal-primary);"></i> Protected by Razorpay

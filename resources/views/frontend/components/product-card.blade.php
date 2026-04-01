@@ -90,15 +90,15 @@ if ($product) {
                 @endif
             </div>
 
-            @if($product && $product->variants->isNotEmpty())
-            <button class="card-atc-btn" onclick="addToCart({{ $product->id }})">
-                <i class="fas fa-plus" style="font-size:.7rem;"></i> Add
-            </button>
-            @elseif(!$product)
-            <button class="card-atc-btn">
-                <i class="fas fa-plus" style="font-size:.7rem;"></i> Add
-            </button>
-            @endif
+{{--            @if($product && $product->variants->isNotEmpty())--}}
+{{--            <button class="card-atc-btn" onclick="addToCart({{ $product->id }})">--}}
+{{--                <i class="fas fa-plus" style="font-size:.7rem;"></i> Add--}}
+{{--            </button>--}}
+{{--            @elseif(!$product)--}}
+{{--            <button class="card-atc-btn">--}}
+{{--                <i class="fas fa-plus" style="font-size:.7rem;"></i> Add--}}
+{{--            </button>--}}
+{{--            @endif--}}
         </div>
     </div>
 </div>

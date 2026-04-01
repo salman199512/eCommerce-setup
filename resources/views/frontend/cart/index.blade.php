@@ -23,8 +23,8 @@
 
     <!-- Step Indicator -->
     <div style="display:flex;align-items:center;gap:0;margin-bottom:40px;max-width:480px;">
-        <div style="display:flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--green-primary);">
-            <span style="width:28px;height:28px;background:var(--green-primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;">1</span>
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);">
+            <span style="width:28px;height:28px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:900;flex-shrink:0;">1</span>
             Cart
         </div>
         <div style="flex:1;height:2px;background:var(--gray-200);margin:0 12px;"></div>
@@ -81,17 +81,17 @@
                     <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
                         <div style="font-size:0.58rem;font-weight:800;color:var(--gray-300);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Qty</div>
                         <div style="display:inline-flex;align-items:center;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius-full);height:36px;padding:0 4px;">
-                            <button onclick="updateQty('{{ $id }}', -1)" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:1rem;transition:color .15s;" onmouseover="this.style.color='var(--green-primary)'" onmouseout="this.style.color='var(--gray-500)'">&minus;</button>
+                            <button onclick="updateQty('{{ $id }}', -1)" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:1rem;transition:color .15s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray-500)'">&minus;</button>
                             <input type="text" value="{{ $details['quantity'] }}" readonly id="qty-{{ $id }}"
                                    style="width:32px;text-align:center;font-size:0.85rem;font-weight:800;color:var(--gray-900);background:transparent;border:none;outline:none;">
-                            <button onclick="updateQty('{{ $id }}', 1)" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:1rem;transition:color .15s;" onmouseover="this.style.color='var(--green-primary)'" onmouseout="this.style.color='var(--gray-500)'">&plus;</button>
+                            <button onclick="updateQty('{{ $id }}', 1)" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:var(--gray-500);font-size:1rem;transition:color .15s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--gray-500)'">&plus;</button>
                         </div>
                     </div>
 
                     <!-- Total -->
                     <div style="text-align:right;">
                         <div style="font-size:0.58rem;font-weight:800;color:var(--gray-300);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Total</div>
-                        <div style="font-size:1rem;font-weight:900;color:var(--green-primary);" id="total-{{ $id }}">${{ number_format($details['price'] * $details['quantity'], 2) }}</div>
+                        <div style="font-size:1rem;font-weight:900;color:var(--primary);" id="total-{{ $id }}">${{ number_format($details['price'] * $details['quantity'], 2) }}</div>
                     </div>
 
                     <!-- Remove -->
@@ -107,11 +107,11 @@
 
             <!-- Continue Shopping -->
             <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-                <a href="{{ route('products') }}" style="display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--green-primary);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">
+                <a href="{{ route('products') }}" style="display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--primary);text-decoration:none;transition:gap .2s;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">
                     <i class="fas fa-arrow-left" style="font-size:0.65rem;"></i> Continue Shopping
                 </a>
                 <div style="font-size:0.72rem;color:var(--gray-400);font-weight:600;">
-                    <i class="fas fa-shield-halved" style="color:var(--green-primary);margin-right:5px;"></i> Secure &amp; encrypted checkout
+                    <i class="fas fa-shield-halved" style="color:var(--primary);margin-right:5px;"></i> Secure &amp; encrypted checkout
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
         <div style="width:340px;flex-shrink:0;position:sticky;top:100px;">
             <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-2xl);padding:28px;box-shadow:var(--shadow-md);">
                 <h3 style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.14em;color:var(--gray-900);margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">
-                    <i class="fas fa-receipt" style="color:var(--green-primary);margin-right:8px;"></i> Order Summary
+                    <i class="fas fa-receipt" style="color:var(--primary);margin-right:8px;"></i> Order Summary
                 </h3>
 
                 <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
@@ -130,7 +130,7 @@
                     </div>
                     <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
                         <span>Shipping</span>
-                        <span style="font-weight:800;color:var(--green-primary);">FREE</span>
+                        <span style="font-weight:800;color:var(--primary);">FREE</span>
                     </div>
                     <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
                         <span>Estimated Tax</span>
@@ -140,7 +140,7 @@
 
                 <div style="padding:16px 0;border-top:2px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
                     <span style="font-size:0.85rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-900);">Total</span>
-                    <span class="cart-total" style="font-size:1.6rem;font-weight:900;color:var(--green-primary);letter-spacing:-0.03em;">${{ number_format($total, 2) }}</span>
+                    <span class="cart-total" style="font-size:1.6rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">${{ number_format($total, 2) }}</span>
                 </div>
 
                 <a href="{{ route('checkout') }}" class="fm-btn-vibrant" style="display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:16px;font-size:0.78rem;text-decoration:none;margin-bottom:14px;">
@@ -163,10 +163,10 @@
                 <!-- Trust Badges -->
                 <div style="margin-top:14px;display:flex;flex-direction:column;gap:7px;">
                     <div style="display:flex;align-items:center;gap:7px;font-size:0.68rem;font-weight:600;color:var(--gray-400);">
-                        <i class="fas fa-lock" style="color:var(--green-primary);font-size:0.72rem;"></i> SSL Encrypted &amp; Secure
+                        <i class="fas fa-lock" style="color:var(--primary);font-size:0.72rem;"></i> SSL Encrypted &amp; Secure
                     </div>
                     <div style="display:flex;align-items:center;gap:7px;font-size:0.68rem;font-weight:600;color:var(--gray-400);">
-                        <i class="fas fa-rotate-left" style="color:var(--orange-primary);font-size:0.72rem;"></i> 7-Day Easy Returns
+                        <i class="fas fa-rotate-left" style="color:var(--secondary);font-size:0.72rem;"></i> 7-Day Easy Returns
                     </div>
                     <div style="display:flex;align-items:center;gap:7px;font-size:0.68rem;font-weight:600;color:var(--gray-400);">
                         <i class="fas fa-truck-fast" style="color:var(--teal-primary);font-size:0.72rem;"></i> Free Delivery Over $49

@@ -22,7 +22,7 @@
                 'pending'    => ['bg'=>'var(--yellow-soft)',  'color'=>'var(--yellow-primary)',  'icon'=>'fa-clock'],
                 'processing' => ['bg'=>'#eff6ff',             'color'=>'#2563eb',                'icon'=>'fa-gear'],
                 'shipped'    => ['bg'=>'var(--teal-soft)',    'color'=>'var(--teal-primary)',    'icon'=>'fa-truck'],
-                'delivered'  => ['bg'=>'var(--green-soft)',   'color'=>'var(--green-primary)',   'icon'=>'fa-circle-check'],
+                'delivered'  => ['bg'=>'var(--primary-soft)',   'color'=>'var(--primary)',   'icon'=>'fa-circle-check'],
                 'cancelled'  => ['bg'=>'var(--red-soft)',     'color'=>'var(--red-primary)',     'icon'=>'fa-circle-xmark'],
             ];
             $s = $statusMap[$order->status] ?? ['bg'=>'var(--gray-50)','color'=>'var(--gray-500)','icon'=>'fa-circle'];
@@ -30,7 +30,7 @@
         <span style="display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:var(--radius-full);font-size:0.68rem;font-weight:900;text-transform:uppercase;letter-spacing:0.1em;background:{{ $s['bg'] }};color:{{ $s['color'] }};">
             <i class="fas {{ $s['icon'] }}"></i> {{ ucfirst($order->status) }}
         </span>
-        <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius-full);font-size:0.68rem;font-weight:800;background:{{ $order->payment_status === 'paid' ? 'var(--green-soft)' : 'var(--orange-soft)' }};color:{{ $order->payment_status === 'paid' ? 'var(--green-primary)' : 'var(--orange-primary)' }};">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--radius-full);font-size:0.68rem;font-weight:800;background:{{ $order->payment_status === 'paid' ? 'var(--primary-soft)' : 'var(--secondary-soft)' }};color:{{ $order->payment_status === 'paid' ? 'var(--primary)' : 'var(--secondary)' }};">
             <i class="fas {{ $order->payment_status === 'paid' ? 'fa-lock' : 'fa-clock' }}"></i>
             {{ ucfirst($order->payment_status) }}
         </span>
@@ -94,7 +94,7 @@
         <!-- Shipping Address -->
         <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-2xl);padding:28px;box-shadow:var(--shadow-sm);">
             <div style="font-size:0.62rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--gray-100);">
-                <i class="fas fa-location-dot" style="color:var(--green-primary);margin-right:6px;"></i> Shipping Address
+                <i class="fas fa-location-dot" style="color:var(--primary);margin-right:6px;"></i> Shipping Address
             </div>
             <div style="background:var(--gray-50);padding:20px 24px;border-radius:var(--radius-lg);border:1px solid var(--gray-100);">
                 @if($order->shipping_name || $order->shipping_address)
@@ -107,7 +107,7 @@
                     </div>
                     @if($order->shipping_phone)
                     <div style="font-size:0.8rem;color:var(--gray-500);margin-top:10px;">
-                        <i class="fas fa-phone" style="color:var(--green-primary);margin-right:5px;font-size:0.7rem;"></i>
+                        <i class="fas fa-phone" style="color:var(--primary);margin-right:5px;font-size:0.7rem;"></i>
                         {{ $order->shipping_phone }}
                     </div>
                     @endif
@@ -140,7 +140,7 @@
             </div>
             @else
             <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
-                <span>Shipping</span><span style="color:var(--green-primary);font-weight:800;">Free</span>
+                <span>Shipping</span><span style="color:var(--primary);font-weight:800;">Free</span>
             </div>
             @endif
             @if($order->discount_amount > 0)
@@ -152,7 +152,7 @@
 
         <div style="padding:16px 0;border-top:2px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:0.82rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-900);">Total</span>
-            <span style="font-size:1.6rem;font-weight:900;color:var(--green-primary);letter-spacing:-0.03em;">${{ number_format($order->total_amount, 2) }}</span>
+            <span style="font-size:1.6rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">${{ number_format($order->total_amount, 2) }}</span>
         </div>
 
         <!-- Payment Info -->
@@ -160,7 +160,7 @@
             <div>
                 <div style="font-size:0.58rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-300);margin-bottom:5px;">Payment Method</div>
                 <div style="font-size:0.82rem;font-weight:800;color:var(--gray-900);display:flex;align-items:center;gap:8px;">
-                    <i class="fas {{ $order->payment_method === 'cod' ? 'fa-money-bill-wave' : 'fa-credit-card' }}" style="color:var(--green-primary);font-size:0.85rem;"></i>
+                    <i class="fas {{ $order->payment_method === 'cod' ? 'fa-money-bill-wave' : 'fa-credit-card' }}" style="color:var(--primary);font-size:0.85rem;"></i>
                     {{ $order->payment_method === 'cod' ? 'Cash on Delivery' : 'Online Payment' }}
                 </div>
             </div>

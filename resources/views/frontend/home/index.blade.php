@@ -5,7 +5,7 @@
 @section('content')
 
 {{-- ── Hero Slider ── --}}
-<section class="hero-section" style="height:clamp(420px,70vh,680px);">
+<section class="hero-section">
     @if($sliders && $sliders->count() > 0)
     <div id="hero-slides" style="position:absolute;inset:0;">
         @foreach($sliders as $index => $slider)
@@ -31,14 +31,14 @@
     <div class="container" style="position:relative;z-index:10;width:100%;">
         <div class="hero-content animate-fade-up">
             <div class="hero-eyebrow">
-                <i class="fas fa-leaf"></i> 100% Organic &amp; Fresh
+                <i class="fas fa-leaf"></i> 100% Premium eCommerce
             </div>
             <h1 class="hero-title">
                 The Freshest<br><em>Groceries</em><br>Delivered Fast
             </h1>
-            <p class="hero-subtitle">Farm-to-door freshness with same-day delivery. Shop premium organic produce, dairy, bakery &amp; more.</p>
+            <p class="hero-subtitle">Premium products delivered fast with same-day delivery. Shop premium organic produce, dairy, bakery &amp; more.</p>
             <div class="hero-btns">
-                <a href="{{ route('products') }}" class="btn btn-orange btn-xl">
+                <a href="{{ route('products') }}" class="btn btn-premium-orange btn-xl">
                     <i class="fas fa-cart-shopping"></i> Shop Now
                 </a>
                 <a href="{{ route('about-us') }}" class="btn btn-ghost btn-xl">
@@ -64,32 +64,32 @@
 </section>
 
 {{-- ── Feature Strip ── --}}
-<section class="features-strip">
+<section class="features-strip" style="background:#eff6ff !important;padding:0px 0 !important;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;">
     <div class="container">
         <div class="features-grid">
             <div class="feature-item">
-                <div class="feature-icon green"><i class="fas fa-truck-fast"></i></div>
+                <div class="feature-icon c-success" style="background:#16a34a !important;color:#fff !important;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(22,163,74,.2);"><i class="fas fa-truck-fast"></i></div>
                 <div>
                     <div class="feature-title">Free Delivery</div>
                     <div class="feature-sub">On orders over $49</div>
                 </div>
             </div>
             <div class="feature-item">
-                <div class="feature-icon orange"><i class="fas fa-rotate-left"></i></div>
+                <div class="feature-icon c-secondary" style="background:#ef4444 !important;color:#fff !important;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(239,68,68,.2);"><i class="fas fa-rotate-left"></i></div>
                 <div>
                     <div class="feature-title">Easy Returns</div>
                     <div class="feature-sub">7-day money back</div>
                 </div>
             </div>
             <div class="feature-item">
-                <div class="feature-icon yellow"><i class="fas fa-shield-halved"></i></div>
+                <div class="feature-icon c-warning" style="background:#f59e0b !important;color:#fff !important;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(245,158,11,.2);"><i class="fas fa-shield-halved"></i></div>
                 <div>
                     <div class="feature-title">Secure Payment</div>
                     <div class="feature-sub">100% protected</div>
                 </div>
             </div>
             <div class="feature-item">
-                <div class="feature-icon teal"><i class="fas fa-headset"></i></div>
+                <div class="feature-icon c-info" style="background:#3b82f6 !important;color:#fff !important;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(59,130,246,.2);"><i class="fas fa-headset"></i></div>
                 <div>
                     <div class="feature-title">24/7 Support</div>
                     <div class="feature-sub">Always here to help</div>
@@ -136,7 +136,7 @@
             <!-- Big Banner -->
             <div class="promo-banner" style="min-height:240px;background:linear-gradient(135deg,#052e16 0%,#14532d 100%);">
                 <div class="promo-banner-overlay" style="background:linear-gradient(90deg,rgba(5,46,22,.95) 0%,transparent 70%);">
-                    <span class="promo-banner-tag" style="background:var(--orange-primary);color:white;">🔥 Flash Sale</span>
+                    <span class="promo-banner-tag" style="background:var(--secondary);color:white;">🔥 Flash Sale</span>
                     <h3 class="promo-banner-title" style="font-size:1.8rem;">Up to <span style="color:var(--yellow-light);">40% OFF</span><br>on Organic Produce</h3>
                     <p class="promo-banner-sub">Fresh from local farms. Limited time offer!</p>
                     <a href="{{ route('products') }}" class="btn btn-orange" style="margin-top:16px;">Shop the Sale <i class="fas fa-arrow-right"></i></a>
@@ -203,7 +203,7 @@
     <div class="container">
         <div class="section-head">
             <div>
-                <div class="section-eyebrow" style="color:var(--orange-primary);"><i class="fas fa-fire"></i> Handpicked</div>
+                <div class="section-eyebrow" style="color:var(--secondary);"><i class="fas fa-fire"></i> Handpicked</div>
                 <h2 class="section-title">Featured Collection</h2>
             </div>
             <div class="section-nav">
@@ -226,12 +226,12 @@
 </section>
 
 {{-- ── Value Props Banner ── --}}
-<section style="background:var(--grad-warm);padding:56px 0;color:white;">
+<section style="background:var(--grad-secondary);padding:56px 0;color:white;">
     <div class="container">
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;">
             <div>
                 <i class="fas fa-seedling" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;"></i>
-                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Certified Organic</div>
+                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Quality Guaranteed</div>
                 <div style="font-size:.78rem;opacity:.75;font-weight:500;">All products meet organic standards</div>
             </div>
             <div>
@@ -241,12 +241,12 @@
             </div>
             <div>
                 <i class="fas fa-snowflake" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;color:#bfdbfe;"></i>
-                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Cold Chain Protected</div>
+                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Secure Packaging</div>
                 <div style="font-size:.78rem;opacity:.75;font-weight:500;">Always fresh, always cold</div>
             </div>
             <div>
                 <i class="fas fa-handshake" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;color:#bbf7d0;"></i>
-                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Direct from Farmers</div>
+                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Direct from Brands</div>
                 <div style="font-size:.78rem;opacity:.75;font-weight:500;">Supporting local agriculture</div>
             </div>
         </div>

@@ -8,7 +8,7 @@
     <h2 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">Personal Information</h2>
 
     @if(session('success'))
-        <div style="background:var(--green-soft);border:1px solid var(--green-light);color:var(--green-primary);padding:16px 24px;border-radius:var(--radius-2xl);margin-bottom:32px;display:flex;align-items:center;gap:12px;">
+        <div style="background:var(--primary-soft);border:1px solid var(--primary-light);color:var(--primary);padding:16px 24px;border-radius:var(--radius-2xl);margin-bottom:32px;display:flex;align-items:center;gap:12px;">
             <i class="fas fa-check-circle" style="font-size:1.25rem;"></i>
             <span style="font-weight:900;font-size:0.85rem;">{{ session('success') }}</span>
         </div>

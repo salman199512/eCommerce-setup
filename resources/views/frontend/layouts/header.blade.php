@@ -22,7 +22,7 @@
 </div>
 
 <!-- ── Main Site Header ── -->
-<header class="site-header" id="site-header">
+<header class="site-header" id="site-header" style="height:84px !important;">
     <div class="container">
         <div class="header-inner">
 
@@ -32,8 +32,8 @@
                     <i class="fas fa-seedling"></i>
                 </div>
                 <div>
-                    <div class="logo-text-top">Fresh<span>Mart</span></div>
-                    <div class="logo-text-bottom">Organic &amp; Fresh</div>
+                    <div class="logo-text-top"<>Shop<span>Zone</span></div>
+                    <div class="logo-text-bottom">Premium Store</div>
                 </div>
             </a>
 
@@ -115,10 +115,10 @@
 
                 <!-- Cart -->
                 <div class="cart-dropdown-wrap">
-                    <a href="{{ route('cart') }}" class="header-action-btn" style="position:relative;background:var(--green-soft);color:var(--green-primary);border-radius:var(--radius-md);">
+                    <a href="{{ route('cart') }}" class="header-action-btn no-bg" style="background:transparent !important;border:none !important;">
                         @php $cart = session('cart', []); $totalQty = array_sum(array_column($cart, 'quantity')); @endphp
                         <i class="fas fa-cart-shopping"></i>
-                        <span class="label" style="color:var(--green-primary);">Cart</span>
+                        <span class="label" style="color:var(--primary);">Cart</span>
                         <span class="cart-badge cart-count-global">{{ $totalQty }}</span>
                     </a>
 
@@ -183,34 +183,36 @@
             <ul class="nav-menu">
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
-                        <i class="fas fa-house" style="font-size:.7rem;"></i> Home
+                        <i class="fas fa-house"></i> Home
                     </a>
                 </li>
 
                 <!-- Categories Mega -->
                 <li class="nav-item">
                     <a href="{{ route('products') }}" class="nav-link {{ request()->routeIs('products') ? 'active' : '' }}">
-                        <i class="fas fa-th-large" style="font-size:.7rem;"></i>
+                        <i class="fas fa-th-large"></i>
                         Categories <i class="fas fa-chevron-down"></i>
                     </a>
-                    <div class="mega-menu" style="width:700px;">
-                        <div style="display:grid;grid-template-columns:1fr 220px;">
-                            <div class="mega-menu-inner" style="grid-template-columns:repeat(3,1fr);">
-                                @foreach($cats->take(3) as $cat)
-                                <div>
-                                    <div class="mega-col-title">{{ $cat->title }}</div>
-                                    <div class="mega-col-links">
-                                        @foreach($cat->subCategories->take(6) as $sub)
-                                        <a href="{{ route('products', ['category' => $cat->slug, 'sub_category' => $sub->slug]) }}">
-                                            <i class="fas fa-circle" style="font-size:.25rem;color:var(--green-primary);"></i>
-                                            {{ $sub->title }}
-                                        </a>
-                                        @endforeach
-                                        <a href="{{ route('products', ['category' => $cat->slug]) }}" style="color:var(--green-primary);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;">
-                                            View All →
-                                        </a>
+                    <div class="mega-menu">
+                        <div class="container" style="display:grid;grid-template-columns:1fr 280px;gap:20px;padding:0;">
+                            <div class="mega-menu-inner">
+                                @foreach($cats as $cat)
+                                    @if($cat->subCategories->count() > 0)
+                                    <div>
+                                        <div class="mega-col-title">{{ $cat->title }}</div>
+                                        <div class="mega-col-links">
+                                            @foreach($cat->subCategories->take(8) as $sub)
+                                            <a href="{{ route('products', ['category' => $cat->slug, 'sub_category' => $sub->slug]) }}">
+                                                <i class="fas fa-circle" style="font-size:.25rem;color:var(--primary);"></i>
+                                                {{ $sub->title }}
+                                            </a>
+                                            @endforeach
+                                            <a href="{{ route('products', ['category' => $cat->slug]) }}" style="color:var(--primary);font-weight:800;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;margin-top:5px;">
+                                                View All →
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
+                                    @endif
                                 @endforeach
                             </div>
                             <div class="mega-promo">
@@ -227,24 +229,28 @@
 
                 <li class="nav-item">
                     <a href="{{ route('products') }}" class="nav-link">
-                        <i class="fas fa-fire" style="font-size:.7rem;color:var(--orange-primary);"></i> Deals
+                        <i class="fas fa-fire" style="color:var(--orange-primary);"></i> Deals
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('products') }}" class="nav-link">
-                        <i class="fas fa-star" style="font-size:.7rem;color:var(--yellow-primary);"></i> Best Sellers
+                        <i class="fas fa-star" style="color:var(--yellow-primary);"></i> Best Sellers
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('products') }}" class="nav-link">
-                        <i class="fas fa-leaf" style="font-size:.7rem;color:var(--teal-primary);"></i> Organic
+                        <i class="fas fa-leaf" style="color:var(--teal-primary);"></i> Organic
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('about-us') }}" class="nav-link {{ request()->routeIs('about-us') ? 'active' : '' }}">About</a>
+                    <a href="{{ route('about-us') }}" class="nav-link {{ request()->routeIs('about-us') ? 'active' : '' }}">
+                        <i class="fas fa-info-circle"></i> About
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('contact-us') }}" class="nav-link {{ request()->routeIs('contact-us') ? 'active' : '' }}">Contact</a>
+                    <a href="{{ route('contact-us') }}" class="nav-link {{ request()->routeIs('contact-us') ? 'active' : '' }}">
+                        <i class="fas fa-headset"></i> Contact
+                    </a>
                 </li>
             </ul>
 
@@ -266,7 +272,7 @@
     <div class="mobile-drawer-head">
         <div class="site-logo" style="gap:8px;">
             <div class="logo-icon" style="width:32px;height:32px;font-size:.9rem;"><i class="fas fa-seedling"></i></div>
-            <div class="logo-text-top" style="font-size:1.1rem;">Fresh<span>Mart</span></div>
+            <div class="logo-text-top" style="font-size:1.1rem;"<>Shop<span>Zone</span></div>
         </div>
         <button class="mobile-close-btn" id="mobile-close-btn"><i class="fas fa-times"></i></button>
     </div>
@@ -276,7 +282,7 @@
         <form action="{{ route('products') }}" method="GET">
             <div style="position:relative;">
                 <input type="text" name="search" class="fm-input" placeholder="Search products…" style="padding-right:44px;">
-                <button type="submit" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--green-primary);font-size:1rem;">
+                <button type="submit" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--primary);font-size:1rem;">
                     <i class="fas fa-search"></i>
                 </button>
             </div>

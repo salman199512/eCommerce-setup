@@ -19,12 +19,12 @@
         <h1 style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:var(--gray-900);margin-bottom:8px;">
             Fresh Groceries
             @if(request('search'))
-            <span style="color:var(--green-primary);">&ndash; "{{ request('search') }}"</span>
+            <span style="color:var(--primary);">&ndash; "{{ request('search') }}"</span>
             @endif
         </h1>
         <p style="color:var(--gray-500);font-size:.85rem;font-weight:500;">
             {{ $products->total() }} products found
-            @if(request('category')) in <strong style="color:var(--green-primary);">{{ request('category') }}</strong>@endif
+            @if(request('category')) in <strong style="color:var(--primary);">{{ request('category') }}</strong>@endif
         </p>
     </div>
 </div>
@@ -40,9 +40,9 @@
 
                 <!-- Active Filters -->
                 @if(request()->anyFilled(['category','sub_category','attributes','min_price','max_price','search']))
-                <div style="background:var(--orange-soft);border:1px solid var(--orange-light);border-radius:var(--radius-md);padding:12px 16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
-                    <span style="font-size:.72rem;font-weight:800;color:var(--orange-primary);text-transform:uppercase;letter-spacing:.08em;">Filters Active</span>
-                    <a href="{{ route('products') }}" style="font-size:.68rem;font-weight:800;color:var(--orange-primary);text-transform:uppercase;letter-spacing:.06em;text-decoration:underline;">Clear All</a>
+                <div style="background:var(--secondary-soft);border:1px solid var(--secondary-light);border-radius:var(--radius-md);padding:12px 16px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:.72rem;font-weight:800;color:var(--secondary);text-transform:uppercase;letter-spacing:.08em;">Filters Active</span>
+                    <a href="{{ route('products') }}" style="font-size:.68rem;font-weight:800;color:var(--secondary);text-transform:uppercase;letter-spacing:.06em;text-decoration:underline;">Clear All</a>
                 </div>
                 @endif
 
@@ -60,9 +60,9 @@
                         <div style="margin-left:12px;margin-bottom:8px;">
                             @foreach($cat->subCategories as $sub)
                             <a href="{{ route('products', ['category' => $cat->slug, 'sub_category' => $sub->slug]) }}"
-                               style="display:flex;align-items:center;gap:6px;padding:6px 10px;font-size:.75rem;font-weight:600;color:{{ request('sub_category') == $sub->slug ? 'var(--green-primary)' : 'var(--gray-500)' }};border-radius:var(--radius-sm);transition:all .15s;"
-                               onmouseover="this.style.background='var(--green-soft)'" onmouseout="this.style.background=''">
-                                <i class="fas fa-circle" style="font-size:.3rem;color:var(--green-primary);opacity:{{ request('sub_category') == $sub->slug ? '1' : '.4' }};"></i>
+                               style="display:flex;align-items:center;gap:6px;padding:6px 10px;font-size:.75rem;font-weight:600;color:{{ request('sub_category') == $sub->slug ? 'var(--primary)' : 'var(--gray-500)' }};border-radius:var(--radius-sm);transition:all .15s;"
+                               onmouseover="this.style.background='var(--primary-soft)'" onmouseout="this.style.background=''">
+                                <i class="fas fa-circle" style="font-size:.3rem;color:var(--primary);opacity:{{ request('sub_category') == $sub->slug ? '1' : '.4' }};"></i>
                                 {{ $sub->title }}
                             </a>
                             @endforeach
@@ -153,7 +153,7 @@
                                 </div>
                                 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
                                     @php $fv = $product->variants->first(); $dp = $fv->final_price ?? $fv->price ?? 0; @endphp
-                                    <span style="font-size:1.2rem;font-weight:900;color:var(--green-primary);">${{ number_format($dp, 2) }}</span>
+                                    <span style="font-size:1.2rem;font-weight:900;color:var(--primary);">${{ number_format($dp, 2) }}</span>
                                     <div style="display:flex;gap:8px;">
                                         <button onclick="addToCart({{ $product->id }})" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                                         <a href="{{ route('products.single', $product->slug) }}" class="btn btn-secondary btn-sm">View</a>

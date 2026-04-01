@@ -24,7 +24,7 @@
     <div style="max-width:1280px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
 
         <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:24px;text-align:center;box-shadow:var(--shadow-sm);transition:box-shadow .25s;" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
-            <div style="width:52px;height:52px;background:var(--green-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--green-primary);font-size:1.2rem;">
+            <div style="width:52px;height:52px;background:var(--primary-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--primary);font-size:1.2rem;">
                 <i class="fas fa-location-dot"></i>
             </div>
             <div style="font-size:0.62rem;font-weight:900;text-transform:uppercase;letter-spacing:0.14em;color:var(--gray-400);margin-bottom:8px;">Our Store</div>
@@ -32,7 +32,7 @@
         </div>
 
         <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:24px;text-align:center;box-shadow:var(--shadow-sm);transition:box-shadow .25s;" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
-            <div style="width:52px;height:52px;background:var(--orange-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--orange-primary);font-size:1.2rem;">
+            <div style="width:52px;height:52px;background:var(--secondary-soft);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--secondary);font-size:1.2rem;">
                 <i class="fas fa-phone-volume"></i>
             </div>
             <div style="font-size:0.62rem;font-weight:900;text-transform:uppercase;letter-spacing:0.14em;color:var(--gray-400);margin-bottom:8px;">Phone</div>
@@ -64,7 +64,7 @@
     <!-- Info Panel -->
     <div class="contact-info-panel">
         <div style="margin-bottom:32px;">
-            <div style="display:inline-flex;align-items:center;gap:6px;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--green-primary);margin-bottom:10px;">
+            <div style="display:inline-flex;align-items:center;gap:6px;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--primary);margin-bottom:10px;">
                 <span style="width:18px;height:2px;background:currentColor;display:inline-block;border-radius:2px;"></span> Get in Touch
             </div>
             <h2 style="font-size:2rem;font-weight:900;color:var(--gray-900);line-height:1.2;margin-bottom:16px;">We're Here to Help</h2>
@@ -74,12 +74,12 @@
         </div>
 
         <!-- Location Map Image -->
-        <div style="border-radius:var(--radius-xl);overflow:hidden;position:relative;height:220px;margin-bottom:28px;border:1px solid var(--green-light);">
+        <div style="border-radius:var(--radius-xl);overflow:hidden;position:relative;height:220px;margin-bottom:28px;border:1px solid var(--primary-light);">
             <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80"
                  style="width:100%;height:100%;object-fit:cover;opacity:0.85;">
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,46,22,0.7),transparent);display:flex;align-items:flex-end;padding:20px;">
                 <div>
-                    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--green-primary);color:white;padding:7px 16px;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.12em;border-radius:var(--radius-full);">
+                    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:white;padding:7px 16px;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.12em;border-radius:var(--radius-full);">
                         <i class="fas fa-map-pin"></i> Visit Our Store
                     </div>
                 </div>
@@ -88,12 +88,12 @@
 
         <!-- Quick Links -->
         <div style="display:flex;flex-direction:column;gap:12px;">
-            <a href="{{ route('products') }}" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border:1px solid var(--border-light);border-radius:var(--radius-lg);font-size:0.8rem;font-weight:700;color:var(--gray-700);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--green-primary)';this.style.color='var(--green-primary)'" onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--gray-700)'">
-                <i class="fas fa-store" style="color:var(--green-primary);width:18px;"></i> Browse Our Store
+            <a href="{{ route('products') }}" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border:1px solid var(--border-light);border-radius:var(--radius-lg);font-size:0.8rem;font-weight:700;color:var(--gray-700);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--gray-700)'">
+                <i class="fas fa-store" style="color:var(--primary);width:18px;"></i> Browse Our Store
                 <i class="fas fa-arrow-right" style="margin-left:auto;font-size:0.65rem;opacity:.4;"></i>
             </a>
-            <a href="{{ route('my-orders') }}" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border:1px solid var(--border-light);border-radius:var(--radius-lg);font-size:0.8rem;font-weight:700;color:var(--gray-700);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--green-primary)';this.style.color='var(--green-primary)'" onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--gray-700)'">
-                <i class="fas fa-box-open" style="color:var(--orange-primary);width:18px;"></i> Track My Order
+            <a href="{{ route('my-orders') }}" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:white;border:1px solid var(--border-light);border-radius:var(--radius-lg);font-size:0.8rem;font-weight:700;color:var(--gray-700);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border-light)';this.style.color='var(--gray-700)'">
+                <i class="fas fa-box-open" style="color:var(--secondary);width:18px;"></i> Track My Order
                 <i class="fas fa-arrow-right" style="margin-left:auto;font-size:0.65rem;opacity:.4;"></i>
             </a>
         </div>
@@ -102,7 +102,7 @@
     <!-- Contact Form Panel -->
     <div class="contact-form-panel">
         <div style="margin-bottom:32px;">
-            <div style="display:inline-flex;align-items:center;gap:6px;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--orange-primary);margin-bottom:10px;">
+            <div style="display:inline-flex;align-items:center;gap:6px;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--secondary);margin-bottom:10px;">
                 <span style="width:18px;height:2px;background:currentColor;display:inline-block;border-radius:2px;"></span> Message Us
             </div>
             <h3 style="font-size:1.6rem;font-weight:900;color:var(--gray-900);">Send a Message</h3>
@@ -138,9 +138,9 @@
                 <textarea name="message" rows="5" required class="fm-input" style="height:auto;resize:vertical;padding-top:14px;" placeholder="Tell us more about your inquiry..."></textarea>
             </div>
 
-            <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;background:var(--green-soft);border:1px solid var(--green-light);border-radius:var(--radius-md);">
-                <i class="fas fa-shield-halved" style="color:var(--green-primary);font-size:1rem;flex-shrink:0;"></i>
-                <span style="font-size:0.72rem;color:var(--green-dark);font-weight:600;">Your information is safe with us. We never share your data with third parties.</span>
+            <div style="display:flex;align-items:center;gap:10px;padding:14px 18px;background:var(--primary-soft);border:1px solid var(--primary-light);border-radius:var(--radius-md);">
+                <i class="fas fa-shield-halved" style="color:var(--primary);font-size:1rem;flex-shrink:0;"></i>
+                <span style="font-size:0.72rem;color:var(--primary-dark);font-weight:600;">Your information is safe with us. We never share your data with third parties.</span>
             </div>
 
             <div>

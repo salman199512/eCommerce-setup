@@ -159,7 +159,7 @@
                         <i class="fas fa-rotate-left" style="color:#f59e0b;"></i> 7-Day Money Back Guarantee
                     </div>
                     <div style="display:flex;align-items:center;gap:8px;font-size:.72rem;color:rgba(255,255,255,.5);font-weight:600;">
-                        <i class="fas fa-truck-fast" style="color:#38bdf8;"></i> Free Delivery Over $49
+                        <i class="fas fa-truck-fast" style="color:#38bdf8;"></i> Free delivery on orders over ₹49
                     </div>
                 </div>
             </div>

@@ -95,7 +95,7 @@
                             <input type="text" name="zip_code" class="fm-input" placeholder="12345" required>
                         </div>
                     </div>
-                </form>
+
             </div>
 
             <!-- Payment Method -->
@@ -140,7 +140,8 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </form>
+    </div>
 
         <!-- Order Summary -->
         @php $total = 0; @endphp
@@ -162,7 +163,7 @@
                             <div style="font-size:0.75rem;font-weight:800;color:var(--gray-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $item['name'] }}</div>
                             <div style="font-size:0.64rem;font-weight:700;color:var(--gray-400);margin-top:2px;">Qty: {{ $item['quantity'] }}</div>
                         </div>
-                        <div style="font-size:0.8rem;font-weight:900;color:var(--gray-900);flex-shrink:0;">${{ number_format($item['price'] * $item['quantity'], 2) }}</div>
+                        <div style="font-size:0.8rem;font-weight:900;color:var(--gray-900);flex-shrink:0;">₹{{ number_format($item['price'] * $item['quantity'], 2) }}</div>
                     </div>
                     @endforeach
                 </div>
@@ -170,7 +171,7 @@
                 <!-- Totals -->
                 <div style="border-top:1px solid var(--gray-100);padding-top:14px;display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
                     <div style="display:flex;justify-content:space-between;font-size:0.75rem;font-weight:600;color:var(--gray-500);">
-                        <span>Subtotal</span><span style="color:var(--gray-900);font-weight:700;">${{ number_format($total, 2) }}</span>
+                        <span>Subtotal</span><span style="color:var(--gray-900);font-weight:700;">₹{{ number_format($total, 2) }}</span>
                     </div>
                     <div style="display:flex;justify-content:space-between;font-size:0.75rem;font-weight:600;color:var(--gray-500);">
                         <span>Shipping</span><span style="color:var(--primary);font-weight:800;">Free</span>
@@ -179,7 +180,7 @@
 
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:2px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-bottom:20px;">
                     <span style="font-size:0.82rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-900);">Total</span>
-                    <span style="font-size:1.5rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">${{ number_format($total, 2) }}</span>
+                    <span style="font-size:1.5rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">₹{{ number_format($total, 2) }}</span>
                 </div>
 
                 <button id="pay-btn" class="fm-btn-vibrant" style="display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:17px;font-size:0.78rem;margin-bottom:16px;">

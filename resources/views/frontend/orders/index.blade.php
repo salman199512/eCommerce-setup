@@ -52,7 +52,7 @@
                     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:16px;min-width:150px;padding-left:40px;border-left:1px solid var(--gray-100);">
                         <div style="text-align:right;">
                             <p style="font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:8px;">Order Total</p>
-                            <p style="font-size:1.8rem;font-weight:900;color:black;letter-spacing:-0.03em;">${{ number_format($order->total_amount, 2) }}</p>
+                            <p style="font-size:1.8rem;font-weight:900;color:black;letter-spacing:-0.03em;">₹{{ number_format($order->total_amount, 2) }}</p>
                         </div>
                         <a href="{{ route('my-orders.show', $order->uuid) }}" class="fm-btn-vibrant" style="padding:12px 24px;font-size:0.65rem;border-radius:var(--radius-xl);">
                             <span>View Details</span>

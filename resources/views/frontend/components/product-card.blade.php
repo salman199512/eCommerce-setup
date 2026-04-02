@@ -79,12 +79,12 @@ if ($product) {
                         $displayPrice = $firstVariant->final_price ?? $firstVariant->price;
                         $originalPrice = $firstVariant->price;
                     @endphp
-                    <span class="price-current">${{ number_format($displayPrice, 2) }}</span>
+                    <span class="price-current">₹{{ number_format($displayPrice, 2) }}</span>
                     @if($originalPrice > $displayPrice)
-                    <span class="price-old">${{ number_format($originalPrice, 2) }}</span>
+                    <span class="price-old">₹{{ number_format($originalPrice, 2) }}</span>
                     @endif
                 @elseif(!$product)
-                    <span class="price-current">${{ number_format(rand(2, 25) + rand(0,99)/100, 2) }}</span>
+                    <span class="price-current">₹{{ number_format(rand(2, 25) + rand(0,99)/100, 2) }}</span>
                 @else
                     <span style="font-size:.72rem;font-weight:700;color:var(--gray-400);">Out of Stock</span>
                 @endif

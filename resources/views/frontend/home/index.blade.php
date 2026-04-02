@@ -71,7 +71,7 @@
                 <div class="feature-icon c-success" style="background:#16a34a !important;color:#fff !important;border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(22,163,74,.2);"><i class="fas fa-truck-fast"></i></div>
                 <div>
                     <div class="feature-title">Free Delivery</div>
-                    <div class="feature-sub">On orders over $49</div>
+                    <div class="feature-sub">On orders over ₹49</div>
                 </div>
             </div>
             <div class="feature-item">

@@ -62,7 +62,7 @@
             </div>
             <div class="flex items-center gap-24">
                 <div style="text-align:right;">
-                    <p style="font-size:1.5rem;font-weight:900;color:black;letter-spacing:-0.03em;">${{ number_format($order->total_amount, 2) }}</p>
+                    <p style="font-size:1.5rem;font-weight:900;color:black;letter-spacing:-0.03em;">₹{{ number_format($order->total_amount, 2) }}</p>
                 </div>
                 <a href="{{ route('my-orders.show', $order->uuid) }}" class="fm-btn-vibrant" style="padding:10px 20px;font-size:0.6rem;">
                     View

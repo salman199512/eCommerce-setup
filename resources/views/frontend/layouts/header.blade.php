@@ -7,7 +7,7 @@
     <div class="container">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
             <div class="topbar-marquee">
-                <span class="topbar-item"><i class="fas fa-truck-fast"></i> Free delivery on orders over $49</span>
+                <span class="topbar-item"><i class="fas fa-truck-fast"></i> Free delivery on orders over ₹49</span>
                 <span class="topbar-item" style="opacity:.4;">|</span>
                 <span class="topbar-item"><i class="fas fa-leaf"></i> 100% Organic &amp; Fresh</span>
                 <span class="topbar-item" style="opacity:.4;">|</span>
@@ -32,7 +32,7 @@
                     <i class="fas fa-seedling"></i>
                 </div>
                 <div>
-                    <div class="logo-text-top"<>Shop<span>Zone</span></div>
+                    <div class="logo-text-top">Shop<span>Zone</span></div>
                     <div class="logo-text-bottom">Premium Store</div>
                 </div>
             </a>
@@ -138,7 +138,7 @@
                                 <img src="{{ $details['image'] }}" alt="{{ $details['name'] }}" class="cart-item-img">
                                 <div style="flex:1;min-width:0;">
                                     <div class="cart-item-name">{{ Str::limit($details['name'], 30) }}</div>
-                                    <div class="cart-item-meta">{{ $details['quantity'] }} × ${{ number_format($details['price'], 2) }}</div>
+                                    <div class="cart-item-meta">{{ $details['quantity'] }} × ₹{{ number_format($details['price'], 2) }}</div>
                                 </div>
                             </div>
                             @endforeach
@@ -146,7 +146,7 @@
                         <div class="cart-dropdown-footer">
                             <div class="cart-subtotal-row">
                                 <span class="cart-subtotal-label">Subtotal</span>
-                                <span class="cart-subtotal-amount">${{ number_format($cartTotal, 2) }}</span>
+                                <span class="cart-subtotal-amount">₹{{ number_format($cartTotal, 2) }}</span>
                             </div>
                             <div class="cart-actions">
                                 <a href="{{ route('checkout') }}" class="btn btn-primary btn-block">
@@ -396,7 +396,7 @@
                                 <img src="${item.image || 'https://via.placeholder.com/60'}" class="search-item-img" alt="${item.title}">
                                 <div>
                                     <div class="search-item-name">${item.title}</div>
-                                    <div class="search-item-price">$${parseFloat(item.price||0).toFixed(2)}</div>
+                                    <div class="search-item-price">₹${parseFloat(item.price||0).toFixed(2)}</div>
                                 </div>
                                 <i class="fas fa-chevron-right" style="font-size:.6rem;color:var(--gray-300);margin-left:auto;"></i>
                             </a>

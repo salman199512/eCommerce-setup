@@ -79,12 +79,12 @@
                         @endif
                         <div style="font-size:0.68rem;font-weight:700;color:var(--gray-400);">
                             Qty: <span style="color:var(--gray-900);font-weight:800;">{{ $item->quantity }}</span>
-                            &nbsp;·&nbsp; Price: <span style="color:var(--gray-900);font-weight:800;">${{ number_format($item->price, 2) }}</span>
+                            &nbsp;·&nbsp; Price: <span style="color:var(--gray-900);font-weight:800;">₹{{ number_format($item->price, 2) }}</span>
                         </div>
                     </div>
                     <!-- Total -->
                     <div style="font-size:1rem;font-weight:900;color:var(--gray-900);flex-shrink:0;">
-                        ${{ number_format($item->quantity * $item->price, 2) }}
+                        ₹{{ number_format($item->quantity * $item->price, 2) }}
                     </div>
                 </div>
                 @endforeach
@@ -97,18 +97,18 @@
                 <i class="fas fa-location-dot" style="color:var(--primary);margin-right:6px;"></i> Shipping Address
             </div>
             <div style="background:var(--gray-50);padding:20px 24px;border-radius:var(--radius-lg);border:1px solid var(--gray-100);">
-                @if($order->shipping_name || $order->shipping_address)
-                    <div style="font-size:0.9rem;font-weight:800;color:var(--gray-900);margin-bottom:8px;">{{ $order->shipping_name ?: $order->user->name }}</div>
+                @if($order->address)
+                    <div style="font-size:0.9rem;font-weight:800;color:var(--gray-900);margin-bottom:8px;">{{ $order->first_name }} {{ $order->last_name }}</div>
                     <div style="font-size:0.85rem;color:var(--gray-600);line-height:1.7;">
-                        {{ $order->shipping_address }}<br>
-                        @if($order->shipping_city){{ $order->shipping_city }}, @endif
-                        @if($order->shipping_state){{ $order->shipping_state }} @endif
-                        @if($order->shipping_zip){{ $order->shipping_zip }}@endif
+                        {{ $order->address }}<br>
+                        @if($order->city){{ $order->city }}, @endif
+                        @if($order->state){{ $order->state }} @endif
+                        @if($order->zip_code){{ $order->zip_code }}@endif
                     </div>
-                    @if($order->shipping_phone)
+                    @if($order->phone)
                     <div style="font-size:0.8rem;color:var(--gray-500);margin-top:10px;">
                         <i class="fas fa-phone" style="color:var(--primary);margin-right:5px;font-size:0.7rem;"></i>
-                        {{ $order->shipping_phone }}
+                        {{ $order->phone }}
                     </div>
                     @endif
                 @else
@@ -127,32 +127,32 @@
         <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
             <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
                 <span>Subtotal</span>
-                <span style="color:var(--gray-900);font-weight:700;">${{ number_format($order->sub_total, 2) }}</span>
+                <span style="color:var(--gray-900);font-weight:700;">₹{{ number_format($order->subtotal ?? 0, 2) }}</span>
             </div>
-            @if($order->tax_amount > 0)
+            @if(isset($order->tax_amount) && $order->tax_amount > 0)
             <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
-                <span>Tax</span><span style="color:var(--gray-900);font-weight:700;">${{ number_format($order->tax_amount, 2) }}</span>
+                <span>Tax</span><span style="color:var(--gray-900);font-weight:700;">₹{{ number_format($order->tax_amount, 2) }}</span>
             </div>
             @endif
-            @if($order->shipping_amount > 0)
+            @if(isset($order->shipping_amount) && $order->shipping_amount > 0)
             <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
-                <span>Shipping</span><span style="color:var(--gray-900);font-weight:700;">${{ number_format($order->shipping_amount, 2) }}</span>
+                <span>Shipping</span><span style="color:var(--gray-900);font-weight:700;">₹{{ number_format($order->shipping_amount, 2) }}</span>
             </div>
-            @else
+            @elseif(isset($order->shipping_amount))
             <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
                 <span>Shipping</span><span style="color:var(--primary);font-weight:800;">Free</span>
             </div>
             @endif
-            @if($order->discount_amount > 0)
+            @if(isset($order->discount_amount) && $order->discount_amount > 0)
             <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:600;color:var(--red-primary);">
-                <span>Discount</span><span style="font-weight:700;">-${{ number_format($order->discount_amount, 2) }}</span>
+                <span>Discount</span><span style="font-weight:700;">-₹{{ number_format($order->discount_amount, 2) }}</span>
             </div>
             @endif
         </div>
 
         <div style="padding:16px 0;border-top:2px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:0.82rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-900);">Total</span>
-            <span style="font-size:1.6rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">${{ number_format($order->total_amount, 2) }}</span>
+            <span style="font-size:1.6rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">₹{{ number_format($order->total_amount, 2) }}</span>
         </div>
 
         <!-- Payment Info -->

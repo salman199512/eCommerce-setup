@@ -74,7 +74,7 @@
                     <!-- Price -->
                     <div>
                         <div style="font-size:0.58rem;font-weight:800;color:var(--gray-300);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Unit Price</div>
-                        <div style="font-size:0.88rem;font-weight:900;color:var(--gray-900);">${{ number_format($details['price'], 2) }}</div>
+                        <div style="font-size:0.88rem;font-weight:900;color:var(--gray-900);">₹{{ number_format($details['price'], 2) }}</div>
                     </div>
 
                     <!-- Qty -->
@@ -91,7 +91,7 @@
                     <!-- Total -->
                     <div style="text-align:right;">
                         <div style="font-size:0.58rem;font-weight:800;color:var(--gray-300);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Total</div>
-                        <div style="font-size:1rem;font-weight:900;color:var(--primary);" id="total-{{ $id }}">${{ number_format($details['price'] * $details['quantity'], 2) }}</div>
+                        <div style="font-size:1rem;font-weight:900;color:var(--primary);" id="total-{{ $id }}">₹{{ number_format($details['price'] * $details['quantity'], 2) }}</div>
                     </div>
 
                     <!-- Remove -->
@@ -126,7 +126,7 @@
                 <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
                     <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
                         <span>Subtotal ({{ count($cartItems) }} items)</span>
-                        <span class="cart-total" style="font-weight:800;color:var(--gray-900);">${{ number_format($total, 2) }}</span>
+                        <span class="cart-total" style="font-weight:800;color:var(--gray-900);">₹{{ number_format($total, 2) }}</span>
                     </div>
                     <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;font-weight:600;color:var(--gray-500);">
                         <span>Shipping</span>
@@ -140,7 +140,7 @@
 
                 <div style="padding:16px 0;border-top:2px solid var(--gray-100);border-bottom:1px solid var(--gray-100);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
                     <span style="font-size:0.85rem;font-weight:900;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-900);">Total</span>
-                    <span class="cart-total" style="font-size:1.6rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">${{ number_format($total, 2) }}</span>
+                    <span class="cart-total" style="font-size:1.6rem;font-weight:900;color:var(--primary);letter-spacing:-0.03em;">₹{{ number_format($total, 2) }}</span>
                 </div>
 
                 <a href="{{ route('checkout') }}" class="fm-btn-vibrant" style="display:flex;justify-content:center;align-items:center;gap:10px;width:100%;padding:16px;font-size:0.78rem;text-decoration:none;margin-bottom:14px;">
@@ -169,7 +169,7 @@
                         <i class="fas fa-rotate-left" style="color:var(--secondary);font-size:0.72rem;"></i> 7-Day Easy Returns
                     </div>
                     <div style="display:flex;align-items:center;gap:7px;font-size:0.68rem;font-weight:600;color:var(--gray-400);">
-                        <i class="fas fa-truck-fast" style="color:var(--teal-primary);font-size:0.72rem;"></i> Free Delivery Over $49
+                        <i class="fas fa-truck-fast" style="color:var(--teal-primary);font-size:0.72rem;"></i> Free Delivery Over ₹49
                     </div>
                 </div>
             </div>
@@ -223,8 +223,8 @@
             data: { id: id, quantity: newQty, _token: "{{ csrf_token() }}" },
             success: function(response) {
                 if (response.success) {
-                    $('#total-' + id).text('$' + response.runningTotal);
-                    $('.cart-total').text('$' + response.total);
+                    $('#total-' + id).text('₹' + response.runningTotal);
+                    $('.cart-total').text('₹' + response.total);
                     $('.cart-count-global').text(response.totalQty);
                     $('.cart-items-count').text(response.cartCount);
                     $('#cart-row-' + id).css('opacity', '1');
@@ -243,7 +243,7 @@
                 data: { id: id, _token: "{{ csrf_token() }}" },
                 success: function(response) {
                     if (response.success) {
-                        $('.cart-total').text('$' + response.total);
+                        $('.cart-total').text('₹' + response.total);
                         $('.cart-count-global').text(response.totalQty);
                         $('.cart-items-count').text(response.cartCount);
                         if (response.cartCount === 0) location.reload();

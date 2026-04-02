@@ -62,9 +62,27 @@
                     <a href="https://wa.me/?text={{ urlencode($product->title.' '.request()->url()) }}" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://pinterest.com/pin/create/button/?url={{ urlencode(request()->url()) }}" target="_blank"><i class="fab fa-pinterest-p"></i></a>
                 </div>
-                <div class="pdp-payment-icons">
+                <div class="pdp-payment-icons" style="display:flex;gap:8px;font-size:1.2rem;color:var(--gray-300);">
                     <i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard"></i>
                     <i class="fab fa-cc-amex"></i><i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+
+            <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--gray-100);">
+                {{-- Trust Row --}}
+                <div class="pdp-trust" style="display:flex;gap:24px;flex-wrap:wrap;">
+                    <div class="pdp-trust-item" style="display:flex;align-items:center;gap:10px;">
+                        <div style="width:32px;height:32px;background:var(--primary-soft);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;"><i class="fas fa-shield-halved"></i></div>
+                        <div class="pdp-trust-text"><strong style="display:block;font-size:0.7rem;line-height:1;color:var(--gray-900);">Secure Payment</strong><span style="font-size:0.6rem;color:var(--gray-400);">SSL Encrypted</span></div>
+                    </div>
+                    <div class="pdp-trust-item" style="display:flex;align-items:center;gap:10px;">
+                        <div style="width:32px;height:32px;background:var(--secondary-soft);color:var(--secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;"><i class="fas fa-truck-fast"></i></div>
+                        <div class="pdp-trust-text"><strong style="display:block;font-size:0.7rem;line-height:1;color:var(--gray-900);">Fast Delivery</strong><span style="font-size:0.6rem;color:var(--gray-400);">Same/Next day</span></div>
+                    </div>
+                    <div class="pdp-trust-item" style="display:flex;align-items:center;gap:10px;">
+                        <div style="width:32px;height:32px;background:var(--success-soft);color:var(--success);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;"><i class="fas fa-rotate-left"></i></div>
+                        <div class="pdp-trust-text"><strong style="display:block;font-size:0.7rem;line-height:1;color:var(--gray-900);">Easy Returns</strong><span style="font-size:0.6rem;color:var(--gray-400);">14-day policy</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,8 +106,9 @@
 
             {{-- Price --}}
             <div class="pdp-price-row">
-                <span id="product-price" class="pdp-price">$0.00</span>
-                <span id="product-old-price" class="pdp-price-old" style="display:none;">$0.00</span>
+                <span class="pdp-price-currency" style="font-size:clamp(1.5rem, 4vw, 2.4rem);font-weight:900;color:var(--gray-900);margin-right:8px;">₹</span>
+                <span id="product-price" class="pdp-price" style="font-size:clamp(1.5rem, 4vw, 2.4rem);font-weight:900;color:var(--gray-900);">0.00</span>
+                <span id="product-old-price" class="pdp-price-old" style="display:none;margin-left:8px;">₹0.00</span>
                 <span id="discount-label" class="pdp-discount" style="display:none;">0% OFF</span>
             </div>
             @if($product->is_tax_included)
@@ -98,11 +117,6 @@
                 <div class="pdp-tax-note"><i class="fas fa-truck" style="font-size:.65rem;"></i> + Shipping calculated at checkout</div>
             @endif
 
-            {{-- Stock + SKU --}}
-            <div class="pdp-meta-row">
-                <div class="pdp-stock"><span class="pdp-stock-dot"></span> In Stock &amp; Ready to Ship</div>
-                <div class="pdp-sku">SKU: <strong id="product-sku">{{ strtoupper(substr($product->title,0,3)) }}-001</strong></div>
-            </div>
 
             {{-- Short Description --}}
             <div class="pdp-desc">
@@ -141,53 +155,40 @@
                     @endforeach
                 @endif
 
-                {{-- ATC Row --}}
-                <div class="pdp-atc-row">
-                    <div class="pdp-qty-control">
+                {{-- Action Buttons Row — Consolidated --}}
+                <div class="pdp-actions-row" style="display:flex;gap:10px;align-items:center;margin-bottom:24px;flex-wrap:wrap;">
+                    <div class="pdp-qty-control" style="flex-shrink:0;">
                         <button type="button" class="pdp-qty-btn" onclick="decrementQty()"><i class="fas fa-minus" style="font-size:.65rem;"></i></button>
                         <input type="text" id="quantity" name="quantity" value="1" readonly class="pdp-qty-display">
                         <button type="button" class="pdp-qty-btn" onclick="incrementQty()"><i class="fas fa-plus" style="font-size:.65rem;"></i></button>
                     </div>
-                    <button type="submit" id="add-to-cart-btn" class="pdp-atc-btn">
-                        <i class="fas fa-cart-plus"></i><span>Add to Cart</span>
+                    
+                    <button type="submit" id="add-to-cart-btn" class="pdp-atc-btn" style="flex:1.2;height:52px;margin:0;">
+                        <i class="fas fa-cart-shopping"></i><span>Add to Cart</span>
                     </button>
-                    <button type="button" onclick="addToWishlist({{ $product->id }})" class="pdp-wishlist-btn wishlist-btn-{{ $product->id }}" title="Wishlist">
+                    
+                    <button type="button" onclick="buyNow()" class="pdp-buy-btn" style="flex:1;height:52px;margin:0;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.8rem;font-weight:800;text-transform:uppercase;border-radius:var(--radius-xl);background:var(--secondary);color:white;border:none;box-shadow:var(--shadow-secondary);transition:all 0.3s;">
+                        <i class="fas fa-bolt"></i><span>Buy Now</span>
+                    </button>
+                    
+                    <button type="button" onclick="addToWishlist({{ $product->id }})" class="pdp-wishlist-btn wishlist-btn-{{ $product->id }}" style="width:52px;height:52px;flex-shrink:0;margin:0;">
                         <i class="far fa-heart" style="font-size:1rem;"></i>
                     </button>
                 </div>
-
-                <button type="button" onclick="buyNow()" class="pdp-buy-btn" style="width:100%;margin-bottom:20px;">
-                    <i class="fas fa-bolt"></i> Buy Now — Instant Checkout
-                </button>
             </form>
 
-            {{-- Trust Row --}}
-            <div class="pdp-trust">
-                <div class="pdp-trust-item">
-                    <i class="fas fa-shield-halved"></i>
-                    <div class="pdp-trust-text"><strong>Secure Payment</strong>SSL Encrypted</div>
-                </div>
-                <div class="pdp-trust-item">
-                    <i class="fas fa-truck-fast"></i>
-                    <div class="pdp-trust-text"><strong>Fast Delivery</strong>Same/Next day</div>
-                </div>
-                <div class="pdp-trust-item">
-                    <i class="fas fa-rotate-left"></i>
-                    <div class="pdp-trust-text"><strong>Easy Returns</strong>14-day policy</div>
-                </div>
-            </div>
-
             {{-- Avail + SKU footer --}}
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--gray-100);">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-top:1px solid var(--gray-100);margin-top:10px;">
                 <div>
-                    <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--gray-300);margin-bottom:5px;">Availability</div>
+                    <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--gray-400);margin-bottom:5px;">Availability</div>
                     <div style="font-size:.76rem;font-weight:700;color:var(--success);display:flex;align-items:center;gap:6px;"><i class="fas fa-circle-check" style="font-size:.7rem;"></i> In Stock</div>
                 </div>
                 <div style="text-align:right;">
-                    <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--gray-300);margin-bottom:5px;">SKU</div>
+                    <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:var(--gray-400);margin-bottom:5px;">SKU</div>
                     <div id="product-sku-display" style="font-size:.76rem;font-weight:700;color:var(--gray-700);">—</div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -289,9 +290,32 @@
 
 @push('styles')
 <style>
-.pdp-main-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+.pdp-main-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+.pdp-info { display:flex; flex-direction:column; gap:0; }
+.pdp-category { margin-bottom:4px; font-size:0.7rem; font-weight:800; color:var(--teal-primary); text-transform:uppercase; letter-spacing:0.1em; }
+.pdp-title { margin-bottom:12px; font-size:clamp(1.5rem, 4vw, 2.4rem); font-weight:900; color:var(--gray-900); line-height:1.2; letter-spacing:-0.02em; }
+.pdp-rating { margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+.pdp-price-row { margin-bottom:8px; display:flex; align-items:baseline; }
+.pdp-tax-note { margin-bottom:18px; font-size:0.7rem; font-weight:600; color:var(--gray-400); }
+.pdp-meta-row { margin-bottom:20px; padding:12px 0; border-top:1px solid var(--gray-50); border-bottom:1px solid var(--gray-50); display:flex; gap:24px; }
+.pdp-desc { margin-bottom:24px; font-size:0.9rem; color:var(--gray-600); line-height:1.6; }
+.pdp-desc p { margin-bottom:8px; }
+.pdp-attr-group { margin-bottom:18px; }
+.pdp-attr-label { margin-bottom:10px; font-size:0.65rem; font-weight:900; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-400); }
+
+/* Action buttons single line */
+.pdp-actions-row { display:flex; gap:10px; align-items:center; margin-bottom:24px; }
+.pdp-atc-btn { height:52px; background:var(--grad-primary); color:white; border-radius:var(--radius-xl); font-size:0.8rem; font-weight:800; border:none; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:var(--shadow-primary); transition:all 0.3s; }
+.pdp-atc-btn:hover { transform:translateY(-2px); filter:brightness(1.1); box-shadow:0 12px 24px rgba(var(--primary-rgb),0.3); }
+.pdp-buy-btn:hover { transform:translateY(-2px); filter:brightness(1.1); box-shadow:0 12px 24px rgba(var(--secondary-rgb),0.3); }
+
 @media(max-width:1024px){ .pdp-main-grid{ grid-template-columns:1fr!important; gap:28px!important; } }
-@media(max-width:768px){ .pdp-thumbs{ flex-direction:row!important; width:100%!important; overflow-x:auto; } .pdp-thumb{ width:64px!important; height:64px!important; flex-shrink:0; } }
+@media(max-width:768px){ 
+    .pdp-thumbs{ flex-direction:row!important; width:100%!important; overflow-x:auto; } 
+    .pdp-thumb{ width:64px!important; height:64px!important; flex-shrink:0; }
+    .pdp-actions-row { flex-wrap:wrap; }
+    .pdp-atc-btn, .pdp-buy-btn { width:100% !important; flex:none !important; }
+}
 </style>
 @endpush
 
@@ -337,9 +361,9 @@ function checkVariantMatch() {
     if(!allSelected){ addToCartBtn.disabled=true; addToCartBtn.querySelector('span').innerText='Select Options'; return; }
     const match=variants.find(v=>Object.keys(selected).every(gId=>v.attributes.some(a=>a.group_id==gId&&a.attribute_id==selected[gId])));
     if(match){
-        priceEl.innerText='$'+parseFloat(match.final_price||match.price).toFixed(2);
+        priceEl.innerText=parseFloat(match.final_price||match.price).toFixed(2);
         if(match.discount>0){
-            oldPriceEl.innerText='$'+parseFloat(match.price).toFixed(2); oldPriceEl.style.display='inline';
+            oldPriceEl.innerText='₹' + parseFloat(match.price).toFixed(2); oldPriceEl.style.display='inline';
             discountBadge.innerText='-'+parseInt(match.discount)+'%'; discountBadge.style.display='inline-flex';
             discountLabel.innerText=parseInt(match.discount)+'% OFF'; discountLabel.style.display='inline-flex';
         } else { oldPriceEl.style.display='none'; discountBadge.style.display='none'; discountLabel.style.display='none'; }

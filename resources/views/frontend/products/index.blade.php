@@ -93,10 +93,10 @@
                 <div class="filter-block" style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;">
                     <div class="filter-title"><i class="fas fa-tag"></i> Price Range</div>
                     <div class="price-range-inputs">
-                        <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min $"
+                        <input type="number" name="min_price" value="{{ request('min_price') }}" placeholder="Min ₹"
                                class="fm-input" style="padding:8px 12px;font-size:.78rem;">
                         <span class="price-separator">—</span>
-                        <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max $"
+                        <input type="number" name="max_price" value="{{ request('max_price') }}" placeholder="Max ₹"
                                class="fm-input" style="padding:8px 12px;font-size:.78rem;">
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm" style="width:100%;margin-top:12px;justify-content:center;">
@@ -114,6 +114,8 @@
                     <p class="results-count">
                         Showing <strong>{{ $products->firstItem() }}–{{ $products->lastItem() }}</strong> of <strong>{{ $products->total() }}</strong> results
                     </p>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
                     <div class="view-toggles">
                         <button onclick="setView('grid')" class="view-toggle-btn {{ !request('view') || request('view') == 'grid' ? 'active' : '' }}" title="Grid View">
                             <i class="fas fa-th-large"></i>
@@ -122,8 +124,7 @@
                             <i class="fas fa-list"></i>
                         </button>
                     </div>
-                </div>
-                <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="height:24px;width:1px;background:var(--gray-200);margin:0 4px;"></div>
                     <span style="font-size:.72rem;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;">Sort:</span>
                     <select class="sort-select fm-select" onchange="updateSort(this.value)">
                         <option value="latest"     {{ request('sort') == 'latest'     ? 'selected' : '' }}>Newest First</option>
@@ -153,7 +154,7 @@
                                 </div>
                                 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
                                     @php $fv = $product->variants->first(); $dp = $fv->final_price ?? $fv->price ?? 0; @endphp
-                                    <span style="font-size:1.2rem;font-weight:900;color:var(--primary);">${{ number_format($dp, 2) }}</span>
+                                    <span style="font-size:1.2rem;font-weight:900;color:var(--primary);">₹{{ number_format($dp, 2) }}</span>
                                     <div style="display:flex;gap:8px;">
                                         <button onclick="addToCart({{ $product->id }})" class="btn btn-primary btn-sm"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                                         <a href="{{ route('products.single', $product->slug) }}" class="btn btn-secondary btn-sm">View</a>

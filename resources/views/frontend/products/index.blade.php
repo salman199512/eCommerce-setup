@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('meta_title', 'Shop Fresh Groceries | FreshMart')
+@section('meta_title', 'Shop Premium Fashion | Luxura')
 
 @section('content')
 
@@ -17,7 +17,7 @@
             @endif
         </div>
         <h1 style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:var(--gray-900);margin-bottom:8px;">
-            Fresh Groceries
+            Fresh Fashion
             @if(request('search'))
             <span style="color:var(--primary);">&ndash; "{{ request('search') }}"</span>
             @endif

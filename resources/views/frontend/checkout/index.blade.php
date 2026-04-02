@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('meta_title', 'Checkout — FreshMart')
+@section('meta_title', 'Checkout — Luxura')
 
 @section('content')
 
@@ -247,8 +247,8 @@
             if (data.redirect) { window.location.href = data.redirect + '?success=1'; return; }
             var options = {
                 "key": data.key, "amount": data.amount, "currency": "INR",
-                "name": "FreshMart", "description": "Organic Grocery Payment",
-                "image": "https://ui-avatars.com/api/?name=Fresh+Mart&background=16a34a&color=fff",
+                "name": "Luxura", "description": "Premium Fashion Payment",
+                "image": "https://ui-avatars.com/api/?name=Luxura&background=1e40af&color=fff",
                 "order_id": data.order_id,
                 "handler": function (response){
                     document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;

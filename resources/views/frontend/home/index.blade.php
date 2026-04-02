@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('meta_title', 'FreshMart — Fresh Groceries Delivered to Your Door')
+@section('meta_title', 'Luxura — Modern Fashion & Lifestyle Delivered')
 
 @section('content')
 
@@ -23,7 +23,7 @@
     </div>
     @else
     <div style="position:absolute;inset:0;">
-        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=90" alt="FreshMart" style="width:100%;height:100%;object-fit:cover;">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=90" alt="Luxura" style="width:100%;height:100%;object-fit:cover;">
         <div class="hero-overlay"></div>
     </div>
     @endif
@@ -31,12 +31,12 @@
     <div class="container" style="position:relative;z-index:10;width:100%;">
         <div class="hero-content animate-fade-up">
             <div class="hero-eyebrow">
-                <i class="fas fa-leaf"></i> 100% Premium eCommerce
+                <i class="fas fa-shirt"></i> 100% Premium Fashion Store
             </div>
             <h1 class="hero-title">
-                The Freshest<br><em>Groceries</em><br>Delivered Fast
+                Elevate Your<br><em>Lifestyle</em><br>Trending Now
             </h1>
-            <p class="hero-subtitle">Premium products delivered fast with same-day delivery. Shop premium organic produce, dairy, bakery &amp; more.</p>
+            <p class="hero-subtitle">Discover the latest trends from world-class designers. Premium quality, sustainable fashion, and lightning-fast delivery.</p>
             <div class="hero-btns">
                 <a href="{{ route('products') }}" class="btn btn-premium-orange btn-xl">
                     <i class="fas fa-cart-shopping"></i> Shop Now
@@ -116,7 +116,7 @@
                 <div class="swiper-slide" style="text-align:center;">
                     <a href="{{ route('products', ['category' => $category->slug]) }}" class="cat-circle-item">
                         <div class="cat-circle-ring">
-                            <img src="{{ $category->imageUrl['250'] ?? 'https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=300&q=80' }}"
+                            <img src="{{ $category->imageUrl['250'] ?? 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=300&q=80' }}"
                                  alt="{{ $category->title }}" loading="lazy">
                         </div>
                         <div class="cat-circle-name">{{ $category->title }}</div>
@@ -137,28 +137,28 @@
             <div class="promo-banner" style="min-height:240px;background:linear-gradient(135deg,#052e16 0%,#14532d 100%);">
                 <div class="promo-banner-overlay" style="background:linear-gradient(90deg,rgba(5,46,22,.95) 0%,transparent 70%);">
                     <span class="promo-banner-tag" style="background:var(--secondary);color:white;">🔥 Flash Sale</span>
-                    <h3 class="promo-banner-title" style="font-size:1.8rem;">Up to <span style="color:var(--yellow-light);">40% OFF</span><br>on Organic Produce</h3>
-                    <p class="promo-banner-sub">Fresh from local farms. Limited time offer!</p>
+                    <h3 class="promo-banner-title" style="font-size:1.8rem;">Up to <span style="color:var(--yellow-light);">40% OFF</span><br>on Latest Collections</h3>
+                    <p class="promo-banner-sub">Curated from top designers. Limited time offer!</p>
                     <a href="{{ route('products') }}" class="btn btn-orange" style="margin-top:16px;">Shop the Sale <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=800&q=80" alt="Organic" style="opacity:.35;">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="Fashion" style="opacity:.35;">
             </div>
 
             <!-- Small Banners Stack -->
             <div style="display:flex;flex-direction:column;gap:20px;">
                 <div class="promo-banner" style="min-height:106px;background:linear-gradient(135deg,#0d9488 0%,#0f766e 100%);">
                     <div class="promo-banner-overlay" style="background:linear-gradient(90deg,rgba(13,148,136,.9),transparent);">
-                        <span class="promo-banner-tag" style="background:white;color:var(--teal-primary);">🥛 Dairy Fresh</span>
-                        <h3 class="promo-banner-title" style="font-size:1rem;">Daily Essentials<br><span style="color:var(--yellow-light);font-size:.85rem;">20% Off Today</span></h3>
+                        <span class="promo-banner-tag" style="background:white;color:var(--teal-primary);">👗 Women's Wear</span>
+                        <h3 class="promo-banner-title" style="font-size:1rem;">Elegance Reimagined<br><span style="color:var(--yellow-light);font-size:.85rem;">20% Off Today</span></h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=400&q=80" alt="Dairy" style="opacity:.3;">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80" alt="Women" style="opacity:.3;">
                 </div>
                 <div class="promo-banner" style="min-height:106px;background:linear-gradient(135deg,#7c3aed 0%,#6d28d9 100%);">
                     <div class="promo-banner-overlay" style="background:linear-gradient(90deg,rgba(124,58,237,.9),transparent);">
-                        <span class="promo-banner-tag" style="background:var(--yellow-primary);color:white;">🍞 Bakery</span>
-                        <h3 class="promo-banner-title" style="font-size:1rem;">Artisan Breads<br><span style="color:var(--yellow-light);font-size:.85rem;">Baked Fresh Daily</span></h3>
+                        <span class="promo-banner-tag" style="background:var(--yellow-primary);color:white;">👔 Men's Fashion</span>
+                        <h3 class="promo-banner-title" style="font-size:1rem;">Classic Tailoring<br><span style="color:var(--yellow-light);font-size:.85rem;">New Styles Added</span></h3>
                     </div>
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" alt="Bakery" style="opacity:.3;">
+                    <img src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=400&q=80" alt="Men" style="opacity:.3;">
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@
             <div>
                 <div class="section-eyebrow"><i class="fas fa-sparkles"></i> Just In</div>
                 <h2 class="section-title">New Arrivals</h2>
-                <p style="color:var(--gray-500);font-size:.85rem;margin-top:6px;">Fresh additions to our store this week.</p>
+                <p style="color:var(--gray-500);font-size:.85rem;margin-top:6px;">The latest trends hitting our shelves this week.</p>
             </div>
             <div class="section-nav">
                 <button class="btn-icon latest-prev"><i class="fas fa-chevron-left"></i></button>
@@ -230,24 +230,24 @@
     <div class="container">
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;">
             <div>
-                <i class="fas fa-seedling" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;"></i>
-                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Quality Guaranteed</div>
-                <div style="font-size:.78rem;opacity:.75;font-weight:500;">All products meet organic standards</div>
+                <i class="fas fa-award" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;"></i>
+                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Luxury Quality</div>
+                <div style="font-size:.78rem;opacity:.75;font-weight:500;">Premium fabrics and craftsmanship</div>
             </div>
             <div>
                 <i class="fas fa-bolt" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;color:var(--yellow-light);"></i>
-                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Same-Day Delivery</div>
-                <div style="font-size:.78rem;opacity:.75;font-weight:500;">Order before 2pm for same-day</div>
+                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Express Shipping</div>
+                <div style="font-size:.78rem;opacity:.75;font-weight:500;">Get your style delivered in 24 hours</div>
             </div>
             <div>
-                <i class="fas fa-snowflake" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;color:#bfdbfe;"></i>
-                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Secure Packaging</div>
-                <div style="font-size:.78rem;opacity:.75;font-weight:500;">Always fresh, always cold</div>
+                <i class="fas fa-box-open" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;color:#bfdbfe;"></i>
+                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Premium Packaging</div>
+                <div style="font-size:.78rem;opacity:.75;font-weight:500;">Delivered in high-end luxury boxes</div>
             </div>
             <div>
-                <i class="fas fa-handshake" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;color:#bbf7d0;"></i>
-                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Direct from Brands</div>
-                <div style="font-size:.78rem;opacity:.75;font-weight:500;">Supporting local agriculture</div>
+                <i class="fas fa-check-double" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;color:#bbf7d0;"></i>
+                <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">100% Authentic</div>
+                <div style="font-size:.78rem;opacity:.75;font-weight:500;">Sourced directly from official brands</div>
             </div>
         </div>
     </div>
@@ -311,7 +311,7 @@
                     </div>
                 </div>
                 @empty
-                    @foreach([['Emma R.','Verified Buyer','The freshness of the produce is incredible. My salads have never tasted this good!'],['James K.','Regular Customer','Super fast delivery and everything was perfectly packaged. Highly recommend!'],['Sarah L.','Food Blogger','The organic range is outstanding. Supporting local farmers while eating well — perfect.']] as $t)
+                    @foreach([['Emma R.','Fashion Influencer','The quality of these fabrics is insane! My wardrobe has never looked so premium.'],['James K.','Style Enthusiast','Express shipping actually delivered under 24 hours. Hands down best fashion site.'],['Sarah L.','Designer','The curated collection is outstanding. Finally a store that understands modern aesthetics.']] as $t)
                     <div class="swiper-slide">
                         <div class="testimonial-card">
                             <div class="testimonial-stars">★★★★★</div>

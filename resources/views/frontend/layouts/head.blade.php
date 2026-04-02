@@ -1,9 +1,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@yield('meta_title', 'ShopZone — Premium eCommerce Store')</title>
+<title>@yield('meta_title', 'Luxura — Premium eCommerce Store')</title>
 <meta name="description" content="@yield('meta_description', 'Discover fashion, electronics, watches and more at unbeatable prices.')">
 <meta name="keywords" content="@yield('meta_keyword', 'ecommerce, fashion, electronics, watches, online shopping')">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#1e40af">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%231e40af'/%3E%3Cpath d='M35 25 h15 v40 h20 v10 h-35 z' fill='white'/%3E%3Cpath d='M70 25 l5 5 l-5 5 l-5 -5 z' fill='%2360a5fa'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -1,5 +1,5 @@
 {{-- ══════════════════════════════════════════════
-     FreshMart Premium Header — Multi-Color UI
+     Luxura Premium Header — Modern Hub
 ══════════════════════════════════════════════ --}}
 
 <!-- ── Top Announcement Bar ── -->
@@ -9,7 +9,7 @@
             <div class="topbar-marquee">
                 <span class="topbar-item"><i class="fas fa-truck-fast"></i> Free delivery on orders over ₹49</span>
                 <span class="topbar-item" style="opacity:.4;">|</span>
-                <span class="topbar-item"><i class="fas fa-leaf"></i> 100% Organic &amp; Fresh</span>
+                <span class="topbar-item"><i class="fas fa-shirt"></i> Premium Fashion & Style</span>
                 <span class="topbar-item" style="opacity:.4;">|</span>
                 <span class="topbar-item"><i class="fas fa-rotate-left"></i> 7-Day Easy Returns</span>
             </div>
@@ -28,12 +28,14 @@
 
             <!-- Logo -->
             <a href="{{ route('home') }}" class="site-logo">
-                <div class="logo-icon">
-                    <i class="fas fa-seedling"></i>
+                <div class="logo-icon" style="background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3);">
+                    <i class="fas fa-l" style="font-weight: 900; position: relative;">
+                        <i class="fas fa-leaf" style="font-size: 0.6rem; position: absolute; top: -2px; right: -4px; transform: rotate(15deg); opacity: 0.9;"></i>
+                    </i>
                 </div>
                 <div>
-                    <div class="logo-text-top">Shop<span>Zone</span></div>
-                    <div class="logo-text-bottom">Premium Store</div>
+                    <div class="logo-text-top" style="color: #1e1b4b;">Lux<span>ura</span></div>
+                    <div class="logo-text-bottom" style="color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.55rem;">Premium Store</div>
                 </div>
             </a>
 
@@ -51,7 +53,7 @@
                             @endforeach
                         </select>
                         <input type="text" name="search" id="global-search-input" class="search-input"
-                               placeholder="Search fresh groceries, brands, products…"
+                               placeholder="Search premium fashion, brands, products…"
                                value="{{ request('search') }}">
                         <button type="submit" class="search-btn">
                             <i class="fas fa-search"></i>
@@ -216,10 +218,10 @@
                                 @endforeach
                             </div>
                             <div class="mega-promo">
-                                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Fresh Produce">
+                                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="New Style Collection">
                                 <div class="mega-promo-content">
-                                    <span class="mega-promo-tag">🌱 Organic</span>
-                                    <div style="font-size:1.3rem;font-weight:900;color:white;line-height:1.2;margin-bottom:6px;">Farm Fresh<br>Delivered</div>
+                                    <span class="mega-promo-tag">✨ New Arrival</span>
+                                    <div style="font-size:1.3rem;font-weight:900;color:white;line-height:1.2;margin-bottom:6px;">Summer Styles<br>Now Live</div>
                                     <a href="{{ route('products') }}" class="btn btn-white btn-sm" style="margin-top:12px;">Shop Now</a>
                                 </div>
                             </div>
@@ -239,7 +241,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('products') }}" class="nav-link">
-                        <i class="fas fa-leaf" style="color:var(--teal-primary);"></i> Organic
+                        <i class="fas fa-shirt" style="color:var(--teal-primary);"></i> Fashion
                     </a>
                 </li>
                 <li class="nav-item">

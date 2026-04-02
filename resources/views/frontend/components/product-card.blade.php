@@ -12,13 +12,32 @@ if ($product) {
     $hasDiscount = $product->discount > 0 || ($product->variants->count() > 0 && $product->variants->min('discount') > 0);
 } else {
     $stIdx       = $static_index ?? 1;
-    $foods       = ['Organic Apples','Fresh Milk','Free Range Eggs','Whole Grain Bread','Baby Spinach','Greek Yogurt','Avocados','Cherry Tomatoes','Wild Salmon','Almond Butter'];
-    $imgs        = ['1619566636213-aab0a0ce7b31','1567306226416-28f0efdc88ce','1618512496248-a4a64ce0c8bb','1586201375761-83865001e31c','1574316077139-f0beb48c8fdd','1559181567-c3190b5c7791','1523049673857-eb18f1dea2cc','1592924357228-91a4daadcfea','1535262412227-85541e910204','1508061253366-f7da158b6d46'];
-    $i           = ($stIdx - 1) % count($imgs);
-    $imageUrl    = "https://images.unsplash.com/photo-{$imgs[$i]}?auto=format&fit=crop&w=600&q=80";
-    $secondImage = $imageUrl;
-    $title       = $foods[($stIdx - 1) % count($foods)] . ' — Premium';
-    $category    = ['Fruits','Dairy','Bakery','Produce','Seafood'][($stIdx - 1) % 5];
+    $category    = $product->category->title ?? 'Apparel';
+    $title       = $product->title ?? '';
+    $price       = $product->price ?? rand(499, 1499);
+    $oldPrice    = $product->mrp ?? ($price + rand(200, 500));
+    $foods       = ['Silk Flowy Dress','Urban Denim Jacket','Classic White Tee','Luxury Leather Belt','Velvet Evening Gown','Designer Sunglasses','Premium Chinos','Wool Blend Coat','Minimalist Sneakers','Cotton Oxford Shirt'];
+    $title       = $title ?: $foods[($stIdx - 1) % count($foods)];
+    $imageUrl    = $product->avatar_url ?? 'https://images.unsplash.com/photo-'.([
+        '1515886657613-9f3515b0c78f', // 1
+        '1539109136881-3be061094fed', // 2
+        '1551488831-00ddcb6c6bd3', // 3
+        '1496747611176-843222e1e57c', // 4
+        '1434389677669-e08b4cac3105', // 5
+        '1549298916-b41d501d3772', // 6
+        '1516762689617-e1cffcef479d', // 7
+        '1524380365022-47c18598788c', // 8
+        '1525507119028-ed4c629a60a3', // 9
+        '1503342392332-683a4537380a', // 10
+    ][($stIdx - 1) % 10]).'?auto=format&fit=crop&w=400&q=80';
+    $secondImage = 'https://images.unsplash.com/photo-'.([
+        '1485462537746-965f33f7f6a7',
+        '1578932750294-f5075e85f44a',
+        '1562157873-818bc0726f68',
+        '1512436991641-6745cdb1723f',
+        '1490481651871-ab68de25d43d',
+    ][($stIdx - 1) % 5]).'?auto=format&fit=crop&w=400&q=80';
+    $category    = ['Women','Men','Accessories','Collections','Outerwear'][($stIdx - 1) % 5];
     $url         = '#';
     $isNew       = $stIdx % 3 == 0;
     $hasDiscount = $stIdx % 4 == 0;
@@ -84,7 +103,8 @@ if ($product) {
                     <span class="price-old">₹{{ number_format($originalPrice, 2) }}</span>
                     @endif
                 @elseif(!$product)
-                    <span class="price-current">₹{{ number_format(rand(2, 25) + rand(0,99)/100, 2) }}</span>
+                    <span class="price-current">₹{{ number_format($price, 2) }}</span>
+                    <span class="price-old">₹{{ number_format($oldPrice, 2) }}</span>
                 @else
                     <span style="font-size:.72rem;font-weight:700;color:var(--gray-400);">Out of Stock</span>
                 @endif

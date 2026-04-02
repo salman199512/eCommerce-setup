@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('meta_title', $seo['meta_title'] ?? 'Contact Us — FreshMart')
+@section('meta_title', $seo['meta_title'] ?? 'Contact Us — Luxura')
 @section('meta_description', $seo['meta_description'] ?? '')
 @section('meta_keyword', $seo['meta_keyword'] ?? '')
 
@@ -36,7 +36,7 @@
                 <i class="fas fa-phone-volume"></i>
             </div>
             <div style="font-size:0.62rem;font-weight:900;text-transform:uppercase;letter-spacing:0.14em;color:var(--gray-400);margin-bottom:8px;">Phone</div>
-            <div style="font-size:0.82rem;font-weight:600;color:var(--gray-700);line-height:1.6;">+1 (800) 555-MART<br>Mon–Sat, 8am–9pm</div>
+            <div style="font-size:0.82rem;font-weight:600;color:var(--gray-700);line-height:1.6;">+1 (800) 555-STYLE<br>Mon–Sat, 8am–9pm</div>
         </div>
 
         <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:24px;text-align:center;box-shadow:var(--shadow-sm);transition:box-shadow .25s;" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
@@ -44,7 +44,7 @@
                 <i class="fas fa-envelope-open-text"></i>
             </div>
             <div style="font-size:0.62rem;font-weight:900;text-transform:uppercase;letter-spacing:0.14em;color:var(--gray-400);margin-bottom:8px;">Email</div>
-            <div style="font-size:0.82rem;font-weight:600;color:var(--gray-700);line-height:1.6;">support@freshmart.com<br>hello@freshmart.com</div>
+            <div style="font-size:0.82rem;font-weight:600;color:var(--gray-700);line-height:1.6;">support@luxura.com<br>hello@luxura.com</div>
         </div>
 
         <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:24px;text-align:center;box-shadow:var(--shadow-sm);transition:box-shadow .25s;" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
@@ -69,13 +69,13 @@
             </div>
             <h2 style="font-size:2rem;font-weight:900;color:var(--gray-900);line-height:1.2;margin-bottom:16px;">We're Here to Help</h2>
             <p style="font-size:0.88rem;color:var(--gray-600);font-weight:500;line-height:1.7;">
-                Whether you have questions about our fresh organic produce, delivery schedules, or anything else — our friendly team is ready to help every step of the way.
+                Whether you have questions about our latest collections, delivery schedules, or premium materials — our friendly team is ready to help every step of the way.
             </p>
         </div>
 
         <!-- Location Map Image -->
         <div style="border-radius:var(--radius-xl);overflow:hidden;position:relative;height:220px;margin-bottom:28px;border:1px solid var(--primary-light);">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80"
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=80"
                  style="width:100%;height:100%;object-fit:cover;opacity:0.85;">
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,46,22,0.7),transparent);display:flex;align-items:flex-end;padding:20px;">
                 <div>

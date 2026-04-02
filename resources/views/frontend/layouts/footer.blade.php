@@ -1,5 +1,5 @@
 {{-- ══════════════════════════════════
-     FreshMart Professional Footer
+     Luxura Professional Footer
 ══════════════════════════════════ --}}
 
 <!-- Newsletter Banner -->
@@ -9,8 +9,8 @@
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;z-index:1;">
                 <div>
                     <div class="section-eyebrow newsletter-eyebrow"><i class="fas fa-envelope"></i> Newsletter</div>
-                    <h2 class="newsletter-title">Get Fresh Deals<br>In Your Inbox</h2>
-                    <p class="newsletter-sub">Subscribe and get 10% off your first order. Exclusive deals, recipes, and more.</p>
+                    <h2 class="newsletter-title">Get Style Updates<br>In Your Inbox</h2>
+                    <p class="newsletter-sub">Subscribe and get 10% off your first order. Exclusive deals, new collections, and more.</p>
                     <div style="display:flex;gap:6px;align-items:center;color:rgba(255,255,255,.6);font-size:.72rem;font-weight:600;">
                         <i class="fas fa-shield-halved" style="color:var(--yellow-light);"></i>
                         We never share your email. Unsubscribe anytime.
@@ -42,14 +42,18 @@
 
             <!-- Brand Column -->
             <div>
-                <a href="{{ route('home') }}" class="footer-logo site-logo" style="display:inline-flex;margin-bottom:20px;">
-                    <div class="logo-icon"><i class="fas fa-seedling"></i></div>
+                <a href="{{ route('home') }}" class="site-logo" style="display:flex; gap:12px; align-items:center;">
+                    <div class="logo-icon" style="background: white; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-size: 1.4rem;">
+                        <i class="fas fa-l" style="font-weight: 900; position: relative;">
+                            <i class="fas fa-leaf" style="font-size: 0.6rem; position: absolute; top: -2px; right: -4px; transform: rotate(15deg); opacity: 0.9;"></i>
+                        </i>
+                    </div>
                     <div>
-                        <div class="logo-text-top">Shop<span>Zone</span></div>
-                        <div class="logo-text-bottom" style="color:rgba(255,255,255,.35);">Organic &amp; Fresh</div>
+                        <div class="logo-text-top" style="color: white; font-weight: 900; font-size: 1.5rem; letter-spacing: -0.02em;">Lux<span>ura</span></div>
+                        <div class="logo-text-bottom" style="color:rgba(255,255,255,.35); font-weight:700; letter-spacing: 0.1em; font-size: 0.55rem;">Premium Fashion Store</div>
                     </div>
                 </a>
-                <p class="footer-desc">Your trusted online grocery store delivering fresh, organic, and quality produce right to your doorstep since 2019.</p>
+                <p class="footer-desc">Your trusted destination for the latest fashion trends, high-quality apparel, and designer lifestyle accessories delivered to your doorstep since 2019.</p>
 
                 <!-- App Badges -->
                 <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap;">
@@ -136,7 +140,7 @@
                         </div>
                         <div>
                             <div class="footer-contact-label">Email</div>
-                            <div class="footer-contact-value">support@freshmart.com</div>
+                            <div class="footer-contact-value">support@luxura.com</div>
                         </div>
                     </div>
                     <div class="footer-contact-item">
@@ -167,7 +171,7 @@
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <p class="footer-copy">&copy; {{ date('Y') }} FreshMart. All rights reserved. Made with <span style="color:#ef4444;">❤</span> for fresh food lovers.</p>
+            <p class="footer-copy">&copy; {{ date('Y') }} Luxura. All rights reserved. Made with <span style="color:#ef4444;">❤</span> for style trendsetters.</p>
             <div class="footer-payment">
                 <i class="fab fa-cc-visa"></i>
                 <i class="fab fa-cc-mastercard"></i>

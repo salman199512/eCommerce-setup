@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('meta_title', 'My Account — FreshMart')
+@section('meta_title', 'My Account — Luxura')
 
 @section('content')
 

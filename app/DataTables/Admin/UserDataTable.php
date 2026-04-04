@@ -50,7 +50,9 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'customer');
+        });
     }
 
     /**

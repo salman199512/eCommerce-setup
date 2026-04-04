@@ -9,10 +9,17 @@ return [
         'children' => [],
     ],
     [
-        'name' => 'Users',
-        'icon' => '<i class="ti ti-user-circle fs-18 me-2 side-menu__icon "></i>',
+        'name' => 'Staff',
+        'icon' => '<i class="ti ti-user-check fs-18 me-2 side-menu__icon "></i>',
         'isHeader' => false,
         'route' => 'admin.users.index',
+        'children' => [],
+    ],
+    [
+        'name' => 'Customers',
+        'icon' => '<i class="ti ti-users fs-18 me-2 side-menu__icon "></i>',
+        'isHeader' => false,
+        'route' => 'admin.customers.index',
         'children' => [],
     ],
 

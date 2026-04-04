@@ -285,8 +285,10 @@
 <div class="mobile-drawer" id="mobile-drawer">
     <div class="mobile-drawer-head">
         <div class="site-logo" style="gap:8px;">
-            <div class="logo-icon" style="width:32px;height:32px;font-size:.9rem;"><i class="fas fa-seedling"></i></div>
-            <div class="logo-text-top" style="font-size:1.1rem;"<>Shop<span>Zone</span></div>
+            <div class="logo-icon" style="background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;">
+                <i class="fas fa-l"></i>
+            </div>
+            <div class="logo-text-top" style="font-size:1.1rem;color: #1e1b4b;font-weight:800;">Lux<span>ura</span></div>
         </div>
         <button class="mobile-close-btn" id="mobile-close-btn"><i class="fas fa-times"></i></button>
     </div>

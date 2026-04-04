@@ -5,149 +5,170 @@
 @endsection
 
 @section('page_headers')
-    <h4>Dashboard</h4>
+    <div class="d-flex justify-content-between align-items-center w-100">
+        <h4>Dashboard Analytics</h4>
+        <form action="{{ route('dashboard') }}" method="GET" id="yearFilterForm" class="m-0">
+            <select name="year" onchange="document.getElementById('yearFilterForm').submit()" class="form-select form-select-sm" style="width: auto;">
+                @foreach($availableYears as $y)
+                    <option value="{{ $y }}" {{ $year == $y ? 'selected' : '' }}>Year {{ $y }}</option>
+                @endforeach
+            </select>
+        </form>
+    </div>
 @endsection
 
 @section('content')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <div class="content">
+        <div class="container-fluid">
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-primary text-white mb-4 shadow" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; border: none;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="text-white-50 small">Total Revenue ({{ $year }})</div>
+                                    <div class="fs-2 fw-bold">₹{{ number_format($totalRevenue, 2) }}</div>
+                                </div>
+                                <i class="fas fa-indian-rupee-sign fa-2x text-white-50"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-success text-white mb-4 shadow" style="background: linear-gradient(135deg, #3d9b06 0%, #a8e063 100%) !important; border: none;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="text-white-50 small">Total Orders ({{ $year }})</div>
+                                    <div class="fs-2 fw-bold">{{ number_format($totalOrders) }}</div>
+                                </div>
+                                <i class="fas fa-shopping-cart fa-2x text-white-50"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <div class="card bg-info text-white mb-4 shadow" style="background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%) !important; border: none;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="text-white-50 small">Active Customers ({{ $year }})</div>
+                                    <div class="fs-2 fw-bold">{{ number_format($activeCustomers) }}</div>
+                                </div>
+                                <i class="fas fa-users fa-2x text-white-50"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <style>
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
+            <div class="row">
+                <!-- Sales Chart -->
+                <div class="col-xl-8">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Monthly Sales Overview ({{ $year }})</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area" style="height: 350px;">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+                <!-- Top Selling Products -->
+                <div class="col-xl-4">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Top Selling Products</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th class="text-right">Qty</th>
+                                            <th class="text-right">Revenue</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($topSellingProducts as $item)
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        @if($item->product && $item->product->avatar_url)
+                                                            <img src="{{ $item->product->avatar_url }}" alt="" style="width: 30px; height: 30px; object-fit: cover;" class="rounded mr-2">
+                                                        @else
+                                                            <div style="width: 30px; height: 30px; background: var(--gray-100); border-radius: 4px; display: flex; align-items: center; justify-content: center;" class="mr-2">
+                                                                <i class="fas fa-image text-muted" style="font-size: 0.7rem;"></i>
+                                                            </div>
+                                                        @endif
+                                                        <span class="text-truncate" style="max-width: 120px;">{{ $item->product->title ?? 'N/A' }}</span>
+                                                    </div>
+                                                </td>
+                                                <td class="text-right">{{ $item->total_qty }}</td>
+                                                <td class="text-right">₹{{ number_format($item->total_revenue, 2) }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="3" class="text-center py-4">No data available</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        .header h1 {
-            color: #2c3e50;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            color: #7f8c8d;
-            font-size: 1.1em;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .year-filter {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .year-filter label {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 1.1em;
-        }
-
-        select {
-            padding: 10px 15px;
-            border: 2px solid #e0e6ed;
-            border-radius: 10px;
-            font-size: 16px;
-            background: white;
-            color: #2c3e50;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        select:hover {
-            border-color: #667eea;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #3d9b06, #764ba2);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-card h3 {
-            opacity: 0.9;
-            color: #fff;
-            font-size: 15px;
-        }
-
-        .stat-card .value {
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        .chart-container {
-            position: relative;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .chart-wrapper {
-            position: relative;
-            height: 400px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .controls {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .chart-wrapper {
-                height: 300px;
-            }
-        }
-    </style>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('salesChart').getContext('2d');
+            var salesChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Sales (₹)',
+                        data: {!! json_encode($monthlySales) !!},
+                        backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                        borderColor: 'rgba(102, 126, 234, 1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(102, 126, 234, 1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + value;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
-@push('stackedScripts')
 
-@endpush

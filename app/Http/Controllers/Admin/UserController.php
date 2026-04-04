@@ -6,6 +6,8 @@ use App\DataTables\Admin\UserDataTable;
 use App\Http\Requests\Admin\UpdateUserPasswordRequest;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\Post;
 use App\Models\User;
 use App\Http\Requests\Admin;
@@ -20,6 +22,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -160,7 +163,52 @@ class UserController extends AppBaseController
         return Response::json(['message' => 'Password updated successfully.', 'back_url' => route('admin.users.index')]);
     }
 
-    public function dashboard(){
-        return view('admin.dashboard.index');
+    public function dashboard(Request $request)
+    {
+        $year = $request->get('year', date('Y'));
+        
+        // Statistics
+        $totalRevenue = Order::whereYear('created_at', $year)->sum('total_amount');
+        $totalOrders = Order::whereYear('created_at', $year)->count();
+        $activeCustomers = Order::whereYear('created_at', $year)->distinct('user_id')->count('user_id');
+
+        // Monthly Sales for Chart
+        $monthlySalesData = Order::whereYear('created_at', $year)
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(total_amount) as total'))
+            ->groupBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        $monthlySales = array_fill(1, 12, 0);
+        foreach ($monthlySalesData as $month => $total) {
+            $monthlySales[$month] = (float)$total;
+        }
+        $monthlySales = array_values($monthlySales);
+
+        // Top Selling Products
+        $topSellingProducts = OrderItem::select('product_id', DB::raw('SUM(quantity) as total_qty'), DB::raw('SUM(price * quantity) as total_revenue'))
+            ->whereHas('order', function($q) use ($year) {
+                $q->whereYear('created_at', $year);
+            })
+            ->groupBy('product_id')
+            ->orderBy('total_qty', 'desc')
+            ->with('product')
+            ->take(5)
+            ->get();
+
+        $availableYears = Order::select(DB::raw('YEAR(created_at) as year'))
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year')
+            ->toArray();
+            
+        if (empty($availableYears)) {
+            $availableYears = [date('Y')];
+        }
+
+        return view('admin.dashboard.index', compact(
+            'totalRevenue', 'totalOrders', 'activeCustomers', 
+            'monthlySales', 'topSellingProducts', 'year', 'availableYears'
+        ));
     }
 }

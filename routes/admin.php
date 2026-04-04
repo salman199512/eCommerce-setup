@@ -80,4 +80,6 @@ Route::group(['prefix' => 'admin',
     Route::resource('orders', App\Http\Controllers\Admin\OrderController::class, ["as" => 'admin'])->only(['index', 'show', 'destroy', 'update']);
     Route::post('orders/{id}/status', [\App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('admin.orders.updateStatus');
 
+    Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class, ["as" => 'admin'])->only(['index', 'show', 'destroy']);
+
     });

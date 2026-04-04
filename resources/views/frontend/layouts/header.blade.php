@@ -72,31 +72,43 @@
             <!-- Header Actions -->
             <div class="header-actions">
                 <!-- Account -->
-                <div style="position:relative;">
+                <div class="cart-dropdown-wrap">
                     <a href="{{ route('my-account') }}" class="header-action-btn">
                         <i class="far fa-user"></i>
                         <span class="label">Account</span>
                     </a>
                     @auth
-                    <div class="cart-dropdown" style="min-width:220px;left:auto;right:0;">
-                        <div class="cart-dropdown-head" style="background:var(--grad-hero);color:white;border-radius:var(--radius-xl) var(--radius-xl) 0 0;">
-                            <div>
-                                <div style="font-size:.68rem;opacity:.7;font-weight:600;">Welcome back</div>
-                                <div style="font-weight:800;font-size:.85rem;">{{ auth()->user()->name }}</div>
+                    <div class="cart-dropdown" style="min-width:240px;left:auto;right:0;">
+                        <div class="cart-dropdown-head" style="background:var(--grad-hero);color:white;border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:20px;">
+                            <div style="display:flex;align-items:center;gap:12px;">
+                                <div style="width:40px;height:40px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;items-center;justify-content:center;font-weight:800;font-size:1.2rem;">
+                                    {{ substr(auth()->user()->name, 0, 1) }}
+                                </div>
+                                <div>
+                                    <div style="font-size:.68rem;opacity:.8;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Welcome</div>
+                                    <div style="font-weight:800;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px;">{{ auth()->user()->name }}</div>
+                                </div>
                             </div>
-                            <i class="fas fa-user-circle" style="font-size:1.6rem;opacity:.5;"></i>
                         </div>
-                        <div style="padding:8px 0;">
-                            <a href="{{ route('my-account') }}" class="account-nav-link"><i class="fas fa-gauge"></i> Dashboard</a>
-                            <a href="{{ route('my-orders') }}" class="account-nav-link"><i class="fas fa-box"></i> My Orders</a>
-                            <a href="{{ route('wishlist') }}" class="account-nav-link"><i class="fas fa-heart"></i> Wishlist</a>
-                            <a href="{{ route('my-account.profile') }}" class="account-nav-link"><i class="fas fa-gear"></i> Profile Settings</a>
+                        <div style="padding:12px 0;">
+                            <a href="{{ route('my-account') }}" class="account-nav-link" style="display:flex;align-items:center;gap:12px;padding:12px 20px;color:var(--gray-700);font-weight:600;transition:all 0.3s;">
+                                <i class="fas fa-gauge-high" style="width:20px;color:var(--primary);"></i> Dashboard
+                            </a>
+                            <a href="{{ route('my-orders') }}" class="account-nav-link" style="display:flex;align-items:center;gap:12px;padding:12px 20px;color:var(--gray-700);font-weight:600;transition:all 0.3s;">
+                                <i class="fas fa-shopping-bag" style="width:20px;color:var(--primary);"></i> My Orders
+                            </a>
+                            <a href="{{ route('wishlist') }}" class="account-nav-link" style="display:flex;align-items:center;gap:12px;padding:12px 20px;color:var(--gray-700);font-weight:600;transition:all 0.3s;">
+                                <i class="fas fa-heart" style="width:20px;color:var(--primary);"></i> Wishlist
+                            </a>
+                            <a href="{{ route('my-account.profile') }}" class="account-nav-link" style="display:flex;align-items:center;gap:12px;padding:12px 20px;color:var(--gray-700);font-weight:600;transition:all 0.3s;">
+                                <i class="fas fa-user-gear" style="width:20px;color:var(--primary);"></i> Profile Settings
+                            </a>
                         </div>
-                        <div style="padding:12px 20px;border-top:1px solid var(--gray-100);">
+                        <div style="padding:15px 20px;border-top:1px solid var(--gray-100);">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="btn btn-sm" style="width:100%;background:var(--red-soft);color:var(--red-primary);border:none;">
-                                    <i class="fas fa-right-from-bracket"></i> Sign Out
+                                <button type="submit" class="btn" style="width:100%;background:var(--red-soft);color:var(--red-primary);border:none;padding:10px;border-radius:var(--radius-lg);font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;font-size:0.8rem;">
+                                    <i class="fas fa-power-off"></i> Logout
                                 </button>
                             </form>
                         </div>

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 use Response;
 
 class RegistrationController extends Controller {
+    /** @var UserRepository */
+    private $userRepository;
 
     public function __construct(UserRepository $userRepo) {
         $this->userRepository = $userRepo;
@@ -31,7 +33,7 @@ class RegistrationController extends Controller {
         DB::beginTransaction();
 
         $user = User::create($request->validated());
-        $user->assignRole('Super Admin');
+        $user->assignRole('customer');
         $this->userRepository->updateOrCreate_avatar($user, $request);
         $objToken = $user->createToken($user->name);
         $strToken = $objToken->accessToken;

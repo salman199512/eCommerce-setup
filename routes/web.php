@@ -17,29 +17,31 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-Route::get('/', [\App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
-Route::get('/products', [\App\Http\Controllers\Frontend\FrontendController::class, 'products'])->name('products');
-Route::get('/search-suggestions', [\App\Http\Controllers\Frontend\FrontendController::class, 'searchSuggestions'])->name('search.suggestions');
-Route::get('/product/{slug}', [\App\Http\Controllers\Frontend\FrontendController::class, 'productDetail'])->name('products.single');
+Route::middleware(['customer'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
+    Route::get('/products', [\App\Http\Controllers\Frontend\FrontendController::class, 'products'])->name('products');
+    Route::get('/search-suggestions', [\App\Http\Controllers\Frontend\FrontendController::class, 'searchSuggestions'])->name('search.suggestions');
+    Route::get('/product/{slug}', [\App\Http\Controllers\Frontend\FrontendController::class, 'productDetail'])->name('products.single');
 
-// Restored HomeController Routes
-Route::get('/cms/{slug}', [\App\Http\Controllers\HomeController::class, 'cmsDetail'])->name('cms-detail');
-Route::get('/faqs', [\App\Http\Controllers\HomeController::class, 'faqs'])->name('faqs');
-Route::post('/save-newsletter', [\App\Http\Controllers\HomeController::class, 'saveNewsLetter'])->name('save.newsletter');
-Route::post('/save-inquiry', [\App\Http\Controllers\HomeController::class, 'saveInquiry'])->name('save-inquiry');
-Route::get('/contact-us', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact-us');
-Route::get('/about-us', [\App\Http\Controllers\HomeController::class, 'about_us'])->name('about-us');
-Route::post('run/cmd', [\App\Http\Controllers\HomeController::class, 'runCmd'])->name('run.cmd');
-Route::get('cmd', [\App\Http\Controllers\HomeController::class, 'cmd'])->name('cmd');
-Route::post('cart/add', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
-Route::get('cart', [\App\Http\Controllers\CartController::class, 'viewCart'])->name('cart');
-Route::patch('update-cart', [\App\Http\Controllers\CartController::class, 'updateCart'])->name('update.cart');
-Route::delete('remove-from-cart', [\App\Http\Controllers\CartController::class, 'removeFromCart'])->name('remove.from.cart');
+    // Restored HomeController Routes
+    Route::get('/cms/{slug}', [\App\Http\Controllers\HomeController::class, 'cmsDetail'])->name('cms-detail');
+    Route::get('/faqs', [\App\Http\Controllers\HomeController::class, 'faqs'])->name('faqs');
+    Route::post('/save-newsletter', [\App\Http\Controllers\HomeController::class, 'saveNewsLetter'])->name('save.newsletter');
+    Route::post('/save-inquiry', [\App\Http\Controllers\HomeController::class, 'saveInquiry'])->name('save-inquiry');
+    Route::get('/contact-us', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact-us');
+    Route::get('/about-us', [\App\Http\Controllers\HomeController::class, 'about_us'])->name('about-us');
+    Route::post('run/cmd', [\App\Http\Controllers\HomeController::class, 'runCmd'])->name('run.cmd');
+    Route::get('cmd', [\App\Http\Controllers\HomeController::class, 'cmd'])->name('cmd');
+    Route::post('cart/add', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('cart', [\App\Http\Controllers\CartController::class, 'viewCart'])->name('cart');
+    Route::patch('update-cart', [\App\Http\Controllers\CartController::class, 'updateCart'])->name('update.cart');
+    Route::delete('remove-from-cart', [\App\Http\Controllers\CartController::class, 'removeFromCart'])->name('remove.from.cart');
 
-Route::get('checkout', [\App\Http\Controllers\PaymentController::class, 'checkout'])->name('checkout');
-Route::post('place-order', [\App\Http\Controllers\PaymentController::class, 'placeOrder'])->name('place-order');
-Route::get('/order/track', [\App\Http\Controllers\PaymentController::class, 'order_track'])->name('order.track');
-Route::post('/verify-payment', [\App\Http\Controllers\PaymentController::class, 'verifyPayment'])->name('verifyPayment');
+    Route::get('checkout', [\App\Http\Controllers\PaymentController::class, 'checkout'])->name('checkout');
+    Route::post('place-order', [\App\Http\Controllers\PaymentController::class, 'placeOrder'])->name('place-order');
+    Route::get('/order/track', [\App\Http\Controllers\PaymentController::class, 'order_track'])->name('order.track');
+    Route::post('/verify-payment', [\App\Http\Controllers\PaymentController::class, 'verifyPayment'])->name('verifyPayment');
+});
 
 
 
@@ -47,7 +49,7 @@ require __DIR__.'/auth.php';
 require __DIR__.'/media.php';
 require __DIR__.'/admin.php';
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/my-account', [\App\Http\Controllers\MyAccountController::class, 'index'])->name('my-account');
     Route::get('/my-account/profile', [\App\Http\Controllers\MyAccountController::class, 'profile'])->name('my-account.profile');
     Route::put('/my-account/update', [\App\Http\Controllers\MyAccountController::class, 'updateProfile'])->name('my-account.update');

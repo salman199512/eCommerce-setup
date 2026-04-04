@@ -10,6 +10,7 @@ class RolesSeeder extends Seeder
 
     protected $roles = [
         'Super Admin',
+        'customer',
     ];
 
     /**

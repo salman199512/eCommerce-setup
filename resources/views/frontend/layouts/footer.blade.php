@@ -181,9 +181,10 @@
                 <i class="fab fa-google-pay"></i>
             </div>
             <div class="footer-legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
+                @foreach($sharedCmsPages ?? collect() as $page)
+                    <a href="{{ route('cms-detail', $page->slug) }}">{{ $page->title }}</a>
+                @endforeach
+                <a href="{{ route('faqs') }}">FAQ</a>
             </div>
         </div>
     </div>

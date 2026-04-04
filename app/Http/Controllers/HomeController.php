@@ -73,9 +73,9 @@ class HomeController extends AppBaseController
     {
         $faqs = Faq::all();
         $seo = array(
-            'meta_title' => 'Frequently Asked Questions - Ramdev Oil' ?? '',
-            'meta_description' => "Have questions? Explore our FAQ page to find answers to the most commonly asked questions about My News website, including how to navigate the site, subscribe, access content, and more. We're here to help!" ?? '',
-            'meta_keyword' => 'FAQ, frequently asked questions, My News FAQ, news website help, site navigation, subscription help, content access, My News questions, customer support, help center' ?? '',
+            'meta_title' => 'Frequently Asked Questions - ' . config('app.name'),
+            'meta_description' => "Find answers to your questions about Luxura's premium fashion, delivery, returns, and premium membership on our FAQ page.",
+            'meta_keyword' => 'FAQ, frequently asked questions, Luxura FAQ, fashion help, shipping, returns, order tracking',
         );
         return view('frontend.faqs.index', compact('faqs', 'seo'));
     }

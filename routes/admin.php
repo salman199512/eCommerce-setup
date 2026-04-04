@@ -82,4 +82,6 @@ Route::group(['prefix' => 'admin',
 
     Route::resource('customers', \App\Http\Controllers\Admin\CustomerController::class, ["as" => 'admin'])->only(['index', 'show', 'destroy']);
 
+    Route::resource('payments', \App\Http\Controllers\Admin\PaymentController::class, ["as" => 'admin'])->only(['index', 'destroy']);
+
     });

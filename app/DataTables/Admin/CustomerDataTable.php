@@ -48,6 +48,7 @@ class CustomerDataTable extends DataTable
                 'dom'       => 'RB<\'row pt-15\' <\'col-sm-6\'l><\'col-sm-6\'f>>rt<\'row\'<\'col-sm-12 col-md-5\'i><\'col-sm-12 col-md-7\'p>>',
                 'stateSave' => true,
                 'order'     => [[5 , 'desc']],
+                'buttons'   => [],
             ]);
     }
 

@@ -43,9 +43,10 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);   //For lower mysql versions
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
-        // Share categories with frontend layouts
-        \Illuminate\Support\Facades\View::composer(['frontend.layouts*', 'frontend.home*', 'frontend.products*'], function ($view) {
+        // Share categories and CMS pages with frontend layouts
+        \Illuminate\Support\Facades\View::composer(['frontend.layouts*', 'frontend.home*', 'frontend.products*', 'frontend.cms*'], function ($view) {
             $view->with('sharedCategories', \App\Models\Category::where('status', 1)->with('subCategories')->get());
+            $view->with('sharedCmsPages', \App\Models\ContentManagement::where('active', 1)->get());
         });
     }
 }

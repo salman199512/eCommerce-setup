@@ -142,6 +142,13 @@ return [
                 'children'  => [],
             ],
             [
+                'name'      => 'Payments',
+                'icon'      => '',
+                'isHeader'  => false,
+                'route'     => 'admin.payments.index',
+                'children'  => [],
+            ],
+            [
                 'name'      => 'Inquiries',
                 'icon'      => '',
                 'isHeader'  => false,

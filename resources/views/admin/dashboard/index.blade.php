@@ -5,12 +5,16 @@
 @endsection
 
 @section('page_headers')
-    <div class="d-flex justify-content-between align-items-center w-100">
-        <h4>Dashboard Analytics</h4>
+    <h4>Dashboard Analytics</h4>
+@endsection
+
+@section('page_buttons')
+    <div class="d-flex align-items-center">
+        <div class="me-2 text-muted fw-semibold small">Filter by Year:</div>
         <form action="{{ route('dashboard') }}" method="GET" id="yearFilterForm" class="m-0">
-            <select name="year" onchange="document.getElementById('yearFilterForm').submit()" class="form-select form-select-sm" style="width: auto;">
+            <select name="year" onchange="document.getElementById('yearFilterForm').submit()" class="form-select form-select-sm shadow-sm border-primary-light" style="width: 120px; border-radius: 8px;">
                 @foreach($availableYears as $y)
-                    <option value="{{ $y }}" {{ $year == $y ? 'selected' : '' }}>Year {{ $y }}</option>
+                    <option value="{{ $y }}" {{ $year == $y ? 'selected' : '' }}>{{ $y }}</option>
                 @endforeach
             </select>
         </form>

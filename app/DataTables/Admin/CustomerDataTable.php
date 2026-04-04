@@ -15,17 +15,17 @@ class CustomerDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable
-            ->addColumn('avatar', function(User $query){
-                return '<img class="list-image" src="'.$query->avatarUrl['250'].'">';
-            },0)
             ->addColumn('total_orders', function(User $user){
                 return $user->orders_count;
             })
             ->addColumn('total_spent', function(User $user){
                 return '₹' . number_format($user->orders_sum_total_amount ?? 0, 2);
             })
+            ->editColumn('created_at', function (User $user){
+                return GeneralHelperFunctions::prepareHtmlDate($user->created_at);
+            })
             ->addColumn('action', 'admin.customers.datatables_actions')
-            ->rawColumns(['avatar','action']);
+            ->rawColumns(['action', 'created_at']);
     }
 
     public function query(User $model)
@@ -47,7 +47,7 @@ class CustomerDataTable extends DataTable
                 'responsive'=> true,
                 'dom'       => 'RB<\'row pt-15\' <\'col-sm-6\'l><\'col-sm-6\'f>>rt<\'row\'<\'col-sm-12 col-md-5\'i><\'col-sm-12 col-md-7\'p>>',
                 'stateSave' => true,
-                'order'     => [[0 , 'desc']],
+                'order'     => [[5 , 'desc']],
             ]);
     }
 
@@ -59,7 +59,7 @@ class CustomerDataTable extends DataTable
             'mobile',
             ['data' => 'total_orders', 'title' => 'Total Orders', 'searchable' => false],
             ['data' => 'total_spent', 'title' => 'Total Spent', 'searchable' => false],
-            ['data' => 'created_at', 'title' => 'Registered On'],
+            'created_at' => ['title' => 'Added on'],
         ];
     }
 

@@ -9,7 +9,7 @@
 <div class="bg-white">
     <!-- Hero Section -->
     <div style="position:relative;height:60vh;overflow:hidden;">
-        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1950&q=80" 
+        <img src="{{ asset('web/images/about/1.jpg') }}" 
              style="width:100%;height:100%;object-fit:cover;">
         <div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;text-align:center;">
             <div style="max-width:800px;padding:0 24px;">
@@ -36,8 +36,8 @@
                 </div>
             </div>
             <div style="flex:1;min-width:300px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80" style="width:100%;height:250px;object-fit:cover;border-radius:var(--radius-2xl);box-shadow:var(--shadow-lg);">
-                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80" style="width:100%;height:250px;object-fit:cover;border-radius:var(--radius-2xl);margin-top:32px;box-shadow:var(--shadow-lg);">
+                <img src="{{ asset('web/images/about/2.jpg') }}" style="width:100%;height:250px;object-fit:cover;border-radius:var(--radius-2xl);box-shadow:var(--shadow-lg);">
+                <img src="{{ asset('web/images/about/3.jpg') }}" style="width:100%;height:250px;object-fit:cover;border-radius:var(--radius-2xl);margin-top:32px;box-shadow:var(--shadow-lg);">
             </div>
         </div>
     </div>

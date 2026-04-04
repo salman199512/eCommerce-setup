@@ -4,6 +4,10 @@
     Customers - {{ config('app.name') }}
 @endsection
 
+@section('css')
+    @include('admin.layouts.datatables_css')
+@endsection
+
 @section('page_headers')
     <h4>Customers</h4>
 @endsection
@@ -19,7 +23,7 @@
                 <div class="card">
                     <div class="card-body">
                         @include('flash::message')
-                        {!! $dataTable->table(['width' => '100%', 'class' => 'table table-striped table-bordered']) !!}
+                        {!! $dataTable->table(['width' => '100%', 'class' => 'table']) !!}
                     </div>
                 </div>
             </div>
@@ -27,6 +31,7 @@
     </div>
 @endsection
 
-@push('scripts')
+@push('stackedScripts')
+    @include('admin.layouts.datatables_js')
     {!! $dataTable->scripts() !!}
 @endpush

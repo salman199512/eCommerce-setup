@@ -7,7 +7,7 @@
 <!-- Dashboard Overview -->
 <div class="bg-white border-light rounded-xl p-24 mb-32" style="padding:40px;">
     <h2 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">Overview</h2>
-    <div class="grid-3 gap-24">
+    <div class="grid-3 account-stats-grid" style="gap:24px;">
         <div style="background:linear-gradient(135deg, var(--gray-50), white);padding:32px;border-radius:var(--radius-2xl);border:1px solid var(--gray-100);text-align:center;transition:var(--trans-base);" class="fm-card-hover">
             <div style="width:64px;height:64px;background:var(--primary-dark);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-sm);">
                 <i class="fas fa-shopping-basket" style="color:white;font-size:1.5rem;"></i>
@@ -41,7 +41,7 @@
     </div>
     <div class="flex flex-col gap-16">
         @foreach($orders->take(5) as $order)
-        <div class="bg-gray-50 border-light rounded-xl p-24 flex items-center justify-between transition-all fm-card-hover group" style="padding:24px;">
+        <div class="bg-gray-50 border-light rounded-xl p-24 flex items-center justify-between transition-all fm-card-hover group account-order-row" style="padding:24px;">
             <div style="flex:1;">
                 <div class="flex items-center gap-16 mb-12">
                     <span style="font-size:0.85rem;font-weight:900;color:black;text-transform:uppercase;letter-spacing:0.05em;">#{{ strtoupper(substr($order->uuid, 0, 8)) }}</span>

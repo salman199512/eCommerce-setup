@@ -20,7 +20,7 @@
 
         <div class="flex flex-col gap-32">
             <!-- Name & Email -->
-            <div class="grid-2 gap-32">
+            <div class="grid-2 account-stats-grid gap-32">
                 <div>
                     <label style="display:block;font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:12px;">Full Name</label>
                     <input type="text" name="name" value="{{ old('name', Auth::user()->name) }}" required class="fm-input" style="font-weight:700;">

@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;">
+    <div class="checkout-layout-wrap" style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;">
 
         <!-- Billing Details Form -->
         <div style="flex:1;min-width:300px;">
@@ -54,7 +54,7 @@
 
                 <form id="checkout-form" style="display:flex;flex-direction:column;gap:20px;">
                     @csrf
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div class="checkout-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
                         <div class="fm-group" style="margin-bottom:0;">
                             <label class="fm-label">First Name <span style="color:var(--red-primary);">*</span></label>
                             <input type="text" name="first_name" class="fm-input" placeholder="John" required>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div class="checkout-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
                         <div class="fm-group" style="margin-bottom:0;">
                             <label class="fm-label">Email Address <span style="color:var(--red-primary);">*</span></label>
                             <input type="email" name="email" class="fm-input" placeholder="john@example.com" required>
@@ -81,7 +81,7 @@
                         <input type="text" name="address" class="fm-input" placeholder="Street, Apartment, Suite" required>
                     </div>
 
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+                    <div class="checkout-form-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
                         <div class="fm-group" style="margin-bottom:0;">
                             <label class="fm-label">City <span style="color:var(--red-primary);">*</span></label>
                             <input type="text" name="city" class="fm-input" placeholder="City" required>
@@ -107,7 +107,7 @@
                     <h3 style="font-size:0.9rem;font-weight:900;color:var(--gray-900);text-transform:uppercase;letter-spacing:0.06em;">Payment Method</h3>
                 </div>
 
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" x-data="{ method: 'online' }">
+                <div class="payment-method-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" x-data="{ method: 'online' }">
 
                     <!-- Online Payment -->
                     <label class="payment-method-card" :class="{ 'active': method === 'online' }">
@@ -145,7 +145,7 @@
 
         <!-- Order Summary -->
         @php $total = 0; @endphp
-        <div style="width:360px;flex-shrink:0;position:sticky;top:100px;">
+        <div class="order-summary-sidebar" style="width:360px;flex-shrink:0;position:sticky;top:100px;">
             <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-2xl);padding:28px;box-shadow:var(--shadow-md);">
                 <div style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.16em;color:var(--gray-400);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--gray-100);">
                     <i class="fas fa-receipt" style="color:var(--primary);margin-right:6px;"></i> Order Summary

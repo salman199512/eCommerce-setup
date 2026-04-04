@@ -132,7 +132,7 @@
 {{-- ── Promo Banners ── --}}
 <section class="section-pad-sm" style="background:var(--gray-50);">
     <div class="container">
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;">
+        <div class="promo-grid">
             <!-- Big Banner -->
             <div class="promo-banner" style="min-height:240px;background:linear-gradient(135deg,#052e16 0%,#14532d 100%);">
                 <div class="promo-banner-overlay" style="background:linear-gradient(90deg,rgba(5,46,22,.95) 0%,transparent 70%);">
@@ -228,7 +228,7 @@
 {{-- ── Value Props Banner ── --}}
 <section style="background:var(--grad-secondary);padding:56px 0;color:white;">
     <div class="container">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;">
+        <div class="value-grid" style="text-align:center;">
             <div>
                 <i class="fas fa-award" style="font-size:2.2rem;margin-bottom:12px;display:block;opacity:.9;"></i>
                 <div style="font-size:1rem;font-weight:900;margin-bottom:6px;">Luxury Quality</div>
@@ -356,8 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Category Swiper
     new Swiper('.circular-cat-swiper', {
-        slidesPerView: 3, spaceBetween: 16,
-        breakpoints: { 480:{slidesPerView:4}, 768:{slidesPerView:5}, 1024:{slidesPerView:7} }
+        slidesPerView: 2.2, spaceBetween: 12,
+        centeredSlides: false,
+        breakpoints: { 480:{slidesPerView:3.5, spaceBetween:16}, 768:{slidesPerView:5}, 1024:{slidesPerView:7} }
     });
 
     // Product Swipers

@@ -30,10 +30,15 @@
 </div>
 
 <div class="container" style="padding-top:32px;padding-bottom:64px;">
-    <div style="display:flex;gap:28px;align-items:flex-start;">
+    <div class="shop-layout-wrap" style="display:flex;gap:28px;align-items:flex-start;">
+        <div class="shop-sidebar-overlay" onclick="toggleSidebar()"></div>
 
         <!-- ── Filter Sidebar ── -->
-        <aside style="width:260px;flex-shrink:0;display:block;" id="filter-sidebar">
+        <aside class="shop-sidebar" style="width:260px;flex-shrink:0;display:block;" id="filter-sidebar">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;" class="mobile-only-flex">
+                <h3 style="font-size:1.1rem;font-weight:900;text-transform:uppercase;letter-spacing:.05em;margin:0;">Filters</h3>
+                <button type="button" onclick="toggleSidebar()" style="background:none;border:none;font-size:1.4rem;color:var(--gray-900);">&times;</button>
+            </div>
             <form action="{{ route('products') }}" method="GET" id="filter-form">
                 <input type="hidden" name="sort" id="sort-input" value="{{ request('sort', 'latest') }}">
                 <input type="hidden" name="view" value="{{ request('view', 'grid') }}">
@@ -107,7 +112,14 @@
         </aside>
 
         <!-- ── Main Content ── -->
-        <main style="flex:1;min-width:0;">
+        <main class="shop-main-content" style="flex:1;min-width:0;">
+            
+            <!-- Mobile Filter Toggle -->
+            <div class="mobile-only-flex" style="margin-bottom:20px;gap:12px;">
+                <button type="button" onclick="toggleSidebar()" class="btn btn-secondary" style="flex:1;justify-content:center;height:48px;border-radius:var(--radius-lg);font-weight:800;gap:10px;">
+                    <i class="fas fa-filter"></i> Filters & Categories
+                </button>
+            </div>
             <!-- Sort Bar -->
             <div class="sort-bar">
                 <div class="sort-bar-left">
@@ -115,8 +127,8 @@
                         Showing <strong>{{ $products->firstItem() }}–{{ $products->lastItem() }}</strong> of <strong>{{ $products->total() }}</strong> results
                     </p>
                 </div>
-                <div style="display:flex;align-items:center;gap:12px;">
-                    <div class="view-toggles">
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                    <div class="view-toggles" style="display: flex;">
                         <button onclick="setView('grid')" class="view-toggle-btn {{ !request('view') || request('view') == 'grid' ? 'active' : '' }}" title="Grid View">
                             <i class="fas fa-th-large"></i>
                         </button>
@@ -124,14 +136,16 @@
                             <i class="fas fa-list"></i>
                         </button>
                     </div>
-                    <div style="height:24px;width:1px;background:var(--gray-200);margin:0 4px;"></div>
-                    <span style="font-size:.72rem;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;">Sort:</span>
-                    <select class="sort-select fm-select" onchange="updateSort(this.value)">
-                        <option value="latest"     {{ request('sort') == 'latest'     ? 'selected' : '' }}>Newest First</option>
-                        <option value="price_low"  {{ request('sort') == 'price_low'  ? 'selected' : '' }}>Price: Low to High</option>
-                        <option value="price_high" {{ request('sort') == 'price_high' ? 'selected' : '' }}>Price: High to Low</option>
-                        <option value="popular"    {{ request('sort') == 'popular'    ? 'selected' : '' }}>Most Popular</option>
-                    </select>
+                    <div style="height:24px;width:1px;background:var(--gray-200);margin:0 4px;" class="desktop-only"></div>
+                    <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:140px;">
+                        <span style="font-size:.72rem;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;">Sort:</span>
+                        <select class="sort-select fm-select" onchange="updateSort(this.value)" style="flex:1;">
+                            <option value="latest"     {{ request('sort') == 'latest'     ? 'selected' : '' }}>Newest First</option>
+                            <option value="price_low"  {{ request('sort') == 'price_low'  ? 'selected' : '' }}>Price: Low to High</option>
+                            <option value="price_high" {{ request('sort') == 'price_high' ? 'selected' : '' }}>Price: High to Low</option>
+                            <option value="popular"    {{ request('sort') == 'popular'    ? 'selected' : '' }}>Most Popular</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -141,18 +155,18 @@
                         {{ request('view') == 'list' ? 'flex-direction:column;gap:16px;' : 'grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;' }}">
                 @forelse($products as $product)
                     @if(request('view') == 'list')
-                        <div style="display:flex;gap:20px;background:white;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:20px;box-shadow:var(--shadow-sm);transition:box-shadow .25s;"
+                        <div class="product-list-item" style="display:flex;gap:20px;background:white;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:20px;box-shadow:var(--shadow-sm);transition:box-shadow .25s;"
                              onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
-                            <div style="width:130px;height:130px;border-radius:var(--radius-lg);overflow:hidden;flex-shrink:0;background:var(--gray-100);">
+                            <div class="product-list-img" style="width:130px;height:130px;border-radius:var(--radius-lg);overflow:hidden;flex-shrink:0;background:var(--gray-100);">
                                 <img src="{{ $product->avatar_url }}" alt="{{ $product->title }}" style="width:100%;height:100%;object-fit:cover;">
                             </div>
-                            <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;min-width:0;">
+                            <div class="product-list-info" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;min-width:0;">
                                 <div>
                                     <span style="font-size:.64rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--teal-primary);">{{ $product->category->title ?? '' }}</span>
                                     <h3 style="font-size:.95rem;font-weight:800;color:var(--gray-900);margin:4px 0 8px;line-height:1.3;">{{ $product->title }}</h3>
                                     <p style="font-size:.78rem;color:var(--gray-500);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{ strip_tags($product->description) }}</p>
                                 </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+                                <div class="product-list-footer" style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
                                     @php $fv = $product->variants->first(); $dp = $fv->final_price ?? $fv->price ?? 0; @endphp
                                     <span style="font-size:1.2rem;font-weight:900;color:var(--primary);">₹{{ number_format($dp, 2) }}</span>
                                     <div style="display:flex;gap:8px;">
@@ -215,5 +229,19 @@ function toggleWishlist(id, btn) {
         }
     });
 }
+function toggleSidebar() {
+    const sidebar = document.getElementById('filter-sidebar');
+    const overlay = document.querySelector('.shop-sidebar-overlay');
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+}
 </script>
+<style>
+.mobile-only-flex { display: none; }
+@media (max-width: 991px) {
+    .mobile-only-flex { display: flex; }
+    .desktop-only { display: none; }
+}
+</style>
 @endpush

@@ -39,13 +39,13 @@
         </div>
     </div>
 
-    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;">
+    <div class="cart-layout-wrap" style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;">
 
         <!-- Cart Items -->
-        <div style="flex:1;min-width:0;">
+        <div class="cart-items-col" style="flex:1;min-width:0;">
 
             <!-- Table Header -->
-            <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:12px;padding:0 16px 12px;font-size:0.62rem;font-weight:900;text-transform:uppercase;letter-spacing:0.16em;color:var(--gray-400);border-bottom:2px solid var(--gray-100);">
+            <div class="cart-table-header" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:12px;padding:0 16px 12px;font-size:0.62rem;font-weight:900;text-transform:uppercase;letter-spacing:0.16em;color:var(--gray-400);border-bottom:2px solid var(--gray-100);">
                 <span>Product</span>
                 <span>Price</span>
                 <span style="text-align:center;">Quantity</span>
@@ -55,7 +55,7 @@
 
             <div id="cart-items-body" style="display:flex;flex-direction:column;gap:4px;margin-top:8px;">
                 @foreach($cartItems as $id => $details)
-                <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:12px;align-items:center;background:white;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:16px;box-shadow:var(--shadow-sm);transition:box-shadow .2s;" id="cart-row-{{ $id }}"
+                <div class="cart-item-row" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:12px;align-items:center;background:white;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:16px;box-shadow:var(--shadow-sm);transition:box-shadow .2s;" id="cart-row-{{ $id }}"
                      onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='var(--shadow-sm)'">
 
                     <!-- Product -->
@@ -117,7 +117,7 @@
         </div>
 
         <!-- Order Summary Sidebar -->
-        <div style="width:340px;flex-shrink:0;position:sticky;top:100px;">
+        <div class="cart-summary-sidebar" style="width:340px;flex-shrink:0;position:sticky;top:100px;">
             <div style="background:white;border:1px solid var(--border-light);border-radius:var(--radius-2xl);padding:28px;box-shadow:var(--shadow-md);">
                 <h3 style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.14em;color:var(--gray-900);margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">
                     <i class="fas fa-receipt" style="color:var(--primary);margin-right:8px;"></i> Order Summary
@@ -198,13 +198,47 @@
 
 @push('styles')
 <style>
-@media (max-width: 900px) {
+@media (max-width: 991px) {
     .cart-layout-wrap { flex-direction: column !important; }
     .cart-summary-sidebar { width: 100% !important; position: static !important; }
-    .cart-item-row { grid-template-columns: 1fr auto !important; }
+    .cart-table-header { display: none !important; }
+    .cart-item-row { 
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 16px !important;
+        gap: 16px !important;
+    }
+    /* Product Info Section */
+    .cart-item-row > div:nth-child(1) { border-bottom: 1px solid var(--gray-50); padding-bottom: 12px; }
+    
+    /* Layout for Price/Qty/Total as info rows */
+    .cart-item-row > div:nth-child(2),
+    .cart-item-row > div:nth-child(3),
+    .cart-item-row > div:nth-child(4) {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    .cart-item-row > div:nth-child(2) > div:first-child,
+    .cart-item-row > div:nth-child(3) > div:first-child,
+    .cart-item-row > div:nth-child(4) > div:first-child { margin-bottom: 0 !important; }
+    
+    .cart-item-row > div:nth-child(4) { border-top: 1px dashed var(--gray-100); padding-top: 12px; }
+    
+    .cart-item-row > button { 
+        width: 100% !important; 
+        border-radius: var(--radius-md) !important; 
+        height: 44px !important; 
+        margin-top: 4px;
+        background: var(--red-soft) !important;
+        border-color: var(--red-light) !important;
+        color: var(--red-primary) !important;
+    }
 }
-@media (max-width: 640px) {
-    .cart-item-row { display: flex !important; flex-direction: column !important; }
+@media (max-width: 480px) {
+    .cart-item-row { padding: 14px !important; }
 }
 </style>
 @endpush

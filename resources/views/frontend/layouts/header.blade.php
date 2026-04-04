@@ -22,7 +22,7 @@
 </div>
 
 <!-- ── Main Site Header ── -->
-<header class="site-header" id="site-header" style="height:84px !important;">
+<header class="site-header" id="site-header">
     <div class="container">
         <div class="header-inner">
 

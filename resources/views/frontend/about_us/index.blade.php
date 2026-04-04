@@ -13,7 +13,7 @@
                  style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;text-align:center;">
                 <div style="max-width:800px;padding:0 24px;">
-                    <h1 style="color:white;font-size:3.5rem;font-weight:900;margin-bottom:24px;text-transform:uppercase;letter-spacing:-0.05em;line-height:1;">Our Story</h1>
+                    <h1 class="hero-display-title" style="color:white;font-size:3.5rem;font-weight:900;margin-bottom:24px;text-transform:uppercase;letter-spacing:-0.05em;line-height:1;">Our Story</h1>
                     <p style="color:rgba(255,255,255,0.8);font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.3em;">
                         Defining Modern Style Since 2019
                     </p>
@@ -25,7 +25,7 @@
         <div style="max-width:1400px;margin:0 auto;padding:100px 24px;">
             <div style="display:flex;flex-wrap:wrap;align-items:center;gap:64px;">
                 <div style="flex:1;min-width:300px;">
-                    <h2 style="font-size:2.5rem;font-weight:900;margin-bottom:32px;line-height:1.1;text-transform:uppercase;letter-spacing:-0.03em;color:var(--gray-900);">Global Trends &<br>Unmatched Quality</h2>
+                    <h2 class="display-1" style="font-size:2.5rem;font-weight:900;margin-bottom:32px;line-height:1.1;text-transform:uppercase;letter-spacing:-0.03em;color:var(--gray-900);">Global Trends &<br>Unmatched Quality</h2>
                     <div style="color:var(--gray-500);font-weight:600;line-height:1.7;font-size:1.05rem;">
                         <p style="margin-bottom:24px;">
                             Established in the heart of the fashion world, Luxura was born from a passion for exquisite design and sustainable luxury. We believe that everyone deserves access to the finest apparel, crafted with integrity and style.
@@ -35,7 +35,7 @@
                         </p>
                     </div>
                 </div>
-                <div style="flex:1;min-width:300px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div class="about-image-grid" style="flex:1;min-width:300px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
                     <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80" style="width:100%;height:250px;object-fit:cover;border-radius:var(--radius-2xl);box-shadow:var(--shadow-lg);">
                     <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=600&q=80" style="width:100%;height:250px;object-fit:cover;border-radius:var(--radius-2xl);margin-top:32px;box-shadow:var(--shadow-lg);">
                 </div>
@@ -47,7 +47,7 @@
             <div style="max-width:1400px;margin:0 auto;padding:0 24px;">
                 <div style="text-align:center;max-width:700px;margin:0 auto 64px;">
                     <span style="color:var(--primary);font-size:0.75rem;font-weight:900;text-transform:uppercase;letter-spacing:0.3em;display:block;margin-bottom:12px;">Foundations</span>
-                    <h3 style="font-size:2.5rem;font-weight:900;margin-bottom:16px;text-transform:uppercase;letter-spacing:-0.02em;">Our Ethos</h3>
+                    <h3 class="display-1" style="font-size:2.5rem;font-weight:900;margin-bottom:16px;text-transform:uppercase;letter-spacing:-0.02em;">Our Ethos</h3>
                     <div style="width:48px;height:4px;background:var(--primary);margin:0 auto;border-radius:var(--radius-full);"></div>
                 </div>
 
@@ -83,9 +83,8 @@
             </div>
         </div>
 
-        <!-- Statistics -->
-        <div style="max-width:1400px;margin:0 auto;padding:100px 24px;text-align:center;">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:64px;">
+        <div style="max-width:1400px;margin:0 auto;padding-bottom:100px;padding-left:24px;padding-right:24px;text-align:center;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:64px;">
                 <div>
                     <span style="display:block;font-size:3.5rem;font-weight:900;margin-bottom:8px;letter-spacing:-0.05em;line-height:1;">10+</span>
                     <span style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);font-weight:900;">Years Experience</span>

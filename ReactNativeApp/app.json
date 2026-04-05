@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Luxura — Mobile Shop",
+    "slug": "ecommerce-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.smyt.ecommercemobile"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e0fa5576-63bb-47b5-beea-1cbf5f45a254"
+      }
+    }
+  }
+}

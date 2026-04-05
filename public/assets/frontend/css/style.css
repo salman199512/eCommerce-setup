@@ -1150,6 +1150,7 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); line-height: 1.2; }
     .grid-5 { grid-template-columns: repeat(2, 1fr); }
     .account-layout-wrap { flex-direction: column; padding: 20px 14px 48px; gap: 24px !important; }
     .account-sidebar-col { width: 100%; position: static; }
+    .account-content-col { width: 100%; }
     .account-sidebar-card { border-radius: var(--radius-xl) !important; padding: 0 !important; overflow: hidden; }
     .account-sidebar-head { padding: 32px 20px !important; }
     .account-sidebar-nav { 
@@ -1314,6 +1315,17 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); line-height: 1.2; }
     .product-list-img { width: 85px !important; height: 85px !important; }
     .product-list-info h3 { font-size: 0.85rem !important; }
     .product-list-info p { display: none !important; }
+    
+    /* Account / Dashboard Stacking */
+    .account-stats-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .account-order-row { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+    .account-order-row > div:last-child { width: 100%; justify-content: space-between; }
+    .account-dashboard-card { padding: 20px 16px !important; }
+    .account-stat-box { padding: 20px !important; }
+    
+    /* Wishlist Grid */
+    .wishlist-page-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .wishlist-remove-btn { width: 32px !important; height: 32px !important; font-size: 0.8rem !important; background: rgba(255,255,255,0.9) !important; backdrop-filter: blur(4px) !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════

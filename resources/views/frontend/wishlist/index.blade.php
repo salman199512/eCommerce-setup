@@ -12,6 +12,7 @@
                 
                 <!-- Remove Button -->
                 <button onclick="removeFromWishlist({{ $item->id }})" 
+                        class="wishlist-remove-btn"
                         style="position:absolute;top:16px;right:16px;z-index:30;width:40px;height:40px;background:white;border:1px solid var(--gray-100);color:var(--gray-300);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;transition:var(--trans-base);cursor:pointer;box-shadow:var(--shadow-lg);"
                         onmouseover="this.style.color='var(--red-primary)';this.style.borderColor='var(--red-primary)'"
                         onmouseout="this.style.color='var(--gray-300)';this.style.borderColor='var(--gray-100)'">

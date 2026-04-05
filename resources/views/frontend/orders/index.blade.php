@@ -8,7 +8,7 @@
         <div style="display:flex;flex-direction:column;gap:24px;">
             @foreach($orders as $order)
             <div style="background:white;border:1px solid var(--gray-100);border-radius:var(--radius-3xl);padding:40px;transition:var(--trans-base);" class="fm-card-hover group">
-                <div style="display:flex;flex-wrap:wrap;align-items:start;justify-content:space-between;gap:24px;margin-bottom:32px;">
+                <div class="account-order-row" style="display:flex;flex-wrap:wrap;align-items:start;justify-content:space-between;gap:24px;margin-bottom:32px;">
                     <!-- Order Info -->
                     <div style="flex:1;min-width:200px;">
                         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:24px;">

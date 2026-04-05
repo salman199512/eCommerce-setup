@@ -5,24 +5,24 @@
 @section('account-content')
 
 <!-- Dashboard Overview -->
-<div class="bg-white border-light rounded-xl p-24 mb-32" style="padding:40px;">
+<div class="bg-white border-light rounded-xl mb-32 account-dashboard-card" style="padding:40px;">
     <h2 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--gray-100);">Overview</h2>
     <div class="grid-3 account-stats-grid" style="gap:24px;">
-        <div style="background:linear-gradient(135deg, var(--gray-50), white);padding:32px;border-radius:var(--radius-2xl);border:1px solid var(--gray-100);text-align:center;transition:var(--trans-base);" class="fm-card-hover">
+        <div style="background:linear-gradient(135deg, var(--gray-50), white);border-radius:var(--radius-2xl);border:1px solid var(--gray-100);text-align:center;transition:var(--trans-base);" class="fm-card-hover account-stat-box">
             <div style="width:64px;height:64px;background:var(--primary-dark);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-sm);">
                 <i class="fas fa-shopping-basket" style="color:white;font-size:1.5rem;"></i>
             </div>
             <h4 style="font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:12px;">Total Orders</h4>
             <p style="font-size:3rem;font-weight:900;color:black;letter-spacing:-0.05em;">{{ $orders->count() }}</p>
         </div>
-        <div style="background:linear-gradient(135deg, var(--secondary-soft), white);padding:32px;border-radius:var(--radius-2xl);border:1px solid var(--secondary-light);text-align:center;transition:var(--trans-base);" class="fm-card-hover">
+        <div style="background:linear-gradient(135deg, var(--secondary-soft), white);border-radius:var(--radius-2xl);border:1px solid var(--secondary-light);text-align:center;transition:var(--trans-base);" class="fm-card-hover account-stat-box">
             <div style="width:64px;height:64px;background:var(--secondary);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-sm);">
                 <i class="fas fa-clock" style="color:white;font-size:1.5rem;"></i>
             </div>
             <h4 style="font-size:0.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.2em;color:var(--gray-400);margin-bottom:12px;">Pending</h4>
             <p style="font-size:3rem;font-weight:900;color:var(--secondary);letter-spacing:-0.05em;">{{ $orders->where('status', 'pending')->count() }}</p>
         </div>
-        <div style="background:linear-gradient(135deg, var(--primary-soft), white);padding:32px;border-radius:var(--radius-2xl);border:1px solid var(--primary-light);text-align:center;transition:var(--trans-base);" class="fm-card-hover">
+        <div style="background:linear-gradient(135deg, var(--primary-soft), white);border-radius:var(--radius-2xl);border:1px solid var(--primary-light);text-align:center;transition:var(--trans-base);" class="fm-card-hover account-stat-box">
             <div style="width:64px;height:64px;background:var(--primary);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-sm);">
                 <i class="fas fa-check-circle" style="color:white;font-size:1.5rem;"></i>
             </div>
@@ -34,14 +34,14 @@
 
 <!-- Recent Orders -->
 @if($orders->count() > 0)
-<div class="bg-white border-light rounded-xl p-24" style="padding:40px;">
+<div class="bg-white border-light rounded-xl account-dashboard-card" style="padding:40px;">
     <div class="flex items-center justify-between mb-32 pb-16 border-b border-gray-50" style="padding-bottom:16px;margin-bottom:32px;">
         <h2 style="font-size:0.7rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--gray-400);">Recent Orders</h2>
         <a href="{{ route('my-orders') }}" style="font-size:0.65rem;font-weight:900;text-transform:uppercase;letter-spacing:0.15em;color:var(--primary);text-decoration:none;transition:var(--trans-base);">View All →</a>
     </div>
     <div class="flex flex-col gap-16">
         @foreach($orders->take(5) as $order)
-        <div class="bg-gray-50 border-light rounded-xl p-24 flex items-center justify-between transition-all fm-card-hover group account-order-row" style="padding:24px;">
+        <div class="bg-gray-50 border-light rounded-xl flex items-center justify-between transition-all fm-card-hover group account-order-row" style="padding:24px;">
             <div style="flex:1;">
                 <div class="flex items-center gap-16 mb-12">
                     <span style="font-size:0.85rem;font-weight:900;color:black;text-transform:uppercase;letter-spacing:0.05em;">#{{ strtoupper(substr($order->uuid, 0, 8)) }}</span>
@@ -74,7 +74,7 @@
 </div>
 @else
 <!-- Empty State -->
-<div class="bg-white border-light rounded-xl p-24 text-center" style="padding:80px 40px;">
+<div class="bg-white border-light rounded-xl text-center account-dashboard-card" style="padding:80px 40px;">
     <div style="width:96px;height:96px;background:var(--gray-50);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;margin:0 auto 32px;">
         <i class="fas fa-shopping-basket" style="font-size:2.5rem;color:var(--gray-300);"></i>
     </div>
